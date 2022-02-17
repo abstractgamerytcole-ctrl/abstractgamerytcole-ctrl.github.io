@@ -1,2 +1,2 @@
 # astroleapstudios.github.io
-AstroLeapStudios Github Website
+My portfolio for anyone looking at my work!
