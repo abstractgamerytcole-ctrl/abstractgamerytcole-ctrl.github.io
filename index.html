@@ -1,20 +1,180 @@
 <!DOCTYPE html>
-<html>
-<style>
-  h1 {
-    font-family:'Helvetica';
-  }
-</style>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+
 <head>
-  <title>AstroLeap</title>
+    <meta charset="UTF-8">
+    <title> Responsive Portfolio Website | CodingLab </title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
+    <!-- Move to up button -->
+    <div class="scroll-button">
+        <a href="#home"><i class="fas fa-arrow-up"></i></a>
+    </div>
+    <!-- navgaition menu -->
+    <nav>
+        <div class="navbar">
+            <ul class="menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <div class="cancel-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+            </ul>
+        </div>
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
 
-<h1>Blowing Up On TikTok</h1>
+    <!-- Home Section Start -->
+    <section class="home" id="home">
+        <div class="home-content">
+            <div class="text">
+                <div class="text-one">Hello,</div>
+                <div class="text-two">I'm Cole Timlin / AstroLeapStudios</div>
+                <div class="text-three">Game Devloper / Designer</div>
+                <div class="text-four">From Long Island, New York</div>
+            </div>
+            <div class="button">
+                <button>Hire Me</button>
+            </div>
+        </div>
+    </section>
 
-<p>
-- Post videos that you want to go most viral first thing on a Saturday morning
-  </p>
+    <!-- About Section Start -->
+    <section class="about" id="about">
+        <div class="content">
+            <div class="title"><span>About Me</span></div>
+            <div class="about-details">
+                <div class="left">
+                    <img src="images/about.jpg" alt="">
+                </div>
+                <div class="right">
+                    <div class="topic">I Do My Reasearch</div>
+                    <p>Ever since the year of 2020, I have been researching the <a href="https://www.tiktok.com">TikTok</a> algorithm and have been quite successful. My most recent blow up is on <a href="https://www.tiktok.com/@astroleapstudio">this account</a>.</p>
+                    <div class="button">
+                        <button><a href="https://www.tiktok.com/@astroleapstudio">Check Out My Page!</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- My Skill Section Start -->
+    <!-- Section Tag and Other Div will same where we need to put same CSS -->
+    <section class="skills" id="skills">
+        <div class="content">
+            <div class="title"><span>My Skills</span></div>
+            <div class="skills-details">
+                <div class="text">
+                    <div class="topic">Skills Reflects Our Knowledge</div>
+                    <p>Ever since I was 8 years old, I have been programming in many languages. My experience in some languages are located to the right!</p>
+                    <div class="experience">
+                        <div class="num">5.5</div>
+                        <div class="exp">Years Of <br> Experience</div>
+                    </div>
+                </div>
+                <div class="boxes">
+                    <div class="box">
+                        <div class="topic">C#</div>
+                        <div class="per">90%</div>
+                    </div>
+                    <div class="box">
+                        <div class="topic">Python</div>
+                        <div class="per">80%</div>
+                    </div>
+                    <div class="box">
+                        <div class="topic">HTML</div>
+                        <div class="per">80%</div>
+                    </div>
+                    <div class="box">
+                        <div class="topic">CSS</div>
+                        <div class="per">70%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Services Section Start -->
+    <section class="services" id="services">
+        <div class="content">
+            <div class="title"><span>My Services</span></div>
+            <div class="boxes">
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <div class="topic">Web Devlopment</div>
+                    <p>I will develop a basic website for you!</p>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="topic">Game Devlopment</div>
+                    <p>Need any help with certain code bits? I can help!</p>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="topic">TikTok Growth</div>
+                    <p>Need help growing on TikTok? I got you!</p>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <div class="topic">Icon Design</div>
+                    <p>Need help designing a logo? I can create one for you!</p>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <div class="topic">API Project</div>
+                    <p>Need help working on an API project? I can help you connect to the API and decode all data!</p>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-tablet-alt"></i>
+                    </div>
+                    <div class="topic">App Devlopment</div>
+                    <p>I will help you create your very own mobile app (in Unity)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Me section Start -->
+    <section class="contact" id="contact">
+        <div class="content">
+            <div class="title"><span>Contact Me</span></div>
+            <div class="text">
+                <div class="topic">Have Any Project?</div>
+                <p>Add my on Discord, my user is <br>Abstract#1014</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section Start -->
+    <footer>
+        <div class="text">
+            <span>Sincerely, Abstract</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
