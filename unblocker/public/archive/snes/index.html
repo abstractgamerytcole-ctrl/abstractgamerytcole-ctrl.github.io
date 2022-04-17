@@ -2,8 +2,8 @@
 <html lang="en-us">
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="Content-Type" content="text\html; charset=utf-8">
-		<title>SNES<\title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>SNES</title>
 		<style>
 			.emscripten {
 			padding-right: 0;
@@ -29,7 +29,7 @@
 			bottom: 0;
 			overflow: hidden;
 			}
-			\* the canvas *must not* have any border or padding, or mouse coords will be wrong *\
+			/* the canvas *must not* have any border or padding, or mouse coords will be wrong */
 			canvas {
 			border: 0px none;
 			display: block;
@@ -144,38 +144,38 @@ li input {
 #upload + label:hover {
 	background-color: #eee;
 }
-		<\style>
-	<\head>
+		</style>
+	</head>
 	<body onload="snes_readfile();">
 		<div class="emscripten_border">
 			<ul class="menu">
 				<li>Controls<ul>
-						<li>DPad: Arrow keys<\li>
-						<li>Start: Enter<\li>
-						<li>Select: Space<\li>
-						<li>A Button: D<\li>
-						<li>B Button: C<\li>
-						<li>X Button: S<\li>
-						<li>Y Button: X<\li>
-						<li>L Bumper: A<\li>
-						<li>R Bumper: Z<\li>
-					<\ul>
-				<\li>
+						<li>DPad: Arrow keys</li>
+						<li>Start: Enter</li>
+						<li>Select: Space</li>
+						<li>A Button: D</li>
+						<li>B Button: C</li>
+						<li>X Button: S</li>
+						<li>Y Button: X</li>
+						<li>L Bumper: A</li>
+						<li>R Bumper: Z</li>
+					</ul>
+				</li>
 				<li>
 					<input type="checkbox" id="smooth" onclick="setSmooth()">Smooth
-				<\li>
-			<\ul>
+				</li>
+			</ul>
 			<div id="ffd" style="display: none;">
-				<h2>Upload SNES ROM<\h2>
-				<input type="file" id="upload" accept=".smc" onchange="snes_upload(this)" \>
-				<label for="upload">Choose File<\label>
-			<\div>
-			<canvas id="canvas" class="texturePixelated" oncontextmenu="event.preventDefault()"><\canvas>
-		<\div>
+				<h2>Upload SNES ROM</h2>
+				<input type="file" id="upload" accept=".smc" onchange="snes_upload(this)" />
+				<label for="upload">Choose File</label>
+			</div>
+			<canvas id="canvas" class="texturePixelated" oncontextmenu="event.preventDefault()"></canvas>
+		</div>
 		<div class="emscripten" style="display:none;">
 			<input type="checkbox" id="pointerLock" checked>
-		<\div>
-		<script async type="text\javascript" src=".\snes9x.js"><\script>
-		<script type="text\javascript" src=".\base.js"><\script>
-	<\body>
-<\html>
+		</div>
+		<script async type="text/javascript" src="./snes9x.js"></script>
+		<script type="text/javascript" src="./base.js"></script>
+	</body>
+</html>

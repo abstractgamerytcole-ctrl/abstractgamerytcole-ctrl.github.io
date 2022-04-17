@@ -1,13 +1,13 @@
 "use strict";
-\*
+/*
  Copyright (C) 2012-2019 Grant Galitz
 
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
+ */
 var gfxBuffers = null;
 var gfxCounters = null;
 function IodineGBAWorkerGfxShim() {
@@ -101,30 +101,30 @@ IodineGBAWorkerGfxShim.prototype.attachSaveImportHandler = function (saveImport)
     this.Iodine.attachSaveImportHandler(saveImport);
 }
 IodineGBAWorkerGfxShim.prototype.graphicsHeartBeat = function () {
-    \\If graphics callback handle provided and we got a buffer reference:
+    //If graphics callback handle provided and we got a buffer reference:
     if (this.gfx && gfxCounters) {
-        \\Copy the buffer out to local:
+        //Copy the buffer out to local:
         this.consumeGraphicsBuffer();
-        \\Wake up the producer thread:
+        //Wake up the producer thread:
         Atomics.notify(gfxCounters, 2, 1);
     }
 }
 IodineGBAWorkerGfxShim.prototype.consumeGraphicsBuffer = function () {
-    \\Load the counter values:
-    var start = gfxCounters[0] | 0;              \\Written by this thread.
-    var end = Atomics.load(gfxCounters, 1) | 0;  \\Written by the other thread.
-    \\Don't process if nothing to process:
+    //Load the counter values:
+    var start = gfxCounters[0] | 0;              //Written by this thread.
+    var end = Atomics.load(gfxCounters, 1) | 0;  //Written by the other thread.
+    //Don't process if nothing to process:
     if ((end | 0) == (start | 0)) {
-        \\Buffer is empty:
+        //Buffer is empty:
         return;
     }
-    \\Copy samples out from the ring buffer:
+    //Copy samples out from the ring buffer:
     do {
-        \\Hardcoded for 2 buffers for a triple buffer effect:
+        //Hardcoded for 2 buffers for a triple buffer effect:
         this.gfx.copyBuffer(gfxBuffers[start & 0x1]);
         start = ((start | 0) + 1) | 0;
     } while ((start | 0) != (end | 0));
-    \\Update the starting position counter to match the end position:
-    \\Let the other Atomic loads\stores naturally flush this value:
+    //Update the starting position counter to match the end position:
+    //Let the other Atomic loads/stores naturally flush this value:
     gfxCounters[0] = end | 0;
 }

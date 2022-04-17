@@ -6,7 +6,7 @@ $(document).ready(function(){
 (function(){
 
 	if(!('requestAnimationFrame' in window)) return;
-	if(\Mobile|Android\.test(navigator.userAgent)) return;
+	if(/Mobile|Android/.test(navigator.userAgent)) return;
 
 	var backgrounds = [];
 
@@ -74,7 +74,7 @@ $(document).ready(function(){
 			var rect = visible[i].rect;
 			var node = visible[i].node;
 
-			var quot = Math.max(rect.bottom, 0) \ (window.innerHeight + rect.height);
+			var quot = Math.max(rect.bottom, 0) / (window.innerHeight + rect.height);
 
 			node.style.transform = 'translate3d(0, '+(-50*quot)+'%, 0)';
 		}

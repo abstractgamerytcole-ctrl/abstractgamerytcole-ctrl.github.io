@@ -24,7 +24,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {} else 
 
 function snes_readfile() {
 	if(window.location.hash){
-		var romloc = ".\roms\" + window.location.hash.substring(1) + ".smc";
+		var romloc = "./roms/" + window.location.hash.substring(1) + ".smc";
 		var oReq = new XMLHttpRequest();
 		oReq.open("GET", romloc, true);
 		oReq.responseType = "arraybuffer";
@@ -34,7 +34,7 @@ function snes_readfile() {
 				alert("Could not find " + romloc.substring(2));
 			} else {
 				var arrayBuffer = oReq.response;
-				Module.FS_createDataFile("\", "_.smc", new Uint8Array(arrayBuffer), true, true);
+				Module.FS_createDataFile("/", "_.smc", new Uint8Array(arrayBuffer), true, true);
 				snes_main();
 				ToggleDisplayFramerate();
 			}
@@ -50,7 +50,7 @@ function snes_upload(upload) {
 	var reader = new FileReader()
 	reader.onload = function() {
 		document.getElementById('ffd').style.display = "none";
-		Module.FS_createDataFile("\", "_.smc", new Uint8Array(this.result), true, true);
+		Module.FS_createDataFile("/", "_.smc", new Uint8Array(this.result), true, true);
 		snes_main();
 		ToggleDisplayFramerate();
 	}

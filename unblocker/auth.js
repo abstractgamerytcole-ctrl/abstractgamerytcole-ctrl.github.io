@@ -1,4 +1,4 @@
-#!\usr\bin\env node
+#!/usr/bin/env node
 
 var crypto = require('crypto');
 var os = require('os');
@@ -9,7 +9,7 @@ var Cookies = require('cookies');
 
 var settings = {
     hashes: [],
-    redirect: '\',
+    redirect: '/',
 };
 
 module.exports = function(env) {
@@ -20,7 +20,7 @@ module.exports = function(env) {
 };
 
 module.exports.auth = function(req, res, next) {
-    \\ Allow using with express as well as socket.io
+    // Allow using with express as well as socket.io
     next = next || res;
     var cookies = new Cookies(req);
     var hash = cookies.get('session') ?
@@ -55,8 +55,8 @@ module.exports.hash = function(key) {
 
 if (require.main === module) {
     var pair = module.exports.generate();
-    console.log('Call authlink.generate() for a keypair or add\n' +
-        'authlink({hashes:[\'' + pair.hash + '\']})\n' +
-        'and then authenticate on authlink.sign with the querystring\n?' +
+    console.log('Call authlink.generate() for a keypair or add/n' +
+        'authlink({hashes:[/'' + pair.hash + '/']})/n' +
+        'and then authenticate on authlink.sign with the querystring/n?' +
         querystring.stringify({ key: pair.key }));
 }
