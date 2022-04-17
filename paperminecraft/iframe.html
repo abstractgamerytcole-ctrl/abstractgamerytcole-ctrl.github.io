@@ -1,0 +1,128 @@
+
+<!DOCTYPE html><html lang="en"><head><title>Paper Minecraft Game Files - Crazy Games</title><link href="https://gameframe.crazygames.com/crazygames-gameframe-v1.bundle.js" rel="preload" as="script" /><link href="https://www.crazygames.com/game/paper-minecraft" rel="canonical" /><meta charset="UTF-8" /><meta name="robots" content="noindex, follow" /><meta name="description" content="The game files for Paper Minecraft, a free browser game on CrazyGames.com" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Accept-CH" content="DPR" /><meta name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1.0, user-scalable=no, minimal-ui" /><style id="pacman-styles">/* purple background */
+    body {
+      background-image: linear-gradient(290deg, #3b2b73 55%, #6f2f93, #6f2f93);
+      background-position: center;
+      text-align: center;
+    }
+    /* for positioning of pacman loader */
+    body, html { height: 100%; }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    @keyframes rotate_preloadpacman_half_up {
+      0% {
+        transform: rotate(270deg); }
+      50% {
+        transform: rotate(360deg); }
+      100% {
+        transform: rotate(270deg); }
+    }
+    
+    @keyframes rotate_preloadpacman_half_down {
+      0% {
+        transform: rotate(90deg);
+      }
+      50% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(90deg);
+      }
+    }
+    
+    @keyframes preloadpacman-balls {
+      75% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translate(-100px, -6.25px);
+      }
+    }
+    
+    .preloadpacman {
+      position: relative;
+    }
+    .preloadpacman > div:nth-child(2) {
+      animation: preloadpacman-balls 1s -0.99s infinite linear;
+    }
+    .preloadpacman > div:nth-child(3) {
+      animation: preloadpacman-balls 1s -0.66s infinite linear;
+    }
+    .preloadpacman > div:nth-child(4) {
+      animation: preloadpacman-balls 1s -0.33s infinite linear;
+    }
+    .preloadpacman > div:nth-child(5) {
+      animation: preloadpacman-balls 1s 0s infinite linear;
+    }
+    .preloadpacman > div:first-of-type {
+      width: 0px;
+      height: 0px;
+      border-right: 25px solid transparent;
+      border-top: 25px solid #fff;
+      border-left: 25px solid #fff;
+      border-bottom: 25px solid #fff;
+      border-radius: 25px;
+      animation: rotate_preloadpacman_half_up 0.5s 0s infinite;
+      position: relative;
+      left: -30px;
+    }
+    .preloadpacman > div:nth-child(2) {
+      width: 0px;
+      height: 0px;
+      border-right: 25px solid transparent;
+      border-top: 25px solid #fff;
+      border-left: 25px solid #fff;
+      border-bottom: 25px solid #fff;
+      border-radius: 25px;
+      animation: rotate_preloadpacman_half_down 0.5s 0s infinite;
+      margin-top: -50px;
+      position: relative;
+      left: -30px;
+    }
+    .preloadpacman > div:nth-child(3),
+    .preloadpacman > div:nth-child(4),
+    .preloadpacman > div:nth-child(5),
+    .preloadpacman > div:nth-child(6) {
+      background-color: #fff;
+      width: 15px;
+      height: 15px;
+      border-radius: 100%;
+      margin: 2px;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      transform: translate(0, -6.25px);
+      top: 25px;
+      left: 70px;
+    }
+    </style></head><body><div class="preloadpacman" id="pacman"><div></div><div></div><div></div><div></div><div></div></div><script type="text/javascript">function loadScript(url, async, callback) {
+      var head = document.head;
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = url;
+      if(async) {
+        script.async = true;
+      }
+      script.onreadystatechange = callback;
+      script.onload = callback;
+      head.appendChild(script);
+    }
+    var options = {"loader":"iframe","loaderOptions":{"sandbox":false,"url":"https://scratch.mit.edu/projects/10128407/embed"},"author":"Griffpatch","thumbnail":"https://images.crazygames.com/paperminecraft.png?auto=format,compress&q=75&cs=strip&w=360","gameName":"Paper Minecraft","gameHttps":true,"gameSlug":"paper-minecraft","gameStatus":"published","showAdOnExternal":"NEVER","showAdOnInternal":"DEFAULT","appStoreLink":null,"playStoreLink":null,"steamStoreLink":null,"disableEmbedding":false,"dollarRate":0.8514551368288404,"upvotes":763451,"downvotes":81779,"releaseDate":"2017-08-19","locale":"en_US","controls":{"mouse":{"left":{"en_US":"Place or dig blocks"}},"keyboard":[{"keys":["WASD"],"label":{"en_US":"Move, jump, and swim"}},{"keys":["E"],"label":{"en_US":"Open inventory or chest"}},{"keys":["F"],"label":{"en_US":"Eat the held item"}},{"keys":["SPACE"],"label":{"en_US":"Drop or split an item from a stack"}},{"keys":["O"],"label":{"en_US":"Save the game"}},{"keys":["P"],"label":{"en_US":"Pause (space to resume)"}}]},"videoThumbnail":"https://videos.crazygames.com/paper-minecraft/1/paper-minecraft-180x111.mp4","video":{"original":"https://videos.crazygames.com/archive/paperminecraft.mp4","sizes":[{"width":180,"height":111,"location":"https://videos.crazygames.com/paper-minecraft/1/paper-minecraft-180x111.mp4"},{"width":360,"height":222,"location":"https://videos.crazygames.com/paper-minecraft/1/paper-minecraft-360x222.mp4"},{"width":540,"height":333,"location":"https://videos.crazygames.com/paper-minecraft/1/paper-minecraft-540x333.mp4"},{"width":720,"height":444,"location":"https://videos.crazygames.com/paper-minecraft/1/paper-minecraft-720x444.mp4"}]},"minTimeBetweenMidrollAdsInMs":180000,"minTimeBetweenRewardedAdsInMs":5000,"noMidrollAdInFirstMinutes":3,"noRewardedAdInFirstMinutes":0,"categoryEnSlug":"adventure","tagsEnSlugs":["sandbox","scratch","minecraft","1-player","side-scrolling","zombie","monster","2d","survive","collect","crafting","html5"],"fullscreen":"NOT_SUPPORTED","orientation":null,"category":"Minecraft","categoryLink":"https://www.crazygames.com/t/minecraft","gameLink":"https://www.crazygames.com/game/paper-minecraft","alternativeGames":[{"category":"Adventure","gameSlug":"terraria","gameName":"Terraria (Scratch Version)","rating":9.2,"thumbnail":"https://images.crazygames.com/games/terraria/cover-1620122998103.png?auto=format,compress&q=75&cs=strip&w=360","videoThumbnail":"https://videos.crazygames.com/terraria/1/terraria-thumbnail.mp4","gameLink":"https://www.crazygames.com/game/terraria","loader":"iframe"},{"category":"Action","gameSlug":"epic-ninja","gameName":"Epic Ninja","rating":8.8,"thumbnail":"https://images.crazygames.com/games/epic-ninja/cover-1620297625328.png?auto=format,compress&q=75&cs=strip&w=360","videoThumbnail":"https://videos.crazygames.com/epic-ninja/1/epic-ninja-thumbnail.mp4","gameLink":"https://www.crazygames.com/game/epic-ninja","loader":"iframe"},{"category":"Adventure","gameSlug":"world-craft","gameName":"World Craft","rating":8.4,"thumbnail":"https://images.crazygames.com/worldcraft.png?auto=format,compress&q=75&cs=strip&w=360","videoThumbnail":"https://videos.crazygames.com/world-craft.mp4","gameLink":"https://www.crazygames.com/game/world-craft","loader":"5.6.x"},{"category":"Arcade","gameSlug":"geometry-dash-online","gameName":"Geometry Dash Online","rating":8.7,"thumbnail":"https://images.crazygames.com/geometrydashonline.png?auto=format,compress&q=75&cs=strip&w=360","videoThumbnail":"https://videos.crazygames.com/geometry-dash-online-trimmed.mp4","gameLink":"https://www.crazygames.com/game/geometry-dash-online","loader":"iframe"},{"category":"Arcade","gameSlug":"appel","gameName":"Appel","rating":8.9,"thumbnail":"https://images.crazygames.com/games/appel/cover-1620120282561.png?auto=format,compress&q=75&cs=strip&w=360","videoThumbnail":"https://videos.crazygames.com/appel/1/appel-thumbnail.mp4","gameLink":"https://www.crazygames.com/game/appel","loader":"iframe"},{"category":"Shooting","gameSlug":"worldz","gameName":"WorldZ","rating":8.9,"thumbnail":"https://images.crazygames.com/worldz.png?auto=format,compress&q=75&cs=strip&w=360","videoThumbnail":"https://videos.crazygames.com/worldz/1/worldz-180x111.mp4","gameLink":"https://www.crazygames.com/game/worldz","loader":"5.6.x"},{"category":"Adventure","gameSlug":"scratcharia","gameName":"Scratcharia","rating":9,"thumbnail":"https://images.crazygames.com/games/scratcharia/cover-1620237831710.png?auto=format,compress&q=75&cs=strip&w=360","videoThumbnail":"https://videos.crazygames.com/scratcharia/1/scratcharia-thumbnail.mp4","gameLink":"https://www.crazygames.com/game/scratcharia","loader":"iframe"},{"category":"Shooting","gameSlug":"zombiecraftio","gameName":"ZombieCraft.io","rating":8.8,"thumbnail":"https://images.crazygames.com/zombiecraftio.png?auto=format,compress&q=75&cs=strip&w=360","videoThumbnail":"https://videos.crazygames.com/zombiecraftio.mp4","gameLink":"https://www.crazygames.com/game/zombiecraftio","loader":"5.6.x"},{"category":"Arcade","gameSlug":"getting-over-it","gameName":"Getting Over It","rating":8.4,"thumbnail":"https://images.crazygames.com/games/getting-over-it/cover-1620126428595.png?auto=format,compress&q=75&cs=strip&w=360","videoThumbnail":"https://videos.crazygames.com/getting-over-it/1/getting-over-it-thumbnail.mp4","gameLink":"https://www.crazygames.com/game/getting-over-it","loader":"iframe"},{"category":"Adventure","gameSlug":"miner-cat-4","gameName":"Miner Cat 4","rating":9.1,"thumbnail":"https://images.crazygames.com/miner-cat-4/20210325171115/miner-cat-4-cover?auto=format,compress&q=75&cs=strip&w=360","videoThumbnail":"https://videos.crazygames.com/miner-cat-4/1/miner-cat-4-thumbnail.mp4","gameLink":"https://www.crazygames.com/game/miner-cat-4","loader":"iframe"}],"country":"US","domainHasNoCMP":false};
+    var SDK_READY = false;
+    var GF_READY = false;
+    var GF_LOAD_CALLED = false;
+    loadScript("https://gameframe.crazygames.com/crazygames-gameframe-v1.bundle.js", true, function() {
+        Crazygames.load(options).then(function() {
+          var pacmanWrapper = document.getElementById('pacman');
+          var pacmanStyles = document.getElementById('pacman-styles');
+    
+          if (pacmanWrapper && pacmanStyles) {
+            pacmanWrapper.remove();
+            pacmanStyles.remove();
+          }
+        });
+    });</script></body></html>
