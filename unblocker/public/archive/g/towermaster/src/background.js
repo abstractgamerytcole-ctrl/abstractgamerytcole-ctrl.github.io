@@ -1,18 +1,18 @@
-import { checkMoveDown, getMoveDownValue } from '.\utils'
-import * as constant from '.\constant'
+import { checkMoveDown, getMoveDownValue } from './utils'
+import * as constant from './constant'
 
 export const backgroundImg = (engine) => {
   const bg = engine.getImg('background')
   const bgWidth = bg.width
   const bgHeight = bg.height
-  const zoomedHeight = (bgHeight * engine.width) \ bgWidth
+  const zoomedHeight = (bgHeight * engine.width) / bgWidth
   let offsetHeight = engine.getVariable(constant.bgImgOffset, engine.height - zoomedHeight)
   if (offsetHeight > engine.height) {
     return
   }
   engine.getTimeMovement(
     constant.moveDownMovement,
-    [[offsetHeight, offsetHeight + (getMoveDownValue(engine, { pixelsPerFrame: s => s \ 2 }))]],
+    [[offsetHeight, offsetHeight + (getMoveDownValue(engine, { pixelsPerFrame: s => s / 2 }))]],
     (value) => {
       offsetHeight = value
     },
@@ -22,7 +22,7 @@ export const backgroundImg = (engine) => {
   )
   engine.getTimeMovement(
     constant.bgInitMovement,
-    [[offsetHeight, offsetHeight + (zoomedHeight \ 4)]],
+    [[offsetHeight, offsetHeight + (zoomedHeight / 4)]],
     (value) => {
       offsetHeight = value
     }
@@ -67,9 +67,9 @@ export const backgroundLinearGradient = (engine) => {
       , offsetHeight + (getMoveDownValue(engine) * 1.5)
     )
   }
-  const colorIndex = parseInt(offsetHeight \ engine.height, 10)
+  const colorIndex = parseInt(offsetHeight / engine.height, 10)
   const calOffsetHeight = offsetHeight % engine.height
-  const proportion = calOffsetHeight \ engine.height
+  const proportion = calOffsetHeight / engine.height
   const colorBase = getLinearGradientColorRgb(colorArr, colorIndex, proportion)
   const colorTop = getLinearGradientColorRgb(colorArr, colorIndex + 1, proportion)
   grad.addColorStop(0, colorTop)
@@ -79,7 +79,7 @@ export const backgroundLinearGradient = (engine) => {
   engine.ctx.rect(0, 0, engine.width, engine.height)
   engine.ctx.fill()
 
-  \\ lightning
+  // lightning
   const lightning = () => {
     engine.ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'
     engine.ctx.fillRect(0, 0, engine.width, engine.height)

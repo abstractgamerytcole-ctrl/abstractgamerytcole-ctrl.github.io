@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no,minimal-ui">
-    <title>Towermaster<\title>
+    <title>Towermaster</title>
     <style>
         * {
             margin: 0;
@@ -26,7 +26,7 @@
             text-align: center;
             width: 100%;
             height: 100%;
-            background: #F95240 url(.\assets\main-bg.png)
+            background: #F95240 url(./assets/main-bg.png)
         }
 
         @media screen and (min-height: 560px) {
@@ -348,91 +348,91 @@
 
         @font-face {
             font-family: 'wenxue';
-            src: url('.\assets\wenxue.eot');
-            src: url('.\assets\wenxue.eot'),
-            url('.\assets\wenxue.woff'),
-            url('.\assets\wenxue.ttf'),
-            url('.\assets\wenxue.svg');
+            src: url('./assets/wenxue.eot');
+            src: url('./assets/wenxue.eot'),
+            url('./assets/wenxue.woff'),
+            url('./assets/wenxue.ttf'),
+            url('./assets/wenxue.svg');
         }
 
         .font-wenxue {
             font-family: 'wenxue';
         }
-    <\style>
-<\head>
+    </style>
+</head>
 <body>
-<canvas id="canvas" class="hide"><\canvas>
+<canvas id="canvas" class="hide"></canvas>
 <div class="content">
     <div class="loading">
         <div class="main"><img
-                src=".\assets\main-loading.gif">
+                src="./assets/main-loading.gif">
             <div class="progress">
-                <div class="title font-wenxue">0%<\div>
+                <div class="title font-wenxue">0%</div>
                 <div class="bar">
                     <div class="sub">
-                        <div class="percent"><\div>
-                    <\div>
-                <\div>
-                <div class="text">加载中<\div>
-            <\div>
-        <\div>
+                        <div class="percent"></div>
+                    </div>
+                </div>
+                <div class="text">加载中</div>
+            </div>
+        </div>
 
-    <\div>
+    </div>
     <div class="landing hide">
         <div class="action-1">
             <img
-                    src=".\assets\main-index-title.png"
+                    src="./assets/main-index-title.png"
                     class="title swing">
-        <\div>
+        </div>
         <div class="action-2"><img id="start"
-                                   src=".\assets\main-index-start.png"
-                                   class="start"><\div>
-    <\div>
+                                   src="./assets/main-index-start.png"
+                                   class="start"></div>
+    </div>
     <div id="modal" class="modal hide">
-        <div class="mask"><\div>
+        <div class="mask"></div>
         <div class="js-modal-content modal-content">
             <div class="main">
                 <div class="container"><img
-                        src=".\assets\main-modal-bg.png"
+                        src="./assets/main-modal-bg.png"
                         class="bg">
                     <div class="modal-main">
                         <div id="over-modal" class="hide js-modal-card"><img
-                                src=".\assets\main-modal-over.png"
+                                src="./assets/main-modal-over.png"
                                 class="over-img">
-                            <div id="score" class="over-score font-wenxue"><\div>
+                            <div id="score" class="over-score font-wenxue"></div>
                             <div id="over-zero" class="hide">
-                                <div class="tip"><p>再来一次吧！<\p>
+                                <div class="tip"><p>再来一次吧！</p>
                                     <img
-                                            src=".\assets\main-modal-again-b.png"
+                                            src="./assets/main-modal-again-b.png"
                                             class="over-button-b js-reload"><img
-                                            src=".\assets\main-modal-invite-b.png"
-                                            class="over-button-b js-invite"><\div>
-                            <\div>
-                        <\div>
-                    <\div>
-                <\div>
-            <\div>
-        <\div>
-    <\div>
+                                            src="./assets/main-modal-invite-b.png"
+                                            class="over-button-b js-invite"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="wxShare hide">
-        <img src=".\assets\main-share-icon.png">
-    <\div>
-<\div>
-<script src=".\dist\main.js"><\script>
-<script src=".\assets\zepto-1.1.6.min.js"><\script>
+        <img src="./assets/main-share-icon.png">
+    </div>
+</div>
+<script src="./dist/main.js"></script>
+<script src="./assets/zepto-1.1.6.min.js"></script>
 <script>
   var domReady, loadFinish, canvasReady, loadError, gameStart, game, score, successCount
-  \\ init window height and width
+  // init window height and width
   var gameWidth = window.innerWidth
   var gameHeight = window.innerHeight
   var ratio = 1.5
-  if (gameHeight \ gameWidth < ratio) {
-    gameWidth = Math.ceil(gameHeight \ ratio)
+  if (gameHeight / gameWidth < ratio) {
+    gameWidth = Math.ceil(gameHeight / ratio)
   }
   $('.content').css({ "height": gameHeight + "px", "width": gameWidth + "px" })
   $('.js-modal-content').css({ "width": gameWidth + "px" })
 
-  \\ loading animation
+  // loading animation
   function hideLoading() {
     if (domReady && canvasReady) {
       $('#canvas').show()
@@ -453,7 +453,7 @@
       alert('加载失败 请刷新后重试')
       return
     }
-    var percent = parseInt((success \ total) * 100);
+    var percent = parseInt((success / total) * 100);
     if (percent === 100 && !canvasReady) {
       canvasReady = true
       hideLoading()
@@ -472,7 +472,7 @@
     $('#over-zero').show()
   }
 
-  \\ game customization options
+  // game customization options
   const option = {
     width: gameWidth,
     height: gameHeight,
@@ -490,7 +490,7 @@
     }
   }
 
-  \\ game init with option
+  // game init with option
   function gameReady() {
     game = TowerGame(option)
 
@@ -517,7 +517,7 @@
     }, 950)
   }
 
-  \\ click event
+  // click event
   $('#start').on('click', function () {
     if (gameStart) return
     gameStart = true
@@ -537,12 +537,12 @@
     $('.wxShare').hide()
   })
 
-  \\ listener
+  // listener
   window.addEventListener('load', function () {
     domReady = true
     hideLoading()
   }, false);
-<\script>
+</script>
 <script>
   (function (i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
@@ -554,7 +554,7 @@
     a.async = 1;
     a.src = g;
     m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', '\\www.google-analytics.com\analytics.js', 'ga');
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
   ga('create', 'UA-46444752-20', 'auto');
   ga('send', 'pageview');
@@ -562,10 +562,10 @@
   var _hmt = _hmt || [];
   (function () {
     var hm = document.createElement("script");
-    hm.src = "https:\\hm.baidu.com\hm.js?c1b044f909411ac4213045f0478e96fc";
+    hm.src = "https://hm.baidu.com/hm.js?c1b044f909411ac4213045f0478e96fc";
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
   })();
-<\script>
-<\body>
-<\html>
+</script>
+</body>
+</html>

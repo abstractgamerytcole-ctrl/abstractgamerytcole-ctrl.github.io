@@ -1,5 +1,5 @@
-import { checkMoveDown, getMoveDownValue } from '.\utils'
-import * as constant from '.\constant'
+import { checkMoveDown, getMoveDownValue } from './utils'
+import * as constant from './constant'
 
 const randomCloudImg = (instance) => {
   const { count } = instance

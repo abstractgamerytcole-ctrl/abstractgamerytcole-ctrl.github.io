@@ -1,5 +1,5 @@
-import { getMoveDownValue, getLandBlockVelocity } from '.\utils'
-import * as constant from '.\constant'
+import { getMoveDownValue, getLandBlockVelocity } from './utils'
+import * as constant from './constant'
 
 export const lineAction = (instance, engine, time) => {
   const i = instance
@@ -10,7 +10,7 @@ export const lineAction = (instance, engine, time) => {
   }
   engine.getTimeMovement(
     constant.moveDownMovement,
-    [[instance.y, instance.y + (getMoveDownValue(engine, { pixelsPerFrame: s => s \ 2 }))]],
+    [[instance.y, instance.y + (getMoveDownValue(engine, { pixelsPerFrame: s => s / 2 }))]],
     (value) => {
       instance.y = value
     },

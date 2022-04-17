@@ -1,14 +1,14 @@
 "use strict";
-\*
+/*
  Copyright (C) 2012-2016 Grant Galitz
 
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
-importScripts("..\..\includes\TypedArrayShim.js");
+ */
+importScripts("../../includes/TypedArrayShim.js");
 importScripts("Renderer.js");
 importScripts("BGTEXT.js");
 importScripts("BG2FrameBuffer.js");
@@ -44,31 +44,31 @@ self.onmessage = function (event) {
     }
 }
 function copyBuffer(swizzledFrame) {
-    \\Push a frame of graphics to the blitter handle:
-    \\Load the counter values:
-    var start = Atomics.load(gfxCounters, 0) | 0;       \\Written by the other thread.
-    var end = gfxCounters[1] | 0;                       \\Written by this thread.
-    \\Check if buffer is full:
+    //Push a frame of graphics to the blitter handle:
+    //Load the counter values:
+    var start = Atomics.load(gfxCounters, 0) | 0;       //Written by the other thread.
+    var end = gfxCounters[1] | 0;                       //Written by this thread.
+    //Check if buffer is full:
     if ((end | 0) == (((start | 0) + 2) | 0)) {
-        \\Skip copying a frame out:
+        //Skip copying a frame out:
         return;
     }
-    \\Copy samples into the ring buffer:
-    \\Hardcoded for 2 buffers for a triple buffer effect:
+    //Copy samples into the ring buffer:
+    //Hardcoded for 2 buffers for a triple buffer effect:
     gfxBuffers[end & 0x1].set(swizzledFrame);
-    \\Increment the ending position counter by 1:
-    \\Atomic to commit the counter to memory:
+    //Increment the ending position counter by 1:
+    //Atomic to commit the counter to memory:
     Atomics.store(gfxCounters, 1, ((end | 0) + 1) | 0);
 }
 function waitForVSync() {
-    \\Only breaks if the buffer gets resized:
+    //Only breaks if the buffer gets resized:
     while ((Atomics.load(gfxCommandCounters, 2) | 0) == 0) {
-        \\Process the current buffer:
+        //Process the current buffer:
         processCommands();
-        \\Main thread calls wake to unblock us here:
+        //Main thread calls wake to unblock us here:
         Atomics.wait(gfxCounters, 2, 0);
     }
-    \\Empty old buffer before getting a new buffer to refer to:
+    //Empty old buffer before getting a new buffer to refer to:
     processCommands();
 }
 function initializeRenderer(skippingBIOS) {
@@ -87,61 +87,61 @@ function assignDynamicBuffers(cmdb, cmdc) {
     gfxCommandBufferMask = ((gfxCommandBufferLength | 0) - 1) | 0;
 }
 function processCommands() {
-    \\Load the counter values:
-    var start = gfxCommandCounters[0] | 0;              \\Written by this thread.
-    var end = Atomics.load(gfxCommandCounters, 1) | 0;  \\Written by the other thread.
-    gfxLinesCPU = Atomics.load(gfxLineCounter, 0) | 0;  \\Keep atomic; IonMonkey thinks this is dead code if it's removed.
-    \\Don't process if nothing to process:
+    //Load the counter values:
+    var start = gfxCommandCounters[0] | 0;              //Written by this thread.
+    var end = Atomics.load(gfxCommandCounters, 1) | 0;  //Written by the other thread.
+    gfxLinesCPU = Atomics.load(gfxLineCounter, 0) | 0;  //Keep atomic; IonMonkey thinks this is dead code if it's removed.
+    //Don't process if nothing to process:
     if ((end | 0) == (start | 0)) {
-        \\Buffer is empty:
+        //Buffer is empty:
         return;
     }
-    \\Dispatch commands:
+    //Dispatch commands:
     var startCorrected = start & gfxCommandBufferMask;
     var endCorrected = end & gfxCommandBufferMask;
     do {
-        \\Read a command:
+        //Read a command:
         dispatchCommand(gfxCommandBuffer[startCorrected | 0] | 0, gfxCommandBuffer[startCorrected | 1] | 0);
-        \\Increment by two since we're reading the command code and corresponding data after it:
+        //Increment by two since we're reading the command code and corresponding data after it:
         startCorrected = ((startCorrected | 0) + 2) & gfxCommandBufferMask;
     } while ((startCorrected | 0) != (endCorrected | 0));
-    \\Update the starting position counter to match the end position:
+    //Update the starting position counter to match the end position:
     Atomics.store(gfxCommandCounters, 0, end | 0);
 }
 function dispatchCommand(command, data) {
     command = command | 0;
     data = data | 0;
-    \*
+    /*
         We squeeze some address bits as a portion of the command code.
         The top bits will be the actual command, the bottom ones will be the address,
         unless of course the top bits are zero, for which then it's purely a command code:
-    *\
+    */
     switch (command >> 16) {
-        \\IO:
+        //IO:
         case 0:
             dispatchIOCommand(command | 0, data | 0);
             break;
-        \\VRAM 16-BIT:
+        //VRAM 16-BIT:
         case 1:
             renderer.writeVRAM16(command & 0xFFFF, data | 0);
             break;
-        \\VRAM 32-BIT:
+        //VRAM 32-BIT:
         case 2:
             renderer.writeVRAM32(command & 0x7FFF, data | 0);
             break;
-        \\Palette 16-BIT:
+        //Palette 16-BIT:
         case 3:
             renderer.writePalette16(command & 0x1FF, data | 0);
             break;
-        \\Palette 32-BIT:
+        //Palette 32-BIT:
         case 4:
             renderer.writePalette32(command & 0xFF, data | 0);
             break;
-        \\OAM 16-BIT:
+        //OAM 16-BIT:
         case 5:
             renderer.writeOAM16(command & 0x1FF, data | 0);
             break;
-        \\OAM 32-BIT:
+        //OAM 32-BIT:
         default:
             renderer.writeOAM32(command & 0xFF, data | 0);
     }
@@ -563,24 +563,24 @@ function decodeInternalCommand(data) {
     data = data | 0;
     switch (data | 0) {
         case 0:
-            \\Check to see if we need to skip rendering to catch up:
+            //Check to see if we need to skip rendering to catch up:
             if ((((gfxLinesCPU | 0) - (gfxLinesGPU | 0)) | 0) < 480) {
-                \\Render a scanline:
+                //Render a scanline:
                 renderer.renderScanLine();
             }
             else {
-                \\Update some internal counters to maintain state:
+                //Update some internal counters to maintain state:
                 renderer.updateReferenceCounters();
             }
-            \\Clock the scanline counter:
+            //Clock the scanline counter:
             renderer.incrementScanLine();
-            \\Increment how many scanlines we've received out:
+            //Increment how many scanlines we've received out:
             gfxLinesGPU = ((gfxLinesGPU | 0) + 1) | 0;
             break;
         default:
-            \\Check to see if we need to skip rendering to catch up:
+            //Check to see if we need to skip rendering to catch up:
             if ((((gfxLinesCPU | 0) - (gfxLinesGPU | 0)) | 0) < 480) {
-                \\Push out a frame of graphics:
+                //Push out a frame of graphics:
                 renderer.prepareFrame();
             }
     }

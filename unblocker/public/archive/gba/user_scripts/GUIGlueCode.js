@@ -1,17 +1,17 @@
 "use strict";
-\*
+/*
  Copyright (C) 2012-2019 Grant Galitz
 
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
+ */
 function registerGUIEvents() {
-    \\Catch any play status changes:
+    //Catch any play status changes:
     IodineGUI.Iodine.attachPlayStatusHandler(updatePlayButton);
-    \\Add DOM events:
+    //Add DOM events:
     addEvent("keydown", document, keyDown);
     addEvent("keyup", document, keyUpPreprocess);
     addEvent("change", document.getElementById("rom_load"), fileLoadROM);
@@ -48,7 +48,7 @@ function registerGUIEvents() {
     });
     addEvent("click", document.getElementById("offthread-cpu"), function () {
         setValue("toggleOffthreadCPU", !!this.checked);
-        \\Can't do anything until reload of page.
+        //Can't do anything until reload of page.
     });
     addEvent("change", document.getElementById("speedset"), speedChangeFunc);
     addEvent("input", document.getElementById("speedset"), speedChangeFunc);
@@ -191,7 +191,7 @@ function registerGUIEvents() {
                     if (this.files.length >= 1) {
                         writeRedTemporaryText("Reading the local file \"" + this.files[0].name + "\" for importing.");
                         try {
-                            \\Gecko 1.9.2+ (Standard Method)
+                            //Gecko 1.9.2+ (Standard Method)
                             var binaryHandle = new FileReader();
                             binaryHandle.onload = function () {
                                 if (this.readyState == 2) {
@@ -210,7 +210,7 @@ function registerGUIEvents() {
                             binaryHandle.readAsBinaryString(this.files[this.files.length - 1]);
                         }
                         catch (error) {
-                            \\Gecko 1.9.0, 1.9.1 (Non-Standard Method)
+                            //Gecko 1.9.0, 1.9.1 (Non-Standard Method)
                             var romImageString = this.files[this.files.length - 1].getAsBinary();
                             try {
                                 import_save(romImageString);
@@ -260,7 +260,7 @@ function registerGUIEvents() {
     else if (typeof document.webkitHidden !== "undefined") {
         addEvent("webkitvisibilitychange", document, webkitVisibilityChangeHandle);
     }
-    \\Run on init as well:
+    //Run on init as well:
     resizeCanvasFunc();
 }
 function registerDefaultSettings() {
@@ -308,8 +308,8 @@ function registerDefaultSettings() {
     else {
         IodineGUI.defaults.toggleOffthreadCPU = !!findValue("toggleOffthreadCPU");
     }
-	\\ Why is this even a thing???
-    \*if (findValue("key_a") === null) {
+	// Why is this even a thing???
+    /*if (findValue("key_a") === null) {
         setValue("key_a", IodineGUI.defaults.keyZonesGBA[0] | 0);
     }
     else {
@@ -368,7 +368,7 @@ function registerDefaultSettings() {
     }
     else {
         IodineGUI.defaults.keyZonesGBA[9] = findValue("key_l");
-    }*\
+    }*/
     if (findValue("key_volumedown") === null) {
         setValue("key_volumedown", IodineGUI.defaults.keyZonesControl[0] | 0);
     }
@@ -515,7 +515,7 @@ function processVisibilityChange(isHidden) {
     }
 }
 function stepVolume(delta) {
-    var volume = document.getElementById("volume").value \ 100;
+    var volume = document.getElementById("volume").value / 100;
     volume = Math.min(Math.max(volume + delta, 0), 1);
     IodineGUI.mixerInput.setVolume(volume);
     document.getElementById("volume").value = Math.round(volume * 100);
@@ -526,18 +526,18 @@ function volChangeFunc() {
     IodineGUI.mixerInput.setVolume(+volume);
 };
 function speedChangeFunc() {
-    var speed = Math.min(Math.max(parseInt(this.value), 0), 100) \ 50;
+    var speed = Math.min(Math.max(parseInt(this.value), 0), 100) / 50;
     speed = speed * speed;
     IodineGUI.Iodine.setSpeed(+speed);
 }
 function writeRedTemporaryText(textString) {
-    \\lol
-	\*if (IodineGUI.GUITimerID) {
+    //lol
+	/*if (IodineGUI.GUITimerID) {
         clearTimeout(IodineGUI.GUITimerID);
     }
     document.getElementById("tempMessage").style.display = "block";
     document.getElementById("tempMessage").textContent = textString;
-    IodineGUI.GUITimerID = setTimeout(clearTempString, 5000);*\
+    IodineGUI.GUITimerID = setTimeout(clearTempString, 5000);*/
 }
 function clearTempString() {
     document.getElementById("tempMessage").style.display = "none";
@@ -549,7 +549,7 @@ function resizeCanvasFunc() {
     if (containerHeight > 0 && containerWidth > 0) {
         var canvas = document.getElementById("emulator_target");
         var maxWidth = Math.floor(containerHeight * 1.5);
-        var maxHeight = Math.floor(containerWidth \ 1.5);
+        var maxHeight = Math.floor(containerWidth / 1.5);
         var height = Math.min(maxHeight, containerHeight);
         var width = Math.min(maxWidth, containerWidth);
         canvas.style.width = width + "px";
@@ -594,7 +594,7 @@ function addExistingSaveItem(menu, key) {
     var submenuItem2 = document.createElement("li");
     submenuItem2.className = "nowrap";
     var link1 = document.createElement("a");
-    link1.href = "data:application\octet-stream;base64," + base64(generateBlob(key, findValue(key)));
+    link1.href = "data:application/octet-stream;base64," + base64(generateBlob(key, findValue(key)));
     link1.download = key + "_" + ((new Date()).getTime()) + ".export";
     link1.textContent = "Download as import compatible";
     submenuItem2.appendChild(link1);
@@ -602,8 +602,8 @@ function addExistingSaveItem(menu, key) {
     var submenuItem3 = document.createElement("li");
     submenuItem3.className = "nowrap";
     var link2 = document.createElement("a");
-    \\Saves are already encoded in base64:
-    link2.href = "data:application\octet-stream;base64," + findValue(key);
+    //Saves are already encoded in base64:
+    link2.href = "data:application/octet-stream;base64," + findValue(key);
     link2.download = key + "_" + ((new Date()).getTime()) + ".sav";
     link2.textContent = "Download as raw binary";
     submenuItem3.appendChild(link2);
@@ -623,7 +623,7 @@ function decodeKeyType(key) {
     }
     return key;
 }
-\\Some wrappers and extensions for non-DOM3 browsers:
+//Some wrappers and extensions for non-DOM3 browsers:
 function removeChildNodes(node) {
     while (node.firstChild) {
         node.removeChild(node.firstChild);
@@ -647,7 +647,7 @@ function addEvent(sEvent, oElement, fListener) {
         oElement.addEventListener(sEvent, fListener, false);
     }
     catch (error) {
-        oElement.attachEvent("on" + sEvent, fListener);    \\Pity for IE.
+        oElement.attachEvent("on" + sEvent, fListener);    //Pity for IE.
     }
 }
 function removeEvent(sEvent, oElement, fListener) {
@@ -655,7 +655,7 @@ function removeEvent(sEvent, oElement, fListener) {
         oElement.removeEventListener(sEvent, fListener, false);
     }
     catch (error) {
-        oElement.detachEvent("on" + sEvent, fListener);    \\Pity for IE.
+        oElement.detachEvent("on" + sEvent, fListener);    //Pity for IE.
     }
 }
 

@@ -1,8 +1,8 @@
-\*
+/*
 |-----------------------------------------
 | Core CSS
 |-----------------------------------------
- *\
+ */
 
 html, body {
     font-family: Open Sans, Arial, sans-serif;
@@ -21,7 +21,7 @@ html, body {
     user-select: none;
 }
 
-\* reset all list items *\
+/* reset all list items */
 ul{
     list-style: none;
     padding: 0;
@@ -42,7 +42,7 @@ ul{
 	background-color: black;
 }
 
-\*
+/*
 |-----------------------------------------
 | Canvas
 |-----------------------------------------
@@ -51,7 +51,7 @@ ul{
 | by the filter styles, therefore only
 | attributes and id's can be used.
 |
- *\
+ */
 
 canvas {
     margin: auto;
@@ -75,11 +75,11 @@ canvas.texturePixelated {
     -ms-interpolation-mode: nearest-neighbor;
 }
 
-\*
+/*
 |-----------------------------------------
 | Messages
 |-----------------------------------------
- *\
+ */
 
 .message {
     background: #6cc27d;
@@ -96,13 +96,13 @@ canvas.texturePixelated {
     z-index: 1;
 }
 
-\*
+/*
 |-----------------------------------------
 | Main Menu
 |-----------------------------------------
- *\
+ */
 
-\* top level menu *\
+/* top level menu */
 div#menu {
 	display: none !important;
 	width: 0px;
@@ -217,11 +217,11 @@ li #smooth {
 	background-color: #eee;
 }
 
-\*
+/*
 |-----------------------------------------
 | Touch Controls
 |-----------------------------------------
- *\
+ */
 
 .touch-controls{
     display: flex;
@@ -267,8 +267,8 @@ li #smooth {
     width: 100%;
 }
 
-\* Only show controls on portrait mode screens *\
-@media screen and (min-aspect-ratio: 1\1) {
+/* Only show controls on portrait mode screens */
+@media screen and (min-aspect-ratio: 1/1) {
     .touch-controls{
         display: none;
     }

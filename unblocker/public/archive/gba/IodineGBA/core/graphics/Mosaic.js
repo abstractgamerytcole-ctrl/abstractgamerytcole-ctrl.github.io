@@ -1,13 +1,13 @@
 "use strict";
-\*
+/*
  Copyright (C) 2012-2015 Grant Galitz
  
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
+ */
 function GameBoyAdvanceMosaicRenderer(buffer) {
     this.BGMosaicHSize = 0;
     this.BGMosaicVSize = 0;
@@ -16,14 +16,14 @@ function GameBoyAdvanceMosaicRenderer(buffer) {
     this.buffer = buffer;
 }
 GameBoyAdvanceMosaicRenderer.prototype.attachOBJBuffer = function (objBuffer) {
-    \\Function only called if no typed array view support:
+    //Function only called if no typed array view support:
     this.objBuffer = objBuffer;
 }
 GameBoyAdvanceMosaicRenderer.prototype.renderMosaicHorizontal = function (offset) {
     offset = offset | 0;
     var currentPixel = 0;
     var mosaicBlur = ((this.BGMosaicHSize | 0) + 1) | 0;
-    if ((mosaicBlur | 0) > 1) {    \\Don't perform a useless loop.
+    if ((mosaicBlur | 0) > 1) {    //Don't perform a useless loop.
         for (var position = 0; (position | 0) < 240; position = ((position | 0) + 1) | 0) {
             if ((((position | 0) % (mosaicBlur | 0)) | 0) == 0) {
                 currentPixel = this.buffer[position | offset] | 0;
@@ -40,7 +40,7 @@ if (__VIEWS_SUPPORTED__) {
         xSize = xSize | 0;
         var currentPixel = 0x3800000;
         var mosaicBlur = ((this.OBJMosaicHSize | 0) + 1) | 0;
-        if ((mosaicBlur | 0) > 1) {    \\Don't perform a useless loop.
+        if ((mosaicBlur | 0) > 1) {    //Don't perform a useless loop.
             for (var position = ((xOffset | 0) % (mosaicBlur | 0)) | 0; (position | 0) < (xSize | 0); position = ((position | 0) + 1) | 0) {
                 if ((((position | 0) % (mosaicBlur | 0)) | 0) == 0) {
                     currentPixel = this.buffer[position | 0x600] | 0;
@@ -56,7 +56,7 @@ else {
         xSize = xSize | 0;
         var currentPixel = 0x3800000;
         var mosaicBlur = ((this.OBJMosaicHSize | 0) + 1) | 0;
-        if ((mosaicBlur | 0) > 1) {    \\Don't perform a useless loop.
+        if ((mosaicBlur | 0) > 1) {    //Don't perform a useless loop.
             for (var position = ((xOffset | 0) % (mosaicBlur | 0)) | 0; (position | 0) < (xSize | 0); position = ((position | 0) + 1) | 0) {
                 if ((((position | 0) % (mosaicBlur | 0)) | 0) == 0) {
                     currentPixel = this.objBuffer[position | 0] | 0;

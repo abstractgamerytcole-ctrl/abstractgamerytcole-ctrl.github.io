@@ -1,13 +1,13 @@
 import { Instance } from 'cooljs'
-import { blockAction, blockPainter } from '.\block'
+import { blockAction, blockPainter } from './block'
 import {
   checkMoveDown,
   getMoveDownValue,
   drawYellowString,
   getAngleBase
-} from '.\utils'
-import { addFlight } from '.\flight'
-import * as constant from '.\constant'
+} from './utils'
+import { addFlight } from './flight'
+import * as constant from './constant'
 
 export const endAnimate = (engine) => {
   const gameStartNow = engine.getVariable(constant.gameStartNow)
@@ -35,7 +35,7 @@ export const endAnimate = (engine) => {
   const scoreWidth = score.width
   const scoreHeight = score.height
   const zoomedWidth = engine.width * 0.35
-  const zoomedHeight = (scoreHeight * zoomedWidth) \ scoreWidth
+  const zoomedHeight = (scoreHeight * zoomedWidth) / scoreWidth
   engine.ctx.drawImage(
     score,
     engine.width * 0.61,
@@ -55,7 +55,7 @@ export const endAnimate = (engine) => {
   const heartWidth = heart.width
   const heartHeight = heart.height
   const zoomedHeartWidth = engine.width * 0.08
-  const zoomedHeartHeight = (heartHeight * zoomedHeartWidth) \ heartWidth
+  const zoomedHeartHeight = (heartHeight * zoomedHeartWidth) / heartWidth
   for (let i = 1; i <= 3; i += 1) {
     ctx.save()
     if (i <= failedCount) {
@@ -83,7 +83,7 @@ export const startAnimate = (engine) => {
     const initialAngle = (Math.PI
         * engine.utils.random(angleBase, angleBase + 5)
         * engine.utils.randomPositiveNegative()
-    ) \ 180
+    ) / 180
     engine.setVariable(constant.blockCount, engine.getVariable(constant.blockCount) + 1)
     engine.setVariable(constant.initialAngle, initialAngle)
     engine.setTimeMovement(constant.hookDownMovement, 500)

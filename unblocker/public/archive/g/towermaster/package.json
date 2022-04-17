@@ -9,17 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https:\\github.com\bmqb\tower_game.git"
+    "url": "git+https://github.com/bmqb/tower_game.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https:\\github.com\bmqb\tower_game\issues"
+    "url": "https://github.com/bmqb/tower_game/issues"
   },
-  "homepage": "https:\\github.com\bmqb\tower_game#readme",
+  "homepage": "https://github.com/bmqb/tower_game#readme",
   "devDependencies": {
-    "@babel\core": "^7.0.0-beta.42",
-    "@babel\preset-env": "^7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
     "babel-loader": "^8.0.0-beta",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.9"

@@ -38,10 +38,10 @@ document.getElementById("saveButton").addEventListener("click", (function(a) {
     setTimeout(() => 
     s.classList.remove('flash'), 200);
 
-    // get statistics from local storage!
+    \\ get statistics from local storage!
     let stats = window.localStorage.getItem('statistics') || JSON.stringify(default_stats);
 
-    let file = new Blob([stats], {type: 'text/json'});
+    let file = new Blob([stats], {type: 'text\json'});
     let filename = `wordle_stats_${new Date().toISOString().substring(0,10)}.json`
     let link = document.createElement("a"),
         url = URL.createObjectURL(file);

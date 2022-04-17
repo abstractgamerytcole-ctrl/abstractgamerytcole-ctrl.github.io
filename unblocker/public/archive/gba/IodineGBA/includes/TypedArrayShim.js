@@ -1,13 +1,13 @@
 "use strict";
-\*
+/*
  Copyright (C) 2012-2015 Grant Galitz
 
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
+ */
 function getInt8Array(size_t) {
     try {
         return new Int8Array(size_t);
@@ -34,7 +34,7 @@ function getUint8View(typed_array) {
 }
 function getSharedUint8Array(size_t) {
     try {
-        \\Compatibility for older Firefox Nightlies:
+        //Compatibility for older Firefox Nightlies:
         return new SharedUint8Array(size_t);
     }
     catch (error) {
@@ -88,7 +88,7 @@ function getInt32ViewCustom(typed_array, start, end) {
     }
     catch (error) {
         try {
-            \\Nightly Firefox 4 used to have the subarray function named as slice:
+            //Nightly Firefox 4 used to have the subarray function named as slice:
             return typed_array.slice(start, end);
         }
         catch (error) {
@@ -98,7 +98,7 @@ function getInt32ViewCustom(typed_array, start, end) {
 }
 function getSharedInt32Array(size_t) {
     try {
-        \\Compatibility for older Firefox Nightlies:
+        //Compatibility for older Firefox Nightlies:
         return new SharedInt32Array(size_t);
     }
     catch (error) {
@@ -112,7 +112,7 @@ function getUint8ViewCustom(typed_array, start, end) {
     }
     catch (error) {
         try {
-            \\Nightly Firefox 4 used to have the subarray function named as slice:
+            //Nightly Firefox 4 used to have the subarray function named as slice:
             return typed_array.slice(start, end);
         }
         catch (error) {
@@ -130,7 +130,7 @@ function getUint32Array(size_t) {
 }
 function getSharedUint32Array(size_t) {
     try {
-        \\Compatibility for older Firefox Nightlies:
+        //Compatibility for older Firefox Nightlies:
         return new SharedUint32Array(size_t);
     }
     catch (error) {
@@ -147,7 +147,7 @@ function getFloat32Array(size_t) {
 }
 function getSharedFloat32Array(size_t) {
     try {
-        \\Compatibility for older Firefox Nightlies:
+        //Compatibility for older Firefox Nightlies:
         return new SharedFloat32Array(size_t);
     }
     catch (error) {
@@ -175,12 +175,12 @@ var __LITTLE_ENDIAN__ = (function () {
 })();
 if (typeof Atomics == "object") {
     if (typeof Atomics.futexWait == "function" && typeof Atomics.wait == "undefined") {
-        \\Polyfill in deprecated call names:
+        //Polyfill in deprecated call names:
         Atomics.wait = Atomics.futexWait;
         Atomics.notify = Atomics.futexWake;
     }
 	else if (typeof Atomics.wake == "function" && typeof Atomics.notify == "undefined") {
-        \\Polyfill in deprecated call names:
+        //Polyfill in deprecated call names:
         Atomics.notify = Atomics.wake;
     }
 }

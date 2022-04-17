@@ -1,17 +1,17 @@
 "use strict";
-\*
+/*
  Copyright (C) 2012-2015 Grant Galitz
  
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
+ */
 function GameBoyAdvanceDMA1(IOCore) {
     this.IOCore = IOCore;
 }
-GameBoyAdvanceDMA1.prototype.DMA_ENABLE_TYPE = [            \\DMA Channel 1 Mapping:
+GameBoyAdvanceDMA1.prototype.DMA_ENABLE_TYPE = [            //DMA Channel 1 Mapping:
     0x1,
     0x2,
     0x4,
@@ -169,7 +169,7 @@ GameBoyAdvanceDMA1.prototype.writeDMAControl8_0 = function (data) {
 }
 GameBoyAdvanceDMA1.prototype.writeDMAControl8_1 = function (data) {
     data = data | 0;
-    \\Spill state machine clocks:
+    //Spill state machine clocks:
     this.IOCore.updateCoreClocking();
     this.sourceControl = (this.sourceControl & 0x1) | ((data & 0x1) << 1);
     this.repeat = data & 0x2;
@@ -177,12 +177,12 @@ GameBoyAdvanceDMA1.prototype.writeDMAControl8_1 = function (data) {
     this.dmaType = (data >> 4) & 0x3;
     this.irqFlagging = data & 0x40;
     this.enableDMAChannel(data & 0x80);
-    \\Calculate next event:
+    //Calculate next event:
     this.IOCore.updateCoreEventTime();
 }
 GameBoyAdvanceDMA1.prototype.writeDMAControl16 = function (data) {
     data = data | 0;
-    \\Spill state machine clocks:
+    //Spill state machine clocks:
     this.IOCore.updateCoreClocking();
     this.destinationControl = (data >> 5) & 0x3;
     this.sourceControl = (data >> 7) & 0x3;
@@ -191,7 +191,7 @@ GameBoyAdvanceDMA1.prototype.writeDMAControl16 = function (data) {
     this.dmaType = (data >> 12) & 0x3;
     this.irqFlagging = (data >> 8) & 0x40;
     this.enableDMAChannel(data & 0x8000);
-    \\Calculate next event:
+    //Calculate next event:
     this.IOCore.updateCoreEventTime();
 }
 GameBoyAdvanceDMA1.prototype.writeDMAControl32 = function (data) {
@@ -243,56 +243,56 @@ GameBoyAdvanceDMA1.prototype.requestDMA = function (DMAType) {
 GameBoyAdvanceDMA1.prototype.enableDMAChannel = function (enabled) {
     enabled = enabled | 0;
     if ((enabled | 0) != 0) {
-        \\If DMA was previously disabled, reload control registers:
+        //If DMA was previously disabled, reload control registers:
         if ((this.enabled | 0) == 0) {
             switch (this.dmaType | 0) {
                 case 0x3:
-                    \\Direct Sound DMA Hardwired To Wordcount Of 4:
+                    //Direct Sound DMA Hardwired To Wordcount Of 4:
                     this.wordCountShadow = 0x4;
                     break;
                 case 0:
-                    \\Flag immediate DMA transfers for processing now:
+                    //Flag immediate DMA transfers for processing now:
                     this.pending = 0x1;
                 default:
-                    \\Shadow copy the word count:
+                    //Shadow copy the word count:
                     this.wordCountShadow = this.wordCount | 0;
                     
             }
-            \\Shadow copy the source address:
+            //Shadow copy the source address:
             this.sourceShadow = this.source | 0;
-            \\Shadow copy the destination address:
+            //Shadow copy the destination address:
             this.destinationShadow = this.destination | 0;
         }
-        \\DMA type changed:
+        //DMA type changed:
         this.enabled = this.DMA_ENABLE_TYPE[this.dmaType | 0] | 0;
         this.pending = this.pending & this.enabled;
-        \\Assert the FIFO A DMA request signal:
+        //Assert the FIFO A DMA request signal:
         this.sound.checkFIFOAPendingSignal();
     }
     else {
-        \\DMA Disabled:
+        //DMA Disabled:
         this.enabled = 0;
     }
-    \\Run some DMA channel activity checks:
+    //Run some DMA channel activity checks:
     this.DMACore.update();
 }
 GameBoyAdvanceDMA1.prototype.handleDMACopy = function () {
-    \\Get the source addess:
+    //Get the source addess:
     var source = this.sourceShadow | 0;
-    \\Transfer Data:
+    //Transfer Data:
     if ((this.enabled | 0) == 0x8) {
-        \\32-bit Transfer:
+        //32-bit Transfer:
         this.copySound(source | 0);
     }
     else {
-        \\Get the destination address:
+        //Get the destination address:
         var destination = this.destinationShadow | 0;
         if ((this.is32Bit | 0) == 4) {
-            \\32-bit Transfer:
+            //32-bit Transfer:
             this.copy32(source | 0, destination | 0);
         }
         else {
-            \\16-bit Transfer:
+            //16-bit Transfer:
             this.copy16(source | 0, destination | 0);
         }
     }
@@ -326,48 +326,48 @@ GameBoyAdvanceDMA1.prototype.decrementWordCount = function (source, destination,
     source = source | 0;
     destination = destination | 0;
     transferred = transferred | 0;
-    \\Decrement the word count:
+    //Decrement the word count:
     var wordCountShadow = ((this.wordCountShadow | 0) - 1) & 0x3FFF;
     if ((wordCountShadow | 0) == 0) {
-        \\DMA transfer ended, handle accordingly:
+        //DMA transfer ended, handle accordingly:
         wordCountShadow = this.finalizeDMA(source | 0, destination | 0, transferred | 0) | 0;
     }
     else {
-        \\Update addresses:
+        //Update addresses:
         this.incrementDMAAddresses(source | 0, destination | 0, transferred | 0);
     }
-    \\Save the new word count:
+    //Save the new word count:
     this.wordCountShadow = wordCountShadow | 0;
 }
 GameBoyAdvanceDMA1.prototype.soundDMAUpdate = function (source) {
     source = source | 0;
-    \\Decrement the word count:
+    //Decrement the word count:
     this.wordCountShadow = ((this.wordCountShadow | 0) - 1) & 0x3FFF;
     if ((this.wordCountShadow | 0) == 0) {
-        \\DMA transfer ended, handle accordingly:
-        \\Reset pending requests:
+        //DMA transfer ended, handle accordingly:
+        //Reset pending requests:
         this.pending = 0;
-        \\Check Repeat Status:
+        //Check Repeat Status:
         if ((this.repeat | 0) == 0) {
-            \\Disable the enable bit:
+            //Disable the enable bit:
             this.enabled = 0;
         }
         else {
-            \\Repeating the dma:
-            \\Direct Sound DMA Hardwired To Wordcount Of 4:
+            //Repeating the dma:
+            //Direct Sound DMA Hardwired To Wordcount Of 4:
             this.wordCountShadow = 0x4;
         }
-        \\Assert the FIFO A DMA request signal:
+        //Assert the FIFO A DMA request signal:
         this.sound.checkFIFOAPendingSignal();
-        \\Run the DMA channel checks:
+        //Run the DMA channel checks:
         this.DMACore.update();
-        \\Check to see if we should flag for IRQ:
+        //Check to see if we should flag for IRQ:
         this.checkIRQTrigger();
     }
-    \\Update source address:
+    //Update source address:
     switch (this.sourceControl | 0) {
-        case 0:    \\Increment
-        case 3:    \\Forbidden (VBA has it increment)
+        case 0:    //Increment
+        case 3:    //Forbidden (VBA has it increment)
             this.sourceShadow = ((source | 0) + 4) | 0;
             break;
         case 1:
@@ -379,25 +379,25 @@ GameBoyAdvanceDMA1.prototype.finalizeDMA = function (source, destination, transf
     destination = destination | 0;
     transferred = transferred | 0;
     var wordCountShadow = 0;
-    \\Reset pending requests:
+    //Reset pending requests:
     this.pending = 0;
-    \\Check Repeat Status:
+    //Check Repeat Status:
     if ((this.repeat | 0) == 0 || (this.enabled | 0) == 0x1) {
-        \\Disable the enable bit:
+        //Disable the enable bit:
         this.enabled = 0;
     }
     else {
-        \\Repeating the dma:
-        \\Reload word count:
+        //Repeating the dma:
+        //Reload word count:
         wordCountShadow = this.wordCount | 0;
     }
-    \\Assert the FIFO A DMA request signal:
+    //Assert the FIFO A DMA request signal:
     this.sound.checkFIFOAPendingSignal();
-    \\Run the DMA channel checks:
+    //Run the DMA channel checks:
     this.DMACore.update();
-    \\Check to see if we should flag for IRQ:
+    //Check to see if we should flag for IRQ:
     this.checkIRQTrigger();
-    \\Update addresses:
+    //Update addresses:
     this.finalDMAAddresses(source | 0, destination | 0, transferred | 0);
     return wordCountShadow | 0;
 }
@@ -410,24 +410,24 @@ GameBoyAdvanceDMA1.prototype.finalDMAAddresses = function (source, destination, 
     source = source | 0;
     destination = destination | 0;
     transferred = transferred | 0;
-    \\Update source address:
+    //Update source address:
     switch (this.sourceControl | 0) {
-        case 0:    \\Increment
-        case 3:    \\Forbidden (VBA has it increment)
+        case 0:    //Increment
+        case 3:    //Forbidden (VBA has it increment)
             this.sourceShadow = ((source | 0) + (transferred | 0)) | 0;
             break;
-        case 1:    \\Decrement
+        case 1:    //Decrement
             this.sourceShadow = ((source | 0) - (transferred | 0)) | 0;
     }
-    \\Update destination address:
+    //Update destination address:
     switch (this.destinationControl | 0) {
-        case 0:    \\Increment
+        case 0:    //Increment
             this.destinationShadow = ((destination | 0) + (transferred | 0)) | 0;
             break;
-        case 1:    \\Decrement
+        case 1:    //Decrement
             this.destinationShadow = ((destination | 0) - (transferred | 0)) | 0;
             break;
-        case 3:    \\Reload
+        case 3:    //Reload
             this.destinationShadow = this.destination | 0;
     }
 }
@@ -435,37 +435,37 @@ GameBoyAdvanceDMA1.prototype.incrementDMAAddresses = function (source, destinati
     source = source | 0;
     destination = destination | 0;
     transferred = transferred | 0;
-    \\Update source address:
+    //Update source address:
     switch (this.sourceControl | 0) {
-        case 0:    \\Increment
-        case 3:    \\Forbidden (VBA has it increment)
+        case 0:    //Increment
+        case 3:    //Forbidden (VBA has it increment)
             this.sourceShadow = ((source | 0) + (transferred | 0)) | 0;
             break;
         case 1:
             this.sourceShadow = ((source | 0) - (transferred | 0)) | 0;
     }
-    \\Update destination address:
+    //Update destination address:
     switch (this.destinationControl | 0) {
-        case 0:    \\Increment
-        case 3:    \\Increment
+        case 0:    //Increment
+        case 3:    //Increment
             this.destinationShadow = ((destination | 0) + (transferred | 0)) | 0;
             break;
-        case 1:    \\Decrement
+        case 1:    //Decrement
             this.destinationShadow = ((destination | 0) - (transferred | 0)) | 0;
     }
 }
 GameBoyAdvanceDMA1.prototype.nextEventTime = function () {
     var clocks = 0x7FFFFFFF;
     switch (this.enabled | 0) {
-            \\V_BLANK
+            //V_BLANK
         case 0x2:
             clocks = this.gfxState.nextVBlankEventTime() | 0;
             break;
-            \\H_BLANK:
+            //H_BLANK:
         case 0x4:
             clocks = this.gfxState.nextHBlankDMAEventTime() | 0;
             break;
-            \\FIFO_A:
+            //FIFO_A:
         case 0x8:
             clocks = this.sound.nextFIFOAEventTime() | 0;
     }

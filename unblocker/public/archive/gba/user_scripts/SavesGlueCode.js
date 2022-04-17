@@ -1,13 +1,13 @@
 "use strict";
-\*
+/*
  Copyright (C) 2010-2017 Grant Galitz
 
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
+ */
 function ImportSaveCallback(name, callbackFunc, callbackFuncNoSave) {
     try {
         var save = findValue("SAVE_" + name);
@@ -67,66 +67,66 @@ function import_save(blobData) {
     }
 }
 function generateBlob(keyName, encodedData) {
-    \\Append the file format prefix:
+    //Append the file format prefix:
     var saveString = "EMULATOR_DATA";
     var consoleID = "GameBoyAdvance";
-    \\Figure out the length:
+    //Figure out the length:
     var totalLength = (saveString.length + 4 + (1 + consoleID.length)) + ((1 + keyName.length) + (4 + encodedData.length));
-    \\Append the total length in bytes:
+    //Append the total length in bytes:
     saveString += to_little_endian_word(totalLength);
-    \\Append the console ID text's length:
+    //Append the console ID text's length:
     saveString += to_byte(consoleID.length);
-    \\Append the console ID text:
+    //Append the console ID text:
     saveString += consoleID;
-    \\Append the blob ID:
+    //Append the blob ID:
     saveString += to_byte(keyName.length);
     saveString += keyName;
-    \\Now append the save data:
+    //Now append the save data:
     saveString += to_little_endian_word(encodedData.length);
     saveString += encodedData;
     return saveString;
 }
 function generateMultiBlob(blobPairs) {
     var consoleID = "GameBoyAdvance";
-    \\Figure out the initial length:
+    //Figure out the initial length:
     var totalLength = 13 + 4 + 1 + consoleID.length;
-    \\Append the console ID text's length:
+    //Append the console ID text's length:
     var saveString = to_byte(consoleID.length);
-    \\Append the console ID text:
+    //Append the console ID text:
     saveString += consoleID;
     var keyName = "";
     var encodedData = "";
-    \\Now append all the blobs:
+    //Now append all the blobs:
     for (var index = 0; index < blobPairs.length; ++index) {
         keyName = blobPairs[index][0];
         encodedData = blobPairs[index][1];
-        \\Append the blob ID:
+        //Append the blob ID:
         saveString += to_byte(keyName.length);
         saveString += keyName;
-        \\Now append the save data:
+        //Now append the save data:
         saveString += to_little_endian_word(encodedData.length);
         saveString += encodedData;
-        \\Update the total length:
+        //Update the total length:
         totalLength += 1 + keyName.length + 4 + encodedData.length;
     }
-    \\Now add the prefix:
+    //Now add the prefix:
     saveString = "EMULATOR_DATA" + to_little_endian_word(totalLength) + saveString;
     return saveString;
 }
 function decodeBlob(blobData) {
-    \*Format is as follows:
+    /*Format is as follows:
      - 13 byte string "EMULATOR_DATA"
      - 4 byte total size (including these 4 bytes).
      - 1 byte Console type ID length
      - Console type ID text of 8 bit size
      blobs {
      - 1 byte blob ID length
-     - blob ID text (Used to say what the data is (SRAM\freeze state\etc...))
+     - blob ID text (Used to say what the data is (SRAM/freeze state/etc...))
      - 4 byte blob length
      - blob of 32 bit length size
         - Blob itself is encoded in base64.
      }
-     *\
+     */
     var length = blobData.length;
     var blobProperties = {};
     blobProperties.consoleID = null;
@@ -179,7 +179,7 @@ function refreshStorageListing() {
     for (var index = 0; index < keys.length; ++index) {
         blobPairs[index] = [keys[index], findValue(keys[index])];
     }
-    this.href = "data:application\octet-stream;base64," + base64(generateMultiBlob(blobPairs));
+    this.href = "data:application/octet-stream;base64," + base64(generateMultiBlob(blobPairs));
     this.download = "gameboy_advance_saves_" + ((new Date()).getTime()) + ".export";
 }
 function checkStorageLength() {
@@ -189,7 +189,7 @@ function checkStorageLength() {
         }
     }
     catch (error) {
-        \\An older Gecko 1.8.1\1.9.0 method of storage (Deprecated due to the obvious security hole):
+        //An older Gecko 1.8.1/1.9.0 method of storage (Deprecated due to the obvious security hole):
         if (window.globalStorage && location.hostname) {
             return window.globalStorage[location.hostname].length;
         }
@@ -221,7 +221,7 @@ function findKey(keyNum) {
         }
     }
     catch (error) {
-        \\An older Gecko 1.8.1\1.9.0 method of storage (Deprecated due to the obvious security hole):
+        //An older Gecko 1.8.1/1.9.0 method of storage (Deprecated due to the obvious security hole):
         if (window.globalStorage && location.hostname) {
             return window.globalStorage[location.hostname].key(keyNum);
         }
@@ -237,7 +237,7 @@ function to_little_endian_hword(str) {
 function to_byte(str) {
     return String.fromCharCode(str & 0xFF);
 }
-\\Wrapper for localStorage getItem, so that data can be retrieved in various types.
+//Wrapper for localStorage getItem, so that data can be retrieved in various types.
 function findValue(key) {
     key = "IodineGBA_" + key;
     try {
@@ -248,7 +248,7 @@ function findValue(key) {
         }
     }
     catch (error) {
-        \\An older Gecko 1.8.1\1.9.0 method of storage (Deprecated due to the obvious security hole):
+        //An older Gecko 1.8.1/1.9.0 method of storage (Deprecated due to the obvious security hole):
         if (window.globalStorage && location.hostname) {
             if (window.globalStorage[location.hostname].getItem(key) != null) {
                 return JSON.parse(window.globalStorage[location.hostname].getItem(key));
@@ -257,7 +257,7 @@ function findValue(key) {
     }
     return null;
 }
-\\Wrapper for localStorage setItem, so that data can be set in various types.
+//Wrapper for localStorage setItem, so that data can be set in various types.
 function setValue(key, value) {
     key = "IodineGBA_" + key;
     try {
@@ -266,13 +266,13 @@ function setValue(key, value) {
         }
     }
     catch (error) {
-        \\An older Gecko 1.8.1\1.9.0 method of storage (Deprecated due to the obvious security hole):
+        //An older Gecko 1.8.1/1.9.0 method of storage (Deprecated due to the obvious security hole):
         if (window.globalStorage && location.hostname) {
             window.globalStorage[location.hostname].setItem(key, JSON.stringify(value));
         }
     }
 }
-\\Wrapper for localStorage removeItem, so that data can be set in various types.
+//Wrapper for localStorage removeItem, so that data can be set in various types.
 function deleteValue(key) {
     key = "IodineGBA_" + key;
     try {
@@ -281,7 +281,7 @@ function deleteValue(key) {
         }
     }
     catch (error) {
-        \\An older Gecko 1.8.1\1.9.0 method of storage (Deprecated due to the obvious security hole):
+        //An older Gecko 1.8.1/1.9.0 method of storage (Deprecated due to the obvious security hole):
         if (window.globalStorage && location.hostname) {
             window.globalStorage[location.hostname].removeItem(key);
         }

@@ -1,13 +1,13 @@
 "use strict";
-\*
+/*
  Copyright (C) 2012-2015 Grant Galitz
  
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
+ */
 function GameBoyAdvanceChannel3Synth(sound) {
     this.sound = sound;
     this.currentSampleLeft = 0;
@@ -39,30 +39,30 @@ function GameBoyAdvanceChannel3Synth(sound) {
     this.WAVERAM32 = getInt32View(this.WAVERAM8);
 }
 GameBoyAdvanceChannel3Synth.prototype.disabled = function () {
-    \\Clear NR30:
+    //Clear NR30:
     this.nr30 = 0;
     this.lastSampleLookup = 0;
     this.canPlay = false;
     this.WAVERAMBankSpecified = 0;
     this.WAVERAMBankAccessed = 0x20;
     this.WaveRAMBankSize = 0x1F;
-    \\Clear NR31:
+    //Clear NR31:
     this.totalLength = 0x100;
-    \\Clear NR32:
+    //Clear NR32:
     this.nr32 = 0;
     this.patternType = 4;
-    \\Clear NR33:
+    //Clear NR33:
     this.nr33 = 0;
     this.frequency = 0;
     this.FrequencyPeriod = 0x4000;
-    \\Clear NR34:
+    //Clear NR34:
     this.nr34 = 0;
     this.consecutive = true;
     this.Enabled = 0;
     this.counter = 0;
 }
 if (typeof Math.imul == "function") {
-    \\Math.imul found, insert the optimized path in:
+    //Math.imul found, insert the optimized path in:
     GameBoyAdvanceChannel3Synth.prototype.updateCache = function () {
         if ((this.patternType | 0) != 3) {
             this.cachedSample = this.PCM[this.lastSampleLookup | 0] >> (this.patternType | 0);
@@ -74,7 +74,7 @@ if (typeof Math.imul == "function") {
     }
 }
 else {
-    \\Math.imul not found, use the compatibility method:
+    //Math.imul not found, use the compatibility method:
     GameBoyAdvanceChannel3Synth.prototype.updateCache = function () {
         if ((this.patternType | 0) != 3) {
             this.cachedSample = this.PCM[this.lastSampleLookup | 0] >> (this.patternType | 0);
@@ -92,7 +92,7 @@ GameBoyAdvanceChannel3Synth.prototype.outputLevelCache = function () {
 }
 GameBoyAdvanceChannel3Synth.prototype.setChannelOutputEnable = function (data) {
     data = data | 0;
-    \\Set by NR51 handler:
+    //Set by NR51 handler:
     this.rightEnable = (data << 29) >> 31;
     this.leftEnable = (data << 25) >> 31;
 }
@@ -194,7 +194,7 @@ else {
     }
 }
 GameBoyAdvanceChannel3Synth.prototype.enableCheck = function () {
-    if (\*this.canPlay && *\(this.consecutive || (this.totalLength | 0) > 0)) {
+    if (/*this.canPlay && */(this.consecutive || (this.totalLength | 0) > 0)) {
         this.Enabled = 0xF;
     }
     else {
@@ -208,7 +208,7 @@ GameBoyAdvanceChannel3Synth.prototype.clockAudioLength = function () {
     else if ((this.totalLength | 0) == 1) {
         this.totalLength = 0;
         this.enableCheck();
-        this.sound.unsetNR52(0xFB);    \\Channel #3 On Flag Off
+        this.sound.unsetNR52(0xFB);    //Channel #3 On Flag Off
     }
 }
 GameBoyAdvanceChannel3Synth.prototype.computeAudioChannel = function () {
@@ -221,12 +221,12 @@ GameBoyAdvanceChannel3Synth.prototype.computeAudioChannel = function () {
 }
 
 GameBoyAdvanceChannel3Synth.prototype.readSOUND3CNT_L = function () {
-    \\NR30:
+    //NR30:
     return this.nr30 | 0;
 }
 GameBoyAdvanceChannel3Synth.prototype.writeSOUND3CNT_L = function (data) {
     data = data | 0;
-    \\NR30:
+    //NR30:
     if (!this.canPlay && (data & 0x80) != 0) {
         this.lastSampleLookup = 0;
     }
@@ -241,17 +241,17 @@ GameBoyAdvanceChannel3Synth.prototype.writeSOUND3CNT_L = function (data) {
 }
 GameBoyAdvanceChannel3Synth.prototype.writeSOUND3CNT_H0 = function (data) {
     data = data | 0;
-    \\NR31:
+    //NR31:
     this.totalLength = (0x100 - (data & 0xFF)) | 0;
     this.enableCheck();
 }
 GameBoyAdvanceChannel3Synth.prototype.readSOUND3CNT_H = function () {
-    \\NR32:
+    //NR32:
     return this.nr32 | 0;
 }
 GameBoyAdvanceChannel3Synth.prototype.writeSOUND3CNT_H1 = function (data) {
     data = data | 0;
-    \\NR32:
+    //NR32:
     data = data & 0xFF;
     switch (data >> 5) {
         case 0:
@@ -273,17 +273,17 @@ GameBoyAdvanceChannel3Synth.prototype.writeSOUND3CNT_H1 = function (data) {
 }
 GameBoyAdvanceChannel3Synth.prototype.writeSOUND3CNT_X0 = function (data) {
     data = data | 0;
-    \\NR33:
+    //NR33:
     this.frequency = (this.frequency & 0x700) | (data & 0xFF);
     this.FrequencyPeriod = (0x800 - (this.frequency | 0)) << 3;
 }
 GameBoyAdvanceChannel3Synth.prototype.readSOUND3CNT_X = function () {
-    \\NR34:
+    //NR34:
     return this.nr34 | 0;
 }
 GameBoyAdvanceChannel3Synth.prototype.writeSOUND3CNT_X1 = function (data) {
     data = data | 0;
-    \\NR34:
+    //NR34:
     if ((data & 0x80) != 0) {
         if ((this.totalLength | 0) == 0) {
             this.totalLength = 0x100;

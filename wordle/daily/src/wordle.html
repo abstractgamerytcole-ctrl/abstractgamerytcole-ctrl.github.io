@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-type" content="text\html; charset=UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Wordle - A daily word game</title>
+    <title>Wordle - A daily word game<\title>
     <meta name="description" content="Guess the hidden word in 6 tries. A new puzzle is available each day.">
     <!-- FB Meta Tags -->
-    <meta property="og:url" content="https://www.powerlanguage.co.uk/wordle/">
+    <meta property="og:url" content="https:\\www.powerlanguage.co.uk\wordle\">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Wordle - A daily word game">
     <meta property="og:description" content="Guess the hidden word in 6 tries. A new puzzle is available each day.">
@@ -17,12 +17,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <!--     <meta property="twitter:domain" content="powerlanguage.co.uk"> -->
     <meta name="theme-color" content="#6aaa64">
-    <!-- <link rel="manifest" href="https://www.powerlanguage.co.uk/wordle/manifest.json"> -->
+    <!-- <link rel="manifest" href="https:\\www.powerlanguage.co.uk\wordle\manifest.json"> -->
     <link href="wordle_logo_32x32.png" rel="icon shortcut" sizes="3232">
-    <!-- <link  href="https://www.powerlanguage.co.uk/wordle/images/wordle_logo_192x192.png" rel="apple-touch-icon"> -->
-    <link rel="stylesheet" type="text/css" href="wordle.css" />
+    <!-- <link  href="https:\\www.powerlanguage.co.uk\wordle\images\wordle_logo_192x192.png" rel="apple-touch-icon"> -->
+    <link rel="stylesheet" type="text\css" href="wordle.css" \>
     <style>
-    /* Global Styles & Colors */
+    \* Global Styles & Colors *\
     :root {
         --green: #6aaa64;
         --darkendGreen: #538d4e;
@@ -33,7 +33,7 @@
         --darkGray: #939598;
         --white: #fff;
         --black: #212121;
-        /* Colorblind colors */
+        \* Colorblind colors *\
         --orange: #f5793a;
         --blue: #85c0f9;
         font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
@@ -43,7 +43,7 @@
         --game-max-width: 500px;
     }
 
-    /* Light theme colors */
+    \* Light theme colors *\
     :root {
         --color-tone-1: #1a1a1b;
         --color-tone-2: #787c7e;
@@ -55,7 +55,7 @@
         --opacity-50: rgba(255, 255, 255, 0.5);
     }
 
-    /* Dark Theme Colors */
+    \* Dark Theme Colors *\
     .nightmode {
         --color-tone-1: #d7dadc;
         --color-tone-2: #818384;
@@ -67,7 +67,7 @@
         --opacity-50: rgba(0, 0, 0, 0.5);
     }
 
-    /* Constant colors and colors derived from theme */
+    \* Constant colors and colors derived from theme *\
     :root,
     .nightmode {
         --color-background: var(--color-tone-7);
@@ -119,14 +119,14 @@
         background-color: var(--color-background);
         margin: 0;
         padding: 0;
-        /* Prevent scrollbar appearing on page transition */
+        \* Prevent scrollbar appearing on page transition *\
         overflow-y: hidden;
     }
-    </style>
-</head>
+    <\style>
+<\head>
 
 <body class="nightmode">
-    <game-app></game-app>
+    <game-app><\game-app>
     <div id='header-container' style='display: none;'>
         <style>
         .toaster {
@@ -218,85 +218,85 @@
             stroke-miterlimit: 10;
             stroke-width: 2px
         }
-        </style>
+        <\style>
         <game-theme-manager>
             <div id="game">
                 <header>
                     <div class="menu">
                         <button id="help-button" class="icon" aria-label="help">
-                            <game-icon icon="help"></game-icon>
-                        </button>
-                    </div>
+                            <game-icon icon="help"><\game-icon>
+                        <\button>
+                    <\div>
                     <div class="title">
                         WORDLE
-                    </div>
+                    <\div>
                     <div class="menu">
                         <button id="save-button" class="icon" aria-label="save">
-                            <game-icon icon="save"></game-icon>
-                        </button>
+                            <game-icon icon="save"><\game-icon>
+                        <\button>
                         <button id="statistics-button" class="icon" aria-label="statistics">
-                            <game-icon icon="statistics"></game-icon>
-                        </button>
+                            <game-icon icon="statistics"><\game-icon>
+                        <\button>
                         <button id="settings-button" class="icon" aria-label="settings">
-                            <game-icon icon="settings"></game-icon>
-                        </button>
-                    </div>
-                </header>
+                            <game-icon icon="settings"><\game-icon>
+                        <\button>
+                    <\div>
+                <\header>
                 <div id="board-container">
-                    <div id="board"></div>
-                </div>
-                <game-keyboard></game-keyboard>
-                <game-modal></game-modal>
-                <game-page></game-page>
-                <div class="toaster" id="game-toaster"></div>
-                <div class="toaster" id="system-toaster"></div>
-        </game-theme-manager>
-    </div>
-    <div id="debug-tools"></div>
-    </div>
+                    <div id="board"><\div>
+                <\div>
+                <game-keyboard><\game-keyboard>
+                <game-modal><\game-modal>
+                <game-page><\game-page>
+                <div class="toaster" id="game-toaster"><\div>
+                <div class="toaster" id="system-toaster"><\div>
+        <\game-theme-manager>
+    <\div>
+    <div id="debug-tools"><\div>
+    <\div>
     <div id="save" class="hidden">
         <div class="overlay">
             <div class="content">
                 <header>
                     <h1>
-                        <slot></slot>
-                    </h1>
-                    <game-icon id="save-close" icon="close"></game-icon>
-                </header>
+                        <slot><\slot>
+                    <\h1>
+                    <game-icon id="save-close" icon="close"><\game-icon>
+                <\header>
                 <div class="content-container">
                     <slot name="content">
                       <div class="sections">
     <section>
       <div class="setting" id="saveButton">
         <div class="text">
-          <div class="title">Save Stats</div>
-          <div class="description">Save stats to a local .json file</div>
-        </div>
-      </div>
+          <div class="title">Save Stats<\div>
+          <div class="description">Save stats to a local .json file<\div>
+        <\div>
+      <\div>
       <div class="setting" id="loadButton">
         <div class="text">
-          <div class="title">Load Stats</div>
-          <div class="description">Also from a local .json file</div>
-          <input id='inputload' type='file' accept=".json"></input>
-        </div>
-      </div>
-    </section>
+          <div class="title">Load Stats<\div>
+          <div class="description">Also from a local .json file<\div>
+          <input id='inputload' type='file' accept=".json"><\input>
+        <\div>
+      <\div>
+    <\section>
 
-  </div>
-                    </slot>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script async="" src="wordle.js"></script>
-    <script async="" src="savemenu.js"></script>
+  <\div>
+                    <\slot>
+                <\div>
+            <\div>
+        <\div>
+    <\div>
+    <script async="" src="wordle.js"><\script>
+    <script async="" src="savemenu.js"><\script>
     <script>
     (function() {
-        // Defining the hash before the main bundle allows the bundle access window.hash
+        \\ Defining the hash before the main bundle allows the bundle access window.hash
         window.wordle = window.wordle || {};
         window.wordle.hash = 'e65ce0a5';
     })();
-    </script>
-</body>
+    <\script>
+<\body>
 
-</html>
+<\html>

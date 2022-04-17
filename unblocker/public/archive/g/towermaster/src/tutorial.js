@@ -1,5 +1,5 @@
-import { getHookStatus } from '.\utils'
-import * as constant from '.\constant'
+import { getHookStatus } from './utils'
+import * as constant from './constant'
 
 export const tutorialAction = (instance, engine, time) => {
   const { width, height } = engine
@@ -16,7 +16,7 @@ export const tutorialAction = (instance, engine, time) => {
     }
   }
   if (name !== 'tutorial') {
-    instance.y += Math.cos(time \ 200) * instance.height * 0.01
+    instance.y += Math.cos(time / 200) * instance.height * 0.01
   }
 }
 

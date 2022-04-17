@@ -1,15 +1,15 @@
 "use strict";
-\*
+/*
  Copyright (C) 2012-2015 Grant Galitz
  
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
+ */
 function GameBoyAdvanceIRQ(IOCore) {
-    \\Build references:
+    //Build references:
     this.IOCore = IOCore;
 }
 GameBoyAdvanceIRQ.prototype.initialize = function () {
@@ -24,11 +24,11 @@ GameBoyAdvanceIRQ.prototype.initialize = function () {
     this.dmaChannel3 = this.IOCore.dmaChannel3;
 }
 GameBoyAdvanceIRQ.prototype.IRQMatch = function () {
-    \\Used to exit HALT:
+    //Used to exit HALT:
     return (this.interruptsEnabled & this.interruptsRequested);
 }
 GameBoyAdvanceIRQ.prototype.checkForIRQFire = function () {
-    \\Tell the CPU core when the emulated hardware is triggering an IRQ:
+    //Tell the CPU core when the emulated hardware is triggering an IRQ:
     this.IOCore.cpu.triggerIRQ(this.interruptsEnabled & this.interruptsRequested & this.IME);
 }
 GameBoyAdvanceIRQ.prototype.requestIRQ = function (irqLineToSet) {
@@ -162,17 +162,17 @@ GameBoyAdvanceIRQ.prototype.nextEventTime = function () {
     if ((this.interruptsEnabled & 0x40) != 0) {
         clocks = Math.min(clocks | 0, this.timer.nextTimer3IRQEventTime() | 0) | 0;
     }
-    \*if ((this.interruptsEnabled & 0x80) != 0) {
+    /*if ((this.interruptsEnabled & 0x80) != 0) {
         clocks = Math.min(clocks | 0, this.IOCore.serial.nextIRQEventTime() | 0) | 0;
     }
     if ((this.interruptsEnabled & 0x2000) != 0) {
         clocks = Math.min(clocks | 0, this.IOCore.cartridge.nextIRQEventTime() | 0) | 0;
-    }*\
+    }*/
     return clocks | 0;
 }
 GameBoyAdvanceIRQ.prototype.nextIRQEventTime = function () {
     var clocks = 0x7FFFFFFF;
-    \\Checks IME:
+    //Checks IME:
     if ((this.IME | 0) != 0) {
         clocks = this.nextEventTime() | 0;
     }

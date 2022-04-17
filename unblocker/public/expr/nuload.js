@@ -1,4 +1,4 @@
-\\NU Load
+//NU Load
 function nu() {
     $('url').focus();
 }

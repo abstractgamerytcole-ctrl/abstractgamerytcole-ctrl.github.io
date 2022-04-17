@@ -1,13 +1,13 @@
 "use strict";
-\*
+/*
  Copyright (C) 2012-2015 Grant Galitz
  
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
+ */
 function GameBoyAdvanceSerial(IOCore) {
     this.IOCore = IOCore;
 }
@@ -92,21 +92,21 @@ GameBoyAdvanceSerial.prototype.addClocks = function (clocks) {
     }
 }
 GameBoyAdvanceSerial.prototype.clockSerial = function () {
-    \\Emulate as if no slaves connected:
+    //Emulate as if no slaves connected:
     this.serialBitsShifted = ((this.serialBitsShifted | 0) + 1) | 0;
     if ((this.SIOCNT_MODE | 0) == 0) {
-        \\8-bit
+        //8-bit
         this.SIODATA8 = ((this.SIODATA8 << 1) | 1) & 0xFFFF;
         if ((this.serialBitsShifted | 0) == 8) {
             this.SIOTransferStarted = false;
             this.serialBitsShifted = 0;
             if ((this.SIOCNT_IRQ | 0) != 0) {
-                \\this.IOCore.irq.requestIRQ(0x80);
+                //this.IOCore.irq.requestIRQ(0x80);
             }
         }
     }
     else {
-        \\32-bit
+        //32-bit
         this.SIODATA_D = ((this.SIODATA_D << 1) & 0xFE) | (this.SIODATA_C >> 7);
         this.SIODATA_C = ((this.SIODATA_C << 1) & 0xFE) | (this.SIODATA_B >> 7);
         this.SIODATA_B = ((this.SIODATA_B << 1) & 0xFE) | (this.SIODATA_A >> 7);
@@ -115,13 +115,13 @@ GameBoyAdvanceSerial.prototype.clockSerial = function () {
             this.SIOTransferStarted = false;
             this.serialBitsShifted = 0;
             if ((this.SIOCNT_IRQ | 0) != 0) {
-                \\this.IOCore.irq.requestIRQ(0x80);
+                //this.IOCore.irq.requestIRQ(0x80);
             }
         }
     }
 }
 GameBoyAdvanceSerial.prototype.clockMultiplayer = function () {
-    \\Emulate as if no slaves connected:
+    //Emulate as if no slaves connected:
     this.SIODATA_A = this.SIODATA8 | 0;
     this.SIODATA_B = 0xFFFF;
     this.SIODATA_C = 0xFFFF;
@@ -129,7 +129,7 @@ GameBoyAdvanceSerial.prototype.clockMultiplayer = function () {
     this.SIOTransferStarted = false;
     this.SIOCOMMERROR = true;
     if ((this.SIOCNT_IRQ | 0) != 0) {
-        \\this.IOCore.irq.requestIRQ(0x80);
+        //this.IOCore.irq.requestIRQ(0x80);
     }
 }
 GameBoyAdvanceSerial.prototype.clockUART = function () {
@@ -139,7 +139,7 @@ GameBoyAdvanceSerial.prototype.clockUART = function () {
             this.serialBitsShifted = 0;
             this.SIOCNT_UART_FIFO = Math.max(((this.SIOCNT_UART_FIFO | 0) - 1) | 0, 0) | 0;
             if ((this.SIOCNT_UART_FIFO | 0) == 0 && (this.SIOCNT_IRQ | 0) != 0) {
-                \\this.IOCore.irq.requestIRQ(0x80);
+                //this.IOCore.irq.requestIRQ(0x80);
             }
         }
     }
@@ -147,7 +147,7 @@ GameBoyAdvanceSerial.prototype.clockUART = function () {
         if ((this.serialBitsShifted | 0) == 8) {
             this.serialBitsShifted = 0;
             if ((this.SIOCNT_IRQ | 0) != 0) {
-                \\this.IOCore.irq.requestIRQ(0x80);
+                //this.IOCore.irq.requestIRQ(0x80);
             }
         }
     }
@@ -211,9 +211,9 @@ GameBoyAdvanceSerial.prototype.readSIODATA_D1 = function () {
 GameBoyAdvanceSerial.prototype.writeSIOCNT0 = function (data) {
     if ((this.RCNTMode | 0) < 0x2) {
         switch (this.SIOCNT_MODE | 0) {
-            \\8-Bit:
+            //8-Bit:
             case 0:
-            \\32-Bit:
+            //32-Bit:
             case 1:
                 this.SIOShiftClockExternal = data & 0x1;
                 this.SIOShiftClockDivider = ((data & 0x2) != 0) ? 0x8 : 0x40;
@@ -229,7 +229,7 @@ GameBoyAdvanceSerial.prototype.writeSIOCNT0 = function (data) {
                     this.SIOTransferStarted = false;
                 }
                 break;
-            \\Multiplayer:
+            //Multiplayer:
             case 2:
                 this.SIOBaudRate = data & 0x3;
                 this.SIOShiftClockDivider = this.SIOMultiplayerBaudRate[this.SIOBaudRate | 0] | 0;
@@ -252,7 +252,7 @@ GameBoyAdvanceSerial.prototype.writeSIOCNT0 = function (data) {
                     this.SIOTransferStarted = false;
                 }
                 break;
-            \\UART:
+            //UART:
             case 3:
                 this.SIOBaudRate = data & 0x3;
                 this.SIOShiftClockDivider = this.SIOMultiplayerBaudRate[this.SIOBaudRate | 0] | 0;
@@ -264,15 +264,15 @@ GameBoyAdvanceSerial.prototype.writeSIOCNT0 = function (data) {
 GameBoyAdvanceSerial.prototype.readSIOCNT0 = function () {
     if (this.RCNTMode < 0x2) {
         switch (this.SIOCNT_MODE) {
-            \\8-Bit:
+            //8-Bit:
             case 0:
-            \\32-Bit:
+            //32-Bit:
             case 1:
                 return ((this.SIOTransferStarted) ? 0x80 : 0) | 0x74 | this.SIOCNT0_DATA;
-            \\Multiplayer:
+            //Multiplayer:
             case 2:
                 return ((this.SIOTransferStarted) ? 0x80 : 0) | ((this.SIOCOMMERROR) ? 0x40 : 0) | (this.SIOMULT_PLAYER_NUMBER << 4) | this.SIOBaudRate;
-            \\UART:
+            //UART:
             case 3:
                 return (this.SIOCNT_UART_MISC << 2) | ((this.SIOCNT_UART_FIFO == 4) ? 0x30 : 0x20) | this.SIOBaudRate;
         }
@@ -310,13 +310,13 @@ GameBoyAdvanceSerial.prototype.readSIODATA8_1 = function () {
 }
 GameBoyAdvanceSerial.prototype.writeRCNT0 = function (data) {
     if ((this.RCNTMode | 0) == 0x2) {
-        \\General Comm:
+        //General Comm:
         var oldDataBits = this.RCNTDataBits | 0;
-        this.RCNTDataBits = data & 0xF;    \\Device manually controls SI\SO\SC\SD here.
+        this.RCNTDataBits = data & 0xF;    //Device manually controls SI/SO/SC/SD here.
         this.RCNTDataBitFlow = data >> 4;
         if (this.RCNTIRQ && ((oldDataBits ^ this.RCNTDataBits) & oldDataBits & 0x4) != 0) {
-            \\SI fell low, trigger IRQ:
-            \\this.IOCore.irq.requestIRQ(0x80);
+            //SI fell low, trigger IRQ:
+            //this.IOCore.irq.requestIRQ(0x80);
         }
     }
 }
@@ -327,7 +327,7 @@ GameBoyAdvanceSerial.prototype.writeRCNT1 = function (data) {
     this.RCNTMode = data >> 6;
     this.RCNTIRQ = ((data & 0x1) != 0);
     if ((this.RCNTMode | 0) != 0x2) {
-        \\Force SI\SO\SC\SD to low as we're never "hooked" up:
+        //Force SI/SO/SC/SD to low as we're never "hooked" up:
         this.RCNTDataBits = 0;
         this.RCNTDataBitFlow = 0;
     }
@@ -404,7 +404,7 @@ GameBoyAdvanceSerial.prototype.writeJOYBUS_STAT = function (data) {
 GameBoyAdvanceSerial.prototype.readJOYBUS_STAT = function () {
     return 0xC5 | this.JOYBUS_STAT;
 }
-\*GameBoyAdvanceSerial.prototype.nextIRQEventTime = function (clocks) {
+/*GameBoyAdvanceSerial.prototype.nextIRQEventTime = function (clocks) {
     if ((this.SIOCNT_IRQ | 0) != 0 && (this.RCNTMode | 0) < 2) {
         switch (this.SIOCNT_MODE | 0) {
             case 0:
@@ -434,4 +434,4 @@ GameBoyAdvanceSerial.prototype.readJOYBUS_STAT = function () {
     else {
         return 0x7FFFFFFF;
     }
-}*\
+}*/

@@ -6,11 +6,11 @@ import {
   addSuccessCount,
   addFailedCount,
   addScore
-} from '.\utils'
-import * as constant from '.\constant'
+} from './utils'
+import * as constant from './constant'
 
 const checkCollision = (block, line) => {
-  \\ 0 goon 1 drop 2 rotate left 3 rotate right 4 ok 5 perfect
+  // 0 goon 1 drop 2 rotate left 3 rotate right 4 ok 5 perfect
   if (block.y + block.height >= line.y) {
     if (block.x < line.x - block.calWidth || block.x > line.collisionX + block.calWidth) {
       return 1
@@ -22,7 +22,7 @@ const checkCollision = (block, line) => {
       return 3
     }
     if (block.x > line.x + (block.calWidth * 0.8) && block.x < line.x + (block.calWidth * 1.2)) {
-      \\ -10% +10%
+      // -10% +10%
       return 5
     }
     return 4
@@ -44,7 +44,7 @@ const swing = (instance, engine, time) => {
 
 const checkBlockOut = (instance, engine) => {
   if (instance.status === constant.rotateLeft) {
-    \\ 左转 要等右上角消失才算消失
+    // 左转 要等右上角消失才算消失
     if (instance.y - instance.width >= engine.height) {
       instance.visible = false
       instance.status = constant.out
@@ -68,7 +68,7 @@ export const blockAction = (instance, engine, time) => {
     i.status = constant.swing
     instance.updateWidth(engine.getVariable(constant.blockWidth))
     instance.updateHeight(engine.getVariable(constant.blockHeight))
-    instance.x = engine.width \ 2
+    instance.x = engine.width / 2
     instance.y = ropeHeight * -1.5
   }
   const line = engine.getInstance('line')
@@ -88,9 +88,9 @@ export const blockAction = (instance, engine, time) => {
       break
     case constant.beforeDrop:
       i.x = instance.weightX - instance.calWidth
-      i.y = instance.weightY + (0.3 * instance.height) \\ add rope height
+      i.y = instance.weightY + (0.3 * instance.height) // add rope height
       i.rotate = 0
-      i.ay = engine.pixelsPerFrame(0.0003 * engine.height) \\ acceleration of gravity
+      i.ay = engine.pixelsPerFrame(0.0003 * engine.height) // acceleration of gravity
       i.startDropTime = time
       i.status = constant.drop
       break
@@ -102,7 +102,7 @@ export const blockAction = (instance, engine, time) => {
       const collision = checkCollision(instance, line)
       const blockY = line.y - instance.height
       const calRotate = (ins) => {
-        ins.originOutwardAngle = Math.atan(ins.height \ ins.outwardOffset)
+        ins.originOutwardAngle = Math.atan(ins.height / ins.outwardOffset)
         ins.originHypotenuse = Math.sqrt((ins.height ** 2)
           + (ins.outwardOffset ** 2))
         engine.playAudio('rotate')
@@ -136,7 +136,7 @@ export const blockAction = (instance, engine, time) => {
           line.y = blockY
           line.x = i.x - i.calWidth
           line.collisionX = line.x + i.width
-          \\ 作弊检测 超出左边或右边1／3
+          // 作弊检测 超出左边或右边1／3
           const cheatWidth = i.width * 0.3
           if (i.x > engine.width - (cheatWidth * 2)
             || i.x < -cheatWidth) {
@@ -158,7 +158,7 @@ export const blockAction = (instance, engine, time) => {
     case constant.land:
       engine.getTimeMovement(
         constant.moveDownMovement,
-        [[instance.y, instance.y + (getMoveDownValue(engine, { pixelsPerFrame: s => s \ 2 }))]],
+        [[instance.y, instance.y + (getMoveDownValue(engine, { pixelsPerFrame: s => s / 2 }))]],
         (value) => {
           if (!instance.visible) return
           instance.y = value
@@ -176,15 +176,15 @@ export const blockAction = (instance, engine, time) => {
     case constant.rotateRight:
       const isRight = i.status === constant.rotateRight
       const rotateSpeed = engine.pixelsPerFrame(Math.PI * 4)
-      const isShouldFall = isRight ? instance.rotate > 1.3 : instance.rotate < -1.3\\ 75度
+      const isShouldFall = isRight ? instance.rotate > 1.3 : instance.rotate < -1.3// 75度
       const leftFix = isRight ? 1 : -1
       if (isShouldFall) {
-        instance.rotate += (rotateSpeed \ 8) * leftFix
+        instance.rotate += (rotateSpeed / 8) * leftFix
         instance.y += engine.pixelsPerFrame(engine.height * 0.7)
         instance.x += engine.pixelsPerFrame(engine.width * 0.3) * leftFix
       } else {
         let rotateRatio = (instance.calWidth - instance.outwardOffset)
-          \ instance.calWidth
+          / instance.calWidth
         rotateRatio = rotateRatio > 0.5 ? rotateRatio : 0.5
         instance.rotate += rotateSpeed * rotateRatio * leftFix
         const angle = instance.originOutwardAngle + instance.rotate

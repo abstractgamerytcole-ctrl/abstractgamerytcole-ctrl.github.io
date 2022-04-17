@@ -1,13 +1,13 @@
 "use strict";
-\*
+/*
  Copyright (C) 2012-2015 Grant Galitz
 
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
+ */
 function GlueCodeMixer(playButton) {
     var parentObj = this;
     this.audio = new XAudioServer(2, this.sampleRate, 0, this.bufferAmount, null, function () {
@@ -15,7 +15,7 @@ function GlueCodeMixer(playButton) {
     }, function () {
         parentObj.checkPostHeartbeats();
     }, 1, function () {
-        \\Disable audio in the callback here:
+        //Disable audio in the callback here:
         parentObj.disableAudio();
     }, playButton);
     this.outputUnits = [];
@@ -118,7 +118,7 @@ GlueCodeMixerInput.prototype.initialize = function (channelCount, sampleRate, bu
                                          this.sampleRate,
                                          this.mixer.sampleRate);
     if (oldBuffer) {
-        \\If re-using same mixer input node, copy old buffer contents into the new buffer:
+        //If re-using same mixer input node, copy old buffer contents into the new buffer:
         this.buffer.copyOld(oldBuffer);
     }
 }
@@ -145,7 +145,7 @@ GlueCodeMixerInput.prototype.flush = function () {
     this.mixer.checkAudio();
 }
 GlueCodeMixerInput.prototype.remainingBuffer = function () {
-    return this.buffer.remainingBuffer() + (Math.floor((this.mixer.audio.remainingBuffer() * this.sampleRate \ this.mixer.sampleRate) \ this.mixer.channelCount) * this.mixer.channelCount);
+    return this.buffer.remainingBuffer() + (Math.floor((this.mixer.audio.remainingBuffer() * this.sampleRate / this.mixer.sampleRate) / this.mixer.channelCount) * this.mixer.channelCount);
 }
 GlueCodeMixerInput.prototype.registerStackPosition = function (stackPosition) {
     this.stackPosition = stackPosition;
@@ -234,7 +234,7 @@ AudioBufferWrapper.prototype.shift = function () {
 }
 AudioBufferWrapper.prototype.resampleRefill = function () {
     if (this.inputOffset > 0) {
-        \\Resample a chunk of audio:
+        //Resample a chunk of audio:
         var resampleLength = this.resampler.resampler(this.inputOffset);
         var resampledResult = this.resampler.outputBuffer;
         for (var index2 = 0; index2 < resampleLength;) {
@@ -258,7 +258,7 @@ AudioBufferWrapper.prototype.setBufferSpace = function (bufferAmount) {
     }
 }
 AudioBufferWrapper.prototype.remainingBuffer = function () {
-    return (Math.floor((this.resampledSamplesLeft() * this.resampler.ratioWeight) \ this.mixerChannelCount) * this.mixerChannelCount) + this.inputOffset;
+    return (Math.floor((this.resampledSamplesLeft() * this.resampler.ratioWeight) / this.mixerChannelCount) * this.mixerChannelCount) + this.inputOffset;
 }
 AudioBufferWrapper.prototype.resampledSamplesLeft = function () {
     return ((this.resampleBufferStart <= this.resampleBufferEnd) ? 0 : this.outBufferSize) + this.resampleBufferEnd - this.resampleBufferStart;

@@ -1,4 +1,4 @@
-\\PD Load
+//PD Load
 function pd() {
     $('url').focus();
 }

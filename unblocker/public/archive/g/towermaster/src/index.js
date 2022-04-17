@@ -1,12 +1,12 @@
 import { Engine, Instance } from 'cooljs'
-import { touchEventHandler } from '.\utils'
-import { background } from '.\background'
-import { lineAction, linePainter } from '.\line'
-import { cloudAction, cloudPainter } from '.\cloud'
-import { hookAction, hookPainter } from '.\hook'
-import { tutorialAction, tutorialPainter } from '.\tutorial'
-import * as constant from '.\constant'
-import { startAnimate, endAnimate } from '.\animateFuncs'
+import { touchEventHandler } from './utils'
+import { background } from './background'
+import { lineAction, linePainter } from './line'
+import { cloudAction, cloudPainter } from './cloud'
+import { hookAction, hookPainter } from './hook'
+import { tutorialAction, tutorialPainter } from './tutorial'
+import * as constant from './constant'
+import { startAnimate, endAnimate } from './animateFuncs'
 
 window.TowerGame = (option = {}) => {
   const {
@@ -22,7 +22,7 @@ window.TowerGame = (option = {}) => {
     height,
     soundOn
   })
-  const pathGenerator = (path) => `.\assets\${path}`
+  const pathGenerator = (path) => `./assets/${path}`
 
   game.addImg('background', pathGenerator('background.png'))
   game.addImg('hook', pathGenerator('hook.png'))

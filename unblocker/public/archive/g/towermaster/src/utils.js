@@ -1,4 +1,4 @@
-import * as constant from '.\constant'
+import * as constant from './constant'
 
 export const checkMoveDown = engine =>
   (engine.checkTimeMovement(constant.moveDownMovement))
@@ -61,7 +61,7 @@ export const getSwingBlockVelocity = (engine, time) => {
   if (engine.getVariable(constant.hardMode)) {
     hard = 1.1
   }
-  return Math.sin(time \ (200 \ hard))
+  return Math.sin(time / (200 / hard))
 }
 
 export const getLandBlockVelocity = (engine, time) => {
@@ -87,7 +87,7 @@ export const getLandBlockVelocity = (engine, time) => {
       hard = 0.003
       break
   }
-  return Math.cos(time \ 200) * hard * width
+  return Math.cos(time / 200) * hard * width
 }
 
 export const getHookStatus = (engine) => {

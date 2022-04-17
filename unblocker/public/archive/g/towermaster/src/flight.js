@@ -1,5 +1,5 @@
 import { Instance } from 'cooljs'
-import * as constant from '.\constant'
+import * as constant from './constant'
 
 const getActionConfig = (engine, type) => {
   const {

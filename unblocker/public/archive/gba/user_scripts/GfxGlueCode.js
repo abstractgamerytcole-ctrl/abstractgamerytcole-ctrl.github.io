@@ -1,36 +1,36 @@
 "use strict";
-\*
+/*
  Copyright (C) 2010-2016 Grant Galitz
 
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
+ */
 function GfxGlueCode(width, height) {
-    this.graphicsFound = false;               \\Do we have graphics output sink found yet?
-    this.gfxCallback = null;                  \\Optional callback user-supplied for vsync eventing.
-    this.doSmoothing = true;                  \\Texture filter the framebuffer?
-    this.offscreenWidth = width;              \\Width of the screen.
-    this.offscreenHeight = height;            \\Height of the screen.
+    this.graphicsFound = false;               //Do we have graphics output sink found yet?
+    this.gfxCallback = null;                  //Optional callback user-supplied for vsync eventing.
+    this.doSmoothing = true;                  //Texture filter the framebuffer?
+    this.offscreenWidth = width;              //Width of the screen.
+    this.offscreenHeight = height;            //Height of the screen.
     this.offscreenRGBCount = this.offscreenWidth * this.offscreenHeight * 3;
     this.offscreenRGBACount = this.offscreenWidth * this.offscreenHeight * 4;
-    this.initializeVSync();                   \\Setup the vsync event.
-    this.initializeBuffers();                 \\Initialize the buffer storage.
+    this.initializeVSync();                   //Setup the vsync event.
+    this.initializeBuffers();                 //Initialize the buffer storage.
 }
 GfxGlueCode.prototype.initializeVSync = function () {
     window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
     window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
     var parentObj = this;
     if (!window.requestAnimationFrame) {
-        \\Fallback timer eventing:
+        //Fallback timer eventing:
         setInterval(function () {
             parentObj.vsync();
         }, 16);
     }
     else {
-        \\Initialize the rAF eventing:
+        //Initialize the rAF eventing:
         window.requestAnimationFrame(
             function () {
                 parentObj.vsync();
@@ -40,7 +40,7 @@ GfxGlueCode.prototype.initializeVSync = function () {
     }
 }
 GfxGlueCode.prototype.rAFKeepAlive = function () {
-    \\Keep the vsync event requested:
+    //Keep the vsync event requested:
     var parentObj = this;
     window.requestAnimationFrame(function () {
         parentObj.vsync();
@@ -67,10 +67,10 @@ GfxGlueCode.prototype.attachGfxPostCallback = function (gfxPostCallback) {
 GfxGlueCode.prototype.vsync = function () {
     if (this.graphicsFound) {
         if (typeof this.gfxCallback == "function") {
-            \\Let the user supplied code prepare a frame or two:
+            //Let the user supplied code prepare a frame or two:
             this.gfxCallback();
         }
-        \\Draw a frame, if ready:
+        //Draw a frame, if ready:
         this.requestDraw();
     }
 }
@@ -79,44 +79,44 @@ GfxGlueCode.prototype.initializeBuffers = function () {
     this.swizzledFrameReady = [];
 }
 GfxGlueCode.prototype.recomputeDimension = function () {
-    \\Cache some dimension info:
+    //Cache some dimension info:
     this.canvasLastWidth = this.canvas.clientWidth;
     this.canvasLastHeight = this.canvas.clientHeight;
-    if ((navigator.userAgent.toLowerCase().indexOf("gecko") != -1 && navigator.userAgent.toLowerCase().indexOf("like gecko") == -1)) {    \\Sniff out firefox for selecting this path.
-        \\Set target as unscaled:
+    if ((navigator.userAgent.toLowerCase().indexOf("gecko") != -1 && navigator.userAgent.toLowerCase().indexOf("like gecko") == -1)) {    //Sniff out firefox for selecting this path.
+        //Set target as unscaled:
         this.onscreenWidth = this.canvas.width = this.offscreenWidth;
         this.onscreenHeight = this.canvas.height = this.offscreenHeight;
     }
     else {
-        \\Set target canvas as scaled:
+        //Set target canvas as scaled:
         this.onscreenWidth = this.canvas.width = this.canvas.clientWidth;
         this.onscreenHeight = this.canvas.height = this.canvas.clientHeight;
     }
 }
 GfxGlueCode.prototype.initializeCanvasTarget = function () {
     try {
-        \\Obtain dimensional information:
+        //Obtain dimensional information:
         this.recomputeDimension();
-        \\Get handles on the canvases:
+        //Get handles on the canvases:
         this.canvasOffscreen = document.createElement("canvas");
         this.canvasOffscreen.width = this.offscreenWidth;
         this.canvasOffscreen.height = this.offscreenHeight;
         this.drawContextOffscreen = this.canvasOffscreen.getContext("2d");
         this.drawContextOnscreen = this.canvas.getContext("2d");
-        \\Initialize the canvas backing buffer:
+        //Initialize the canvas backing buffer:
         this.initializeCanvasBuffer();
-        \\Success:
+        //Success:
         return true;
     }
     catch (error) {
-        \\Failure:
+        //Failure:
         return false;
     }
 }
 GfxGlueCode.prototype.initializeCanvasBuffer = function () {
-    \\Get a CanvasPixelArray buffer:
+    //Get a CanvasPixelArray buffer:
     this.canvasBuffer = this.getBuffer(this.drawContextOffscreen, this.offscreenWidth, this.offscreenHeight);
-    \\Initialize Alpha Channel:
+    //Initialize Alpha Channel:
     this.initializeAlpha(this.canvasBuffer.data);
 }
 GfxGlueCode.prototype.initializeAlpha = function (canvasData) {
@@ -126,7 +126,7 @@ GfxGlueCode.prototype.initializeAlpha = function (canvasData) {
     }
 }
 GfxGlueCode.prototype.getBuffer = function (canvasContext, width, height) {
-    \\Get a CanvasPixelArray buffer:
+    //Get a CanvasPixelArray buffer:
     var buffer = null;
     try {
         buffer = this.drawContextOffscreen.createImageData(width, height);
@@ -174,7 +174,7 @@ GfxGlueCode.prototype.requestDraw = function () {
         this.swizzledFrameFree.push(swizzledFrame);
         this.graphicsBlit();
         if (typeof this.gfxPostCallback == "function") {
-            \\Some UI element redraw:
+            //Some UI element redraw:
             this.gfxPostCallback();
         }
     }
@@ -185,13 +185,13 @@ GfxGlueCode.prototype.graphicsBlit = function () {
         this.processSmoothing();
     }
     if (this.offscreenWidth == this.onscreenWidth && this.offscreenHeight == this.onscreenHeight) {
-        \\Canvas does not need to scale, draw directly to final:
+        //Canvas does not need to scale, draw directly to final:
         this.drawContextOnscreen.putImageData(this.canvasBuffer, 0, 0);
     }
     else {
-        \\Canvas needs to scale, draw to offscreen first:
+        //Canvas needs to scale, draw to offscreen first:
         this.drawContextOffscreen.putImageData(this.canvasBuffer, 0, 0);
-        \\Scale offscreen canvas image onto the final:
+        //Scale offscreen canvas image onto the final:
         this.drawContextOnscreen.drawImage(this.canvasOffscreen, 0, 0, this.onscreenWidth, this.onscreenHeight);
     }
 }

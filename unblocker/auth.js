@@ -55,8 +55,8 @@ module.exports.hash = function(key) {
 
 if (require.main === module) {
     var pair = module.exports.generate();
-    console.log('Call authlink.generate() for a keypair or add/n' +
-        'authlink({hashes:[/'' + pair.hash + '/']})/n' +
-        'and then authenticate on authlink.sign with the querystring/n?' +
+    console.log('Call authlink.generate() for a keypair or add\n' +
+        'authlink({hashes:[\'' + pair.hash + '\']})\n' +
+        'and then authenticate on authlink.sign with the querystring\n?' +
         querystring.stringify({ key: pair.key }));
 }

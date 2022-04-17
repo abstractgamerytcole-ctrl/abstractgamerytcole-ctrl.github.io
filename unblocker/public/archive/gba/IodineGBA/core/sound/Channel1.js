@@ -1,13 +1,13 @@
 "use strict";
-\*
+/*
  Copyright (C) 2012-2015 Grant Galitz
  
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and\or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *\
+ */
 function GameBoyAdvanceChannel1Synth(sound) {
     this.sound = sound;
     this.currentSampleLeft = 0;
@@ -38,24 +38,24 @@ function GameBoyAdvanceChannel1Synth(sound) {
     this.rightEnable = 0;
 }
 GameBoyAdvanceChannel1Synth.prototype.disabled = function () {
-    \\Clear NR10:
+    //Clear NR10:
     this.nr10 = 0;
     this.SweepFault = false;
     this.lastTimeSweep = 0;
     this.timeSweep = 0;
     this.frequencySweepDivider = 0;
     this.decreaseSweep = false;
-    \\Clear NR11:
+    //Clear NR11:
     this.nr11 = 0;
     this.CachedDuty = 0xF0000000;
     this.totalLength = 0x40;
-    \\Clear NR12:
+    //Clear NR12:
     this.nr12 = 0;
     this.envelopeVolume = 0;
-    \\Clear NR13:
+    //Clear NR13:
     this.frequency = 0;
     this.FrequencyTracker = 0x8000;
-    \\Clear NR14:
+    //Clear NR14:
     this.nr14 = 0;
     this.consecutive = true;
     this.ShadowFrequency = 0x8000;
@@ -73,7 +73,7 @@ GameBoyAdvanceChannel1Synth.prototype.clockAudioLength = function () {
     else if ((this.totalLength | 0) == 1) {
         this.totalLength = 0;
         this.enableCheck();
-        this.sound.unsetNR52(0xFE);    \\Channel #1 On Flag Off
+        this.sound.unsetNR52(0xFE);    //Channel #1 On Flag Off
     }
 }
 GameBoyAdvanceChannel1Synth.prototype.enableCheck = function () {
@@ -96,12 +96,12 @@ GameBoyAdvanceChannel1Synth.prototype.outputLevelCache = function () {
 }
 GameBoyAdvanceChannel1Synth.prototype.setChannelOutputEnable = function (data) {
     data = data | 0;
-    \\Set by NR51 handler:
+    //Set by NR51 handler:
     this.rightEnable = (data << 31) >> 31;
     this.leftEnable = (data << 27) >> 31;
 }
 GameBoyAdvanceChannel1Synth.prototype.clockAudioSweep = function () {
-    \\Channel 1:
+    //Channel 1:
     if (!this.SweepFault && (this.timeSweep | 0) > 0) {
         this.timeSweep = ((this.timeSweep | 0) - 1) | 0
         if ((this.timeSweep | 0) == 0) {
@@ -110,7 +110,7 @@ GameBoyAdvanceChannel1Synth.prototype.clockAudioSweep = function () {
     }
 }
 GameBoyAdvanceChannel1Synth.prototype.runAudioSweep = function () {
-    \\Channel 1:
+    //Channel 1:
     if ((this.lastTimeSweep | 0) > 0) {
         if ((this.frequencySweepDivider | 0) > 0) {
             this.Swept = true;
@@ -124,46 +124,46 @@ GameBoyAdvanceChannel1Synth.prototype.runAudioSweep = function () {
                 this.frequency = this.ShadowFrequency | 0;
                 if ((this.ShadowFrequency | 0) <= 0x7FF) {
                     this.FrequencyTracker = (0x800 - (this.frequency | 0)) << 4;
-                    \\Run overflow check twice:
+                    //Run overflow check twice:
                     if ((((this.ShadowFrequency | 0) + (this.ShadowFrequency >> (this.frequencySweepDivider | 0))) | 0) > 0x7FF) {
                         this.SweepFault = true;
                         this.enableCheck();
-                        this.sound.unsetNR52(0xFE);    \\Channel #1 On Flag Off
+                        this.sound.unsetNR52(0xFE);    //Channel #1 On Flag Off
                     }
                 }
                 else {
                     this.frequency &= 0x7FF;
                     this.SweepFault = true;
                     this.enableCheck();
-                    this.sound.unsetNR52(0xFE);    \\Channel #1 On Flag Off
+                    this.sound.unsetNR52(0xFE);    //Channel #1 On Flag Off
                 }
             }
             this.timeSweep = this.lastTimeSweep | 0;
         }
         else {
-            \\Channel has sweep disabled and timer becomes a length counter:
+            //Channel has sweep disabled and timer becomes a length counter:
             this.SweepFault = true;
             this.enableCheck();
         }
     }
 }
 GameBoyAdvanceChannel1Synth.prototype.audioSweepPerformDummy = function () {
-    \\Channel 1:
+    //Channel 1:
     if ((this.frequencySweepDivider | 0) > 0) {
         if (!this.decreaseSweep) {
             var channel1ShadowFrequency = ((this.ShadowFrequency | 0) + (this.ShadowFrequency >> (this.frequencySweepDivider | 0))) | 0;
             if ((channel1ShadowFrequency | 0) <= 0x7FF) {
-                \\Run overflow check twice:
+                //Run overflow check twice:
                 if ((((channel1ShadowFrequency | 0) + (channel1ShadowFrequency >> (this.frequencySweepDivider | 0))) | 0) > 0x7FF) {
                     this.SweepFault = true;
                     this.enableCheck();
-                    this.sound.unsetNR52(0xFE);    \\Channel #1 On Flag Off
+                    this.sound.unsetNR52(0xFE);    //Channel #1 On Flag Off
                 }
             }
             else {
                 this.SweepFault = true;
                 this.enableCheck();
-                this.sound.unsetNR52(0xFE);    \\Channel #1 On Flag Off
+                this.sound.unsetNR52(0xFE);    //Channel #1 On Flag Off
             }
         }
     }
@@ -200,12 +200,12 @@ GameBoyAdvanceChannel1Synth.prototype.computeAudioChannel = function () {
     }
 }
 GameBoyAdvanceChannel1Synth.prototype.readSOUND1CNT8_0 = function () {
-    \\NR10:
+    //NR10:
     return this.nr10 | 0;
 }
 GameBoyAdvanceChannel1Synth.prototype.writeSOUND1CNT8_0 = function (data) {
     data = data | 0;
-    \\NR10:
+    //NR10:
     if (this.decreaseSweep && (data & 0x08) == 0) {
         if (this.Swept) {
             this.SweepFault = true;
@@ -218,12 +218,12 @@ GameBoyAdvanceChannel1Synth.prototype.writeSOUND1CNT8_0 = function (data) {
     this.enableCheck();
 }
 GameBoyAdvanceChannel1Synth.prototype.readSOUND1CNT8_2 = function () {
-    \\NR11:
+    //NR11:
     return this.nr11 | 0;
 }
 GameBoyAdvanceChannel1Synth.prototype.writeSOUND1CNT8_2 = function (data) {
     data = data | 0;
-    \\NR11:
+    //NR11:
     switch ((data >> 6) & 0x3) {
         case 0:
             this.CachedDuty = 0xF0000000;
@@ -242,37 +242,37 @@ GameBoyAdvanceChannel1Synth.prototype.writeSOUND1CNT8_2 = function (data) {
     this.enableCheck();
 }
 GameBoyAdvanceChannel1Synth.prototype.readSOUND1CNT8_3 = function () {
-    \\NR12:
+    //NR12:
     return this.nr12 | 0;
 }
 GameBoyAdvanceChannel1Synth.prototype.writeSOUND1CNT8_3 = function (data) {
     data = data | 0;
-    \\NR12:
+    //NR12:
     this.envelopeType = ((data & 0x08) != 0);
     this.nr12 = data & 0xFF;
     this.volumeEnableCheck();
 }
 GameBoyAdvanceChannel1Synth.prototype.writeSOUND1CNT_X0 = function (data) {
     data = data | 0;
-    \\NR13:
+    //NR13:
     this.frequency = (this.frequency & 0x700) | (data & 0xFF);
     this.FrequencyTracker = (0x800 - (this.frequency | 0)) << 4;
 }
 GameBoyAdvanceChannel1Synth.prototype.readSOUND1CNTX8 = function () {
-    \\NR14:
+    //NR14:
     return this.nr14 | 0;
 }
 GameBoyAdvanceChannel1Synth.prototype.writeSOUND1CNT_X1 = function (data) {
     data = data | 0;
-    \\NR14:
+    //NR14:
     this.consecutive = ((data & 0x40) == 0);
     this.frequency = ((data & 0x7) << 8) | (this.frequency & 0xFF);
     this.FrequencyTracker = (0x800 - (this.frequency | 0)) << 4;
     if ((data & 0x80) != 0) {
-        \\Reload nr10:
+        //Reload nr10:
         this.timeSweep = this.lastTimeSweep | 0;
         this.Swept = false;
-        \\Reload nr12:
+        //Reload nr12:
         this.envelopeVolume = this.nr12 >> 4;
         this.envelopeSweepsLast = ((this.nr12 & 0x7) - 1) | 0;
         if ((this.totalLength | 0) == 0) {
@@ -288,9 +288,9 @@ GameBoyAdvanceChannel1Synth.prototype.writeSOUND1CNT_X1 = function (data) {
             this.sound.setNR52(0x1);
         }
         this.ShadowFrequency = this.frequency | 0;
-        \\Reset frequency overflow check + frequency sweep type check:
+        //Reset frequency overflow check + frequency sweep type check:
         this.SweepFault = false;
-        \\Supposed to run immediately:
+        //Supposed to run immediately:
         this.audioSweepPerformDummy();
     }
     this.enableCheck();
