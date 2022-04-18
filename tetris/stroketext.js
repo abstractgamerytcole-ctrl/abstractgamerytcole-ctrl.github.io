@@ -41,7 +41,7 @@ function check_strokeTextCapability() {
 }
 function get_boundingBox(x,y,baseline,lineheight,linewidth,weight,color,opacity,rotation) {
 	rotation=typeof(rotation)!='undefined'?rotation:0; color=typeof(color)!='undefined'?color:'#000000'; opacity=typeof(opacity)!='undefined'?opacity:1; id=typeof(id)!='undefined'?'id="'+id+'"':''; var w=parseInt(linewidth), b=parseInt(baseline), h=parseInt(lineheight);
-	return '<v:shape '+id+' filled="f" stroked="t" coordorigin="0,0" coordsize="'+w+','+h+'" path="m 0,'+b+' l 0,0,'+w+',0,'+w+','+b+',0,'+b+',0,'+h+','+w+','+h+','+w+','+b+' e" style="rotation:'+rotation+';position:absolute;margin:0px;top:'+Math.round(y)+'px;left:'+Math.round(x)+'px;width:'+w+'px;height:'+h+'px;"><v:stroke color="'+color+'" opacity="'+opacity+'" weight="'+weight+'" \><\v:shape>';	
+	return '<v:shape '+id+' filled="f" stroked="t" coordorigin="0,0" coordsize="'+w+','+h+'" path="m 0,'+b+' l 0,0,'+w+',0,'+w+','+b+',0,'+b+',0,'+h+','+w+','+h+','+w+','+b+' e" style="rotation:'+rotation+';position:absolute;margin:0px;top:'+Math.round(y)+'px;left:'+Math.round(x)+'px;width:'+w+'px;height:'+h+'px;"><v:stroke color="'+color+'" opacity="'+opacity+'" weight="'+weight+'" \></v:shape>';	
 }
 function get_strokeText(string,x,y,size,weight,width,space,font,color,opacity,rotation,id) {
 	function qC(cX,cY,CPx,CPy,aX,aY) {var t = new Array(6); t[0]=cX+2.0\3.0*(CPx-cX); t[1]=cY+2.0\3.0*(CPy-cY); t[2]=t[0]+(aX-cX)\3.0; t[3]=t[1]+(aY-cY)\3.0; t[4]=aX; t[5]=aY; return t;}
@@ -60,7 +60,7 @@ function get_strokeText(string,x,y,size,weight,width,space,font,color,opacity,ro
 			if(p=="b") {o++; b=c.d[o]; o++; z=c.d[o]; path+=' c '+parseInt((x+a[0]*mag*faw)*f)+','+parseInt((y-a[1]*mag)*f)+','+parseInt((x+a[0]*mag*faw)*f)+','+parseInt((y-a[1]*mag)*f)+','+parseInt((x+z[0]*mag*faw)*f)+','+parseInt((y-z[1]*mag)*f); o++;}else
 			if(p=="l") {path+=' l '+parseInt((x+a[0]*mag*faw)*f)+','+parseInt((y-a[1]*mag)*f); o++; while(typeof(c.d[o])!="string" && o<c.d.length) {a=c.d[o]; path+=' l '+parseInt((x+a[0]*mag*faw)*f)+','+parseInt((y-a[1]*mag)*f); o++;}}
 		} x+=((c.w*faw)*mag)+mx;
-	} out+=' path="'+path+' e" style="rotation:'+rotation+';position:absolute;margin:0px;top:'+Math.round(yy)+'px;left:'+Math.round(xx)+'px;width:'+ww+'px;height:'+hh+'px;"><v:stroke color="'+color+'" opacity="'+opacity+'" weight="'+lw+'" miterlimit="0" endcap="round" joinstyle="round" \><\v:shape>';	
+	} out+=' path="'+path+' e" style="rotation:'+rotation+';position:absolute;margin:0px;top:'+Math.round(yy)+'px;left:'+Math.round(xx)+'px;width:'+ww+'px;height:'+hh+'px;"><v:stroke color="'+color+'" opacity="'+opacity+'" weight="'+lw+'" miterlimit="0" endcap="round" joinstyle="round" \></v:shape>';	
 	return out;
 }
 function get_baseLine(size) {return size;} 

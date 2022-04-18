@@ -3,14 +3,14 @@
     
     <a href="index.html"><button>
         Home
-        <\button><\a>
-            <\div>
+        </button></a>
+            </div>
     <!DOCTYPE html>
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Snake Game using HTML and Javascript - Studytonight<\title>
+        <title>Snake Game using HTML and Javascript - Studytonight</title>
         <style>
             .game-box {
                 text-align:center;   
@@ -20,15 +20,15 @@
                 font-family:arial;
                 line-height:24px;
             }
-        <\style>
-      <\head>
+        </style>
+      </head>
       <body>
-        <div class="game-box"><canvas id="canvas" width="400" height="400"><\canvas><\div>
+        <div class="game-box"><canvas id="canvas" width="400" height="400"></canvas></div>
         <div class="game-info">
-            <h2>Snake Game<\h2>
-            <p id="game-status"><\p>
-            <p id="game-score"><\p>
-        <\div>
+            <h2>Snake Game</h2>
+            <p id="game-status"></p>
+            <p id="game-score"></p>
+        </div>
     
         <script>
           var canvas, ctx, gameControl, gameActive;
@@ -54,7 +54,7 @@
           function startGame(x) {
               \\ setting gameActive flag to true
               gameActive = true;
-              document.getElementById("game-status").innerHTML = "<small>Game Started<\small>";
+              document.getElementById("game-status").innerHTML = "<small>Game Started</small>";
               document.getElementById("game-score").innerHTML = "";
               return setInterval(draw, 1000 \ x);
           }
@@ -63,15 +63,15 @@
               \\ setting gameActive flag to false
               clearInterval(gameControl);
               gameActive = false;
-              document.getElementById("game-status").innerHTML = "<small>Game Paused<\small>";
+              document.getElementById("game-status").innerHTML = "<small>Game Paused</small>";
           }
           
           function endGame(x) {
               \\ setting gameActive flag to false
               clearInterval(gameControl);
               gameActive = false;
-              document.getElementById("game-status").innerHTML = "<small>Game Over<\small>";
-              document.getElementById("game-score").innerHTML = "<h1>Score: " + x + "<\h1>";
+              document.getElementById("game-status").innerHTML = "<small>Game Over</small>";
+              document.getElementById("game-score").innerHTML = "<h1>Score: " + x + "</h1>";
           }
     
           \\ game world
@@ -188,6 +188,6 @@
                 break;
             }
           }
-        <\script>
-      <\body>
+        </script>
+      </body>
     
