@@ -16,7 +16,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	font-family: inherit;
 	vertical-align: baseline;
 }
-\* remember to define focus styles! *\
+/* remember to define focus styles! */
 :focus {
 	outline: 0;
 }
@@ -28,7 +28,7 @@ body {
 ol, ul {
 	list-style: none;
 }
-\* tables still need 'cellspacing="0"' in the markup *\
+/* tables still need 'cellspacing="0"' in the markup */
 table {
 	border-collapse: separate;
 	border-spacing: 0;
@@ -45,7 +45,7 @@ blockquote, q {
 	quotes: "" "";
 }
 
-\*=============================BEGIN CSS=================================*\
+/*=============================BEGIN CSS=================================*/
 
 html, body {
   height: 100%;
@@ -79,7 +79,7 @@ html, body {
 	margin-left: 20px;
 	margin-top: 9px;
 	float: left;
-	background: url(https://i.imgur.com\zoKOaEY.png) no-repeat;
+	background: url(https://i.imgur.com/zoKOaEY.png) no-repeat;
 }
 
 .profile {
@@ -240,7 +240,7 @@ html, body {
 	display: block;
 	height: 100%;
 	width: 100%;
-	background: linear-gradient(rgba(0, 23, 40, 0.6),rgba(0, 23, 40, 0.6)), url("../images\sunburst.png");
+	background: linear-gradient(rgba(0, 23, 40, 0.6),rgba(0, 23, 40, 0.6)), url("../images/sunburst.png");
 	background-position: center;
 	animation: infRotate 25s linear infinite;
 }
@@ -300,9 +300,9 @@ html, body {
 	width: 100%;
 	opacity: 1;
 	background: #111715;
-	\*background: linear-gradient(rgba(0, 40, 1, 0.6),rgba(0, 40, 1, 0.6)), url("../images\sunburst.png");
+	/*background: linear-gradient(rgba(0, 40, 1, 0.6),rgba(0, 40, 1, 0.6)), url("../images/sunburst.png");
 	background-position: center;
-	animation: infRotate 25s linear infinite;*\
+	animation: infRotate 25s linear infinite;*/
 }
 
 .jackpotDifficultyContainer {
@@ -375,7 +375,7 @@ html, body {
 	width: 100%;
 	background: #101619;
 	border-bottom: 1px #186144 solid;
-	background: linear-gradient(rgba(16, 22, 25, .5), rgba(16, 22, 25, 1)), url(https://i.imgur.com\vakyLA5.png);
+	background: linear-gradient(rgba(16, 22, 25, .5), rgba(16, 22, 25, 1)), url(https://i.imgur.com/vakyLA5.png);
 	background-size: cover;
 }
 
@@ -736,7 +736,7 @@ html, body {
 	background: #2D9E71;
 }
 
-\*
+/*
 .modalClose {
 	position: absolute;
 	right: 0;
@@ -761,7 +761,7 @@ html, body {
 	box-shadow: 0 0 25px rgba(0,117,9,0.5);
 	overflow: hidden;
 }
-*\
+*/
 .modalClose.unbox {
 	position: absolute;
 	right: 0;
@@ -829,7 +829,7 @@ html, body {
 	bottom: 0;
 	height: 125px;
 	border-top: 1px #186144 solid;
-	\*display: flex;*\
+	/*display: flex;*/
 	display: none;
 	justify-content: space-around;
 	background: #0F843F;
@@ -880,7 +880,7 @@ html, body {
 
 .upgrade.cantAfford {
 	background: #150C0C;
-	\*color: #080808;*\
+	/*color: #080808;*/
 }
 
 .upgrade {
@@ -1104,7 +1104,7 @@ html, body {
 	color: #A02020;
 	cursor: pointer;
 }
-\*
+/*
 .mainInfoLabelWarning:before {
 	top: 2px;
 	left: 30px;
@@ -1121,7 +1121,7 @@ html, body {
 	width: 200px;
 	z-index: 20;
 }
-*\
+*/
 .mainInfoLabel.wallet {
 	float: right;
 }
@@ -1234,7 +1234,7 @@ div.knife {
 	height: 49px;
 	width: 50px;
 	border-left: 1px #186144 solid;
-	background-image: url(https://i.imgur.com\Pw82Pa6.png);
+	background-image: url(https://i.imgur.com/Pw82Pa6.png);
 	background-repeat: no-repeat;
 	background-size: 70% 70%;
 	background-position: center;
@@ -1443,7 +1443,7 @@ div.knife {
    background-color: #25793B;
 }
 
-\*===============HELPERS===================*\
+/*===============HELPERS===================*/
 
 .noselect {
     -webkit-touch-callout: none;
@@ -1454,7 +1454,7 @@ div.knife {
     user-select: none;
 }
 
-\*===============MEDIA QUERIES=================*\
+/*===============MEDIA QUERIES=================*/
 @media only screen and (max-width: 1660px) {
 	.depositorSkinContainer {
 		left: 0;
@@ -1528,7 +1528,7 @@ div.knife {
 }
 
 
-\*===============KEYFRAMES=================*\
+/*===============KEYFRAMES=================*/
 
 @keyframes infRotate {
 	from {
