@@ -1,5 +1,5 @@
-@import url('https:\\fonts.googleapis.com\css?family=Roboto');
-@import url('https:\\fonts.googleapis.com\css?family=Finger+Paint');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Finger+Paint');
 body {
     background-image: url("sick.jpg");
     background-size: 1920px;
@@ -84,7 +84,7 @@ p {
 }
 
 
-\* Container needed to position the button. Adjust the width as needed *\
+/* Container needed to position the button. Adjust the width as needed */
 
 .container {
     position: relative;
@@ -92,7 +92,7 @@ p {
 }
 
 
-\* Make the image responsive *\
+/* Make the image responsive */
 
 .container img {
     width: 100px;
@@ -100,7 +100,7 @@ p {
 }
 
 
-\* Style the button and place it in the middle of the container\image *\
+/* Style the button and place it in the middle of the container/image */
 
 .container .btn {
     position: absolute;

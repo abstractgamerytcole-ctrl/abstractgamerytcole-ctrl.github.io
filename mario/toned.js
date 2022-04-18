@@ -121,7 +121,7 @@ function TonedJS(give_window) {
       
       // Removes leading and trailing whitespace (thanks, IE<=8)
       stringTrim: function(me) {
-        return me.replace(/^\s+|\s+$/g,''); 
+        return me.replace(/^/s+|/s+$/g,''); 
       },
       // Similar to arrayOf
       stringOf: function(me, n) {

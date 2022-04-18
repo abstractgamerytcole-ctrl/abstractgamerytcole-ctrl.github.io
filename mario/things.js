@@ -1126,7 +1126,7 @@ function Thing(type) {
       me.counter += .007;
       slideToXLoc(me, mario.left + mario.xvel + Math.sin(Math.PI * me.counter) * 117, mario.maxspeed * .7);
     }
-    // log("moveLakitu after: " + (me.right - me.left) + "\n");
+    // log("moveLakitu after: " + (me.right - me.left) + "/n");
   }
   function throwSpiny(me) {
     if(!characterIsAlive(me)) return false;

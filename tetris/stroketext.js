@@ -4,52 +4,52 @@
 
 
 
-\\ strokeText stroketext.js version 1.02, Wed Mar 18 12:00:00 CEST 2009 
+// strokeText stroketext.js version 1.02, Wed Mar 18 12:00:00 CEST 2009 
 
-\\ (c) 2008 by Christian Effenberger. All Rights reserved. 
-\\ Copyright (c) 2008 Christian Effenberger (http:\\text.netzgesta.de)
-\\
-\\ strokeText is freely distributable under the terms of an GPL-style license.
-\\ 
-\\ Permission is hereby granted, free of charge, to any person obtaining
-\\ a copy of this software and associated documentation files (the
-\\ "Software"), to deal in the Software without restriction, including
-\\ without limitation the rights to use, copy, modify, merge, publish,
-\\ distribute, sublicense, and\or sell copies of the Software, and to
-\\ permit persons to whom the Software is furnished to do so, subject to
-\\ the following conditions:
-\\ 
-\\ The above copyright notice and this permission notice shall be
-\\ included in all copies or substantial portions of the Software.
-\\
-\\ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-\\ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-\\ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-\\ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-\\ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-\\ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-\\ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-\\
-\\ For details, see the strokeText web site: http:\\text.netzgesta.de\
+// (c) 2008 by Christian Effenberger. All Rights reserved. 
+// Copyright (c) 2008 Christian Effenberger (http://text.netzgesta.de)
+//
+// strokeText is freely distributable under the terms of an GPL-style license.
+// 
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+// For details, see the strokeText web site: http://text.netzgesta.de/
 
 function check_strokeTextCapability() {
 	if(document.namespaces['v']==null) {
 		var e=["shape","shapetype","group","background","path","formulas","handles","fill","stroke","shadow","textbox","textpath","imagedata","line","polyline","curve","roundrect","oval","rect","arc","image"],s=document.createStyleSheet(); 
-		for(var i=0; i<e.length; i++) {s.addRule("v\\:"+e[i],"behavior: url(#default#VML);");} document.namespaces.add("v","urn:schemas-microsoft-com:vml");
+		for(var i=0; i<e.length; i++) {s.addRule("v//:"+e[i],"behavior: url(#default#VML);");} document.namespaces.add("v","urn:schemas-microsoft-com:vml");
 	} 
 	if(typeof get_strokeText == 'function' && document.namespaces['v'] != null) {return true;}else {return false;}
 }
 function get_boundingBox(x,y,baseline,lineheight,linewidth,weight,color,opacity,rotation) {
 	rotation=typeof(rotation)!='undefined'?rotation:0; color=typeof(color)!='undefined'?color:'#000000'; opacity=typeof(opacity)!='undefined'?opacity:1; id=typeof(id)!='undefined'?'id="'+id+'"':''; var w=parseInt(linewidth), b=parseInt(baseline), h=parseInt(lineheight);
-	return '<v:shape '+id+' filled="f" stroked="t" coordorigin="0,0" coordsize="'+w+','+h+'" path="m 0,'+b+' l 0,0,'+w+',0,'+w+','+b+',0,'+b+',0,'+h+','+w+','+h+','+w+','+b+' e" style="rotation:'+rotation+';position:absolute;margin:0px;top:'+Math.round(y)+'px;left:'+Math.round(x)+'px;width:'+w+'px;height:'+h+'px;"><v:stroke color="'+color+'" opacity="'+opacity+'" weight="'+weight+'" \></v:shape>';	
+	return '<v:shape '+id+' filled="f" stroked="t" coordorigin="0,0" coordsize="'+w+','+h+'" path="m 0,'+b+' l 0,0,'+w+',0,'+w+','+b+',0,'+b+',0,'+h+','+w+','+h+','+w+','+b+' e" style="rotation:'+rotation+';position:absolute;margin:0px;top:'+Math.round(y)+'px;left:'+Math.round(x)+'px;width:'+w+'px;height:'+h+'px;"><v:stroke color="'+color+'" opacity="'+opacity+'" weight="'+weight+'" /></v:shape>';	
 }
 function get_strokeText(string,x,y,size,weight,width,space,font,color,opacity,rotation,id) {
-	function qC(cX,cY,CPx,CPy,aX,aY) {var t = new Array(6); t[0]=cX+2.0\3.0*(CPx-cX); t[1]=cY+2.0\3.0*(CPy-cY); t[2]=t[0]+(aX-cX)\3.0; t[3]=t[1]+(aY-cY)\3.0; t[4]=aX; t[5]=aY; return t;}
+	function qC(cX,cY,CPx,CPy,aX,aY) {var t = new Array(6); t[0]=cX+2.0/3.0*(CPx-cX); t[1]=cY+2.0/3.0*(CPy-cY); t[2]=t[0]+(aX-cX)/3.0; t[3]=t[1]+(aY-cY)/3.0; t[4]=aX; t[5]=aY; return t;}
 	size=typeof(size)!='undefined'?size:12; weight=typeof(weight)!='undefined'?weight:100; width=typeof(width)!='undefined'?width:100; space=typeof(space)!='undefined'?space:100;
 	font=typeof(font)!='undefined'?font:"sans-serif"; string=typeof(string)!='undefined'?string:' '; var xx=typeof(x)!='undefined'?x:0; var yy=typeof(y)!='undefined'?y:0;
 	rotation=typeof(rotation)!='undefined'?rotation:0; color=typeof(color)!='undefined'?color:'#000000'; opacity=typeof(opacity)!='undefined'?opacity:1; id=typeof(id)!='undefined'?'id="'+id+'"':'';
-	var i=0,j=0,f=10,path="",a,b,z,k,c,p,o,len=string.length,mag=size\25.0,fac=Math.max(Math.min(weight,400),1)\40, faw=Math.max(Math.min(width,400),10)\100;
-	var spc=Math.max(Math.min(space,1000),10)\100,mx=((mag*16*faw)*spc)-(mag*16*faw),lw=(fac*mag);x=0;y=size;
+	var i=0,j=0,f=10,path="",a,b,z,k,c,p,o,len=string.length,mag=size/25.0,fac=Math.max(Math.min(weight,400),1)/40, faw=Math.max(Math.min(width,400),10)/100;
+	var spc=Math.max(Math.min(space,1000),10)/100,mx=((mag*16*faw)*spc)-(mag*16*faw),lw=(fac*mag);x=0;y=size;
 	var ww=Math.round(get_textWidth(string,size,width,space,font)), hh=Math.round(get_textHeight(size));
 	var out='<v:shape '+id+' filled="f" stroked="t" coordorigin="0,0" coordsize="'+parseInt(ww*f)+','+parseInt(hh*f)+'"';
 	for(i=0; i<len; i++) { c=strokeFont[font][string.charAt(i)]; if(!c) {continue;} o=0; 
@@ -60,27 +60,27 @@ function get_strokeText(string,x,y,size,weight,width,space,font,color,opacity,ro
 			if(p=="b") {o++; b=c.d[o]; o++; z=c.d[o]; path+=' c '+parseInt((x+a[0]*mag*faw)*f)+','+parseInt((y-a[1]*mag)*f)+','+parseInt((x+a[0]*mag*faw)*f)+','+parseInt((y-a[1]*mag)*f)+','+parseInt((x+z[0]*mag*faw)*f)+','+parseInt((y-z[1]*mag)*f); o++;}else
 			if(p=="l") {path+=' l '+parseInt((x+a[0]*mag*faw)*f)+','+parseInt((y-a[1]*mag)*f); o++; while(typeof(c.d[o])!="string" && o<c.d.length) {a=c.d[o]; path+=' l '+parseInt((x+a[0]*mag*faw)*f)+','+parseInt((y-a[1]*mag)*f); o++;}}
 		} x+=((c.w*faw)*mag)+mx;
-	} out+=' path="'+path+' e" style="rotation:'+rotation+';position:absolute;margin:0px;top:'+Math.round(yy)+'px;left:'+Math.round(xx)+'px;width:'+ww+'px;height:'+hh+'px;"><v:stroke color="'+color+'" opacity="'+opacity+'" weight="'+lw+'" miterlimit="0" endcap="round" joinstyle="round" \></v:shape>';	
+	} out+=' path="'+path+' e" style="rotation:'+rotation+';position:absolute;margin:0px;top:'+Math.round(yy)+'px;left:'+Math.round(xx)+'px;width:'+ww+'px;height:'+hh+'px;"><v:stroke color="'+color+'" opacity="'+opacity+'" weight="'+lw+'" miterlimit="0" endcap="round" joinstyle="round" /></v:shape>';	
 	return out;
 }
 function get_baseLine(size) {return size;} 
-function get_textHeight(size) {size=typeof(size)!='undefined'?size:12; return 32*(size\25);} 
+function get_textHeight(size) {size=typeof(size)!='undefined'?size:12; return 32*(size/25);} 
 function get_textWidth(string,size,width,space,font) {
 	size=typeof(size)!='undefined'?size:12; width=typeof(width)!='undefined'?width:100; space=typeof(space)!='undefined'?space:100; string=typeof(string)!='undefined'?string:' ';
-	font=typeof(font)!='undefined'?font:"sans-serif"; var total=0,len=string.length,mg=size\25.0,fw=Math.max(Math.min(width,400),10)\100,sp=Math.max(Math.min(space,1000),10)\100,m=((mg*16*fw)*sp)-(mg*16*fw); 	
+	font=typeof(font)!='undefined'?font:"sans-serif"; var total=0,len=string.length,mg=size/25.0,fw=Math.max(Math.min(width,400),10)/100,sp=Math.max(Math.min(space,1000),10)/100,m=((mg*16*fw)*sp)-(mg*16*fw); 	
 	for(var i=0; i<len; i++) {var c=strokeFont[font][string.charAt(i)]; if(c) total += ((c.w*fw)*mg)+m;}return total-(m);
 }
 function get_widthText(string,width,size,fontwidth,space,font) {
 	size=typeof(size)!='undefined'?size:12; fontwidth=typeof(fontwidth)!='undefined'?fontwidth:100; space=typeof(space)!='undefined'?space:100; string=typeof(string)!='undefined'?string:' '; width=typeof(width)!='undefined'?width:100;
-	font=typeof(font)!='undefined'?font:"sans-serif"; var cur=0,total=0,len=string.length,mg=size\25.0,fw=Math.max(Math.min(fontwidth,400),10)\100,sp=Math.max(Math.min(space,1000),10)\100,m=((mg*16*fw)*sp)-(mg*16*fw); 	
+	font=typeof(font)!='undefined'?font:"sans-serif"; var cur=0,total=0,len=string.length,mg=size/25.0,fw=Math.max(Math.min(fontwidth,400),10)/100,sp=Math.max(Math.min(space,1000),10)/100,m=((mg*16*fw)*sp)-(mg*16*fw); 	
 	for(var i=0; i<len; i++) {var c=strokeFont[font][string.charAt(i)]; if(c) {cur = ((c.w*fw)*mg)+m; if((total+cur-(m)) <= width) {total += cur;}else {break; }}else {break; }} return string.substring(0,i); 
 }
 function draw_boundingBox(ctx,x,y,baseline,lineheight,linewidth) {ctx.strokeRect(x,y+baseline,linewidth,lineheight-baseline); ctx.strokeRect(x,y,linewidth,baseline);}
 function do_drawText(string,x,y,size,weight,width,space,font) {
 	size=typeof(size)!='undefined'?size:12; weight=typeof(weight)!='undefined'?weight:100; width=typeof(width)!='undefined'?width:100; space=typeof(space)!='undefined'?space:100;
 	font=typeof(font)!='undefined'?font:"sans-serif"; x=typeof(x)!='undefined'?x:0; y=typeof(y)!='undefined'?y+size:0+size; string=typeof(string)!='undefined'?string:' ';
-	var i=0,j=0,a,b,z,c,p,o,len=string.length,mag=size\25.0,fac=Math.max(Math.min(weight,400),1)\40, faw=Math.max(Math.min(width,400),10)\100;
-	var spc=Math.max(Math.min(space,1000),10)\100,mx=((mag*16*faw)*spc)-(mag*16*faw),lw=this.lineWidth, ml=this.miterLimit, lj=this.lineJoin, lc=this.lineCap;
+	var i=0,j=0,a,b,z,c,p,o,len=string.length,mag=size/25.0,fac=Math.max(Math.min(weight,400),1)/40, faw=Math.max(Math.min(width,400),10)/100;
+	var spc=Math.max(Math.min(space,1000),10)/100,mx=((mag*16*faw)*spc)-(mag*16*faw),lw=this.lineWidth, ml=this.miterLimit, lj=this.lineJoin, lc=this.lineCap;
 	this.lineWidth=(fac*mag); this.miterLimit=0; this.lineJoin="round"; this.lineCap="round";
 	for(i=0; i<len; i++) { c=strokeFont[font][string.charAt(i)]; if(!c) {continue;} o=0; this.beginPath(); 
 		for(j=0; j<c.n; j++) {
@@ -104,7 +104,7 @@ strokeFont["sans-serif"] = {
 	'$': {w:20,n:12,d:['m',[16,18],'q',[15,21],[10,21],'q',[5,21],[4,17],'q',[3,12],[7,11],'l',[13,10],'q',[18,9],[17,4],'q',[16,0],[10,0],'q',[4,0],[3,4],'m',[8,25],'l',[6,-4],'m',[14,25],'l',[12,-4]]},
 	'%': {w:24,n:12,d:['m',[21,21],'l',[3,0],'m',[7,21],'q',[3,21],[3,17],'q',[3,13],[7,13],'q',[11,13],[11,17],'q',[11,21],[7,21],'m',[17,8],'q',[13,8],[13,4],'q',[13,0],[17,0],'q',[21,0],[21,4],'q',[21,8],[17,8]]},
 	'&': {w:26,n:14,d:['m',[23,12],'q',[23,14],[22,14],'q',[20,14],[19,11],'l',[17,6],'q',[15,0],[9,0],'q',[3,0],[3,5],'q',[3,8],[7,10],'l',[12,13],'q',[14,15],[14,17],'q',[14,21],[11,21],'q',[8,21],[8,17],'q',[8,14],[12,8],'q',[17,0],[21,0],'q',[23,0],[23,2]]},
-	'\'': {w:10,n:2,d:['m',[5,19],'l',[4,20],[5,21],[6,20],[6,18],[5,16],[4,15]]},
+	'/'': {w:10,n:2,d:['m',[5,19],'l',[4,20],[5,21],[6,20],[6,18],[5,16],[4,15]]},
 	'(': {w:14,n:3,d:['m',[11,25],'q',[4,19],[4,9],'q',[4,-1],[11,-7]]},
 	')': {w:14,n:3,d:['m',[3,25],'q',[10,19],[10,9],'q',[10,-1],[3,-7]]},
 	'*': {w:16,n:6,d:['m',[8,21],'l',[8,9],'m',[3,18],'l',[13,12],'m',[13,18],'l',[3,12]]},
@@ -112,7 +112,7 @@ strokeFont["sans-serif"] = {
 	',': {w:10,n:2,d:['m',[6,1],'l',[5,0],[4,1],[5,2],[6,1],[6,-1],[5,-3],[4,-4]]},
 	'-': {w:26,n:2,d:['m',[4,9],'l',[22,9]]},
 	'.': {w:10,n:2,d:['m',[5,2],'l',[4,1],[5,0],[6,1],[5,2]]},
-	'\': {w:22,n:2,d:['m',[20,25],'l',[2,-7]]},
+	'/': {w:22,n:2,d:['m',[20,25],'l',[2,-7]]},
 	'0': {w:20,n:7,d:['m',[10,21],'q',[3,21],[3,12],'l',[3,9],'q',[3,0],[10,0],'q',[17,0],[17,9],'l',[17,12],'q',[17,21],[10,21]]},
 	'1': {w:20,n:3,d:['m',[6,17],'q',[8,18],[11,21],'l',[11,0]]},
 	'2': {w:20,n:5,d:['m',[17,0],'l',[3,0],[13,10],'q',[16,13],[16,16],'q',[16,21],[10,21],'q',[4,21],[4,16]]},
@@ -157,7 +157,7 @@ strokeFont["sans-serif"] = {
 	'Y': {w:18,n:4,d:['m',[1,21],'l',[9,11],[17,21],'m',[9,11],'l',[9,0]]},
 	'Z': {w:20,n:2,d:['m',[3,21],'l',[17,21],[3,0],[17,0]]},
 	'[': {w:14,n:2,d:['m',[11,25],'l',[4,25],[4,-7],[11,-7]]},
-	'\\': {w:14,n:2,d:['m',[0,21],'l',[14,-3]]},
+	'//': {w:14,n:2,d:['m',[0,21],'l',[14,-3]]},
 	']': {w:14,n:2,d:['m',[3,25],'l',[10,25],[10,-7],[3,-7]]},
 	'^': {w:16,n:2,d:['m',[3,16],'l',[8,21],[13,16]]},
 	'_': {w:16,n:2,d:['m',[0,-2],'l',[16,-2]]},

@@ -130,7 +130,7 @@ function resetCanvas() {
         height = thing.spriteheight,
         title = thing.title,
         className = thing.className,
-        classes = className.split(/\s+/g).slice(1).sort(), // first one will be thing type (character, solid...)
+        classes = className.split(//s+/g).slice(1).sort(), // first one will be thing type (character, solid...)
         key = title + " " + classes, // ex: "Mario mario,running,small,two"
         cached = cache[key],
         sprite;
@@ -158,7 +158,7 @@ function resetCanvas() {
         title = thing.title,
         libtype = thing.libtype,
         className = thing.className,
-        classes = className.split(/\s+/g).slice(1).sort(),
+        classes = className.split(//s+/g).slice(1).sort(),
         setting = (map.area || window.defaultsetting).setting.split(" "),
         key, cached, sprite,
         i;
@@ -175,7 +175,7 @@ function resetCanvas() {
       sprite = library.sprites[libtype][title];
       if(!sprite || !sprite.constructor) {
         console.log("Error in checking for sprite of " + title + ".");
-        console.log("Title " + title, "\nLibtype " + libtype, "\n", thing, "\n");
+        console.log("Title " + title, "/nLibtype " + libtype, "/n", thing, "/n");
         return;
       }
       // If it's more complicated, search for it
@@ -318,7 +318,7 @@ function resetCanvas() {
             continue;
         }
       } else {
-        console.log("\nSprite not found! Title: " + thing.title);
+        console.log("/nSprite not found! Title: " + thing.title);
         console.log("Classname:", thing.className);
         console.log("Remaining", classes);
         console.log("Current", current);

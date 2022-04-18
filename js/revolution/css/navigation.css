@@ -29,10 +29,10 @@
     position:relative;
 }
 .ares.tparrows.tp-leftarrow:before {
-  content: "\e81f";
+  content: "/e81f";
 }
 .ares.tparrows.tp-rightarrow:before {
-  content: "\e81e";
+  content: "/e81e";
 }
 .ares.tparrows:hover:before {
  color:#000;
@@ -267,10 +267,10 @@ website:    http://www.themepunch.com
 	text-align: center;
 }
 .custom.tparrows.tp-leftarrow:before {
-	content: "\e824";
+	content: "/e824";
 }
 .custom.tparrows.tp-rightarrow:before {
-	content: "\e825";
+	content: "/e825";
 }
 
 
@@ -524,10 +524,10 @@ website:    http://www.themepunch.com
   position:relative;
 }
 .erinyen.tparrows.tp-leftarrow:before {
-  content: "\e824";
+  content: "/e824";
 }
 .erinyen.tparrows.tp-rightarrow:before {
-  content: "\e825";
+  content: "/e825";
 }
 
 .erinyen .tp-title-wrap { 
@@ -705,7 +705,7 @@ opacity:1
   z-index:2;
 }
 .erinyen .tp-thumb-more:before {
-  content: "\e825";
+  content: "/e825";
 }
 
 .erinyen .tp-thumb-title {
@@ -1007,10 +1007,10 @@ website:    http://www.themepunch.com
   transition: background 0.3s, color 0.3s;
 }
 .hades.tparrows.tp-leftarrow:before {
-	content: "\e824";
+	content: "/e824";
 }
 .hades.tparrows.tp-rightarrow:before {
-	content: "\e825";
+	content: "/e825";
 }
 
 .hades.tparrows:hover:before {
@@ -1270,10 +1270,10 @@ website:    http://www.themepunch.com
     min-height:70px;
 }
 .hebe.tparrows.tp-leftarrow:before {
-  content: "\e824";
+  content: "/e824";
 }
 .hebe.tparrows.tp-rightarrow:before {
-  content: "\e825";
+  content: "/e825";
 }
 .hebe.tparrows:hover:before {
  color:#000;
@@ -1461,12 +1461,12 @@ website:    http://www.themepunch.com
 	text-align: center;
 }
 .hephaistos.tparrows.tp-leftarrow:before {
-	content: "\e82c";
+	content: "/e82c";
   margin-left:-2px;
   
 }
 .hephaistos.tparrows.tp-rightarrow:before {
-	content: "\e82d";
+	content: "/e82d";
    margin-right:-2px;
 }
 
@@ -1543,10 +1543,10 @@ website:    http://www.themepunch.com
     -webkit-transition:all 0.3s;
 }
 .hermes.tparrows.tp-leftarrow:before {
-	content: "\e824";
+	content: "/e824";
 }
 .hermes.tparrows.tp-rightarrow:before {
-	content: "\e825";
+	content: "/e825";
 }
 .hermes.tparrows.tp-leftarrow:hover:before {
     transform:translateX(-20px);
@@ -1765,11 +1765,11 @@ website:    http://www.themepunch.com
 	text-align: center;
 }
 .hesperiden.tparrows.tp-leftarrow:before {
-	content: "\e82c";
+	content: "/e82c";
     margin-left:-3px;
 }
 .hesperiden.tparrows.tp-rightarrow:before {
-	content: "\e82d";
+	content: "/e82d";
     margin-right:-3px;
 }
 
@@ -2158,10 +2158,10 @@ website:    http://www.themepunch.com
 	text-align: center;
 }
 .persephone.tparrows.tp-leftarrow:before {
-	content: "\e824";
+	content: "/e824";
 }
 .persephone.tparrows.tp-rightarrow:before {
-	content: "\e825";
+	content: "/e825";
 }
 
 
@@ -2304,10 +2304,10 @@ website:    http://www.themepunch.com
   position:relative;
 }
 .zeus.tparrows.tp-leftarrow:before {
-  content: "\e824";
+  content: "/e824";
 }
 .zeus.tparrows.tp-rightarrow:before {
-  content: "\e825";
+  content: "/e825";
 }
 
 .zeus .tp-title-wrap {
@@ -2485,7 +2485,7 @@ opacity:1
   z-index:2;
 }
 .zeus .tp-thumb-more:before {
-  content: "\e825";
+  content: "/e825";
 }
 
 .zeus .tp-thumb-title {
@@ -2595,7 +2595,7 @@ opacity:1
   z-index:2;
 }
 .post-tabs .tp-thumb-more:before {
-  content: "\e825";
+  content: "/e825";
 }
 
 .post-tabs .tp-thumb-title {

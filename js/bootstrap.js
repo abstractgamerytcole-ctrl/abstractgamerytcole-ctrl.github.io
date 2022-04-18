@@ -86,7 +86,7 @@
     var MILLISECONDS_MULTIPLIER = 1000; // Shoutout AngusCroll (https://goo.gl/pxwQGp)
 
     function toType(obj) {
-      return {}.toString.call(obj).match(/\s([a-z]+)/i)[1].toLowerCase();
+      return {}.toString.call(obj).match(//s([a-z]+)/i)[1].toLowerCase();
     }
 
     function getSpecialTransitionEndEvent() {
@@ -191,7 +191,7 @@
             var valueType = value && Util.isElement(value) ? 'element' : toType(value);
 
             if (!new RegExp(expectedTypes).test(valueType)) {
-              throw new Error(componentName.toUpperCase() + ": " + ("Option \"" + property + "\" provided type \"" + valueType + "\" ") + ("but expected type \"" + expectedTypes + "\"."));
+              throw new Error(componentName.toUpperCase() + ": " + ("Option /"" + property + "/" provided type /"" + valueType + "/" ") + ("but expected type /"" + expectedTypes + "/"."));
             }
           }
         }
@@ -952,7 +952,7 @@
             data.to(config);
           } else if (typeof action === 'string') {
             if (typeof data[action] === 'undefined') {
-              throw new TypeError("No method named \"" + action + "\"");
+              throw new TypeError("No method named /"" + action + "/"");
             }
 
             data[action]();
@@ -1101,7 +1101,7 @@
         this._isTransitioning = false;
         this._element = element;
         this._config = this._getConfig(config);
-        this._triggerArray = $$$1.makeArray($$$1("[data-toggle=\"collapse\"][href=\"#" + element.id + "\"]," + ("[data-toggle=\"collapse\"][data-target=\"#" + element.id + "\"]")));
+        this._triggerArray = $$$1.makeArray($$$1("[data-toggle=/"collapse/"][href=/"#" + element.id + "/"]," + ("[data-toggle=/"collapse/"][data-target=/"#" + element.id + "/"]")));
         var tabToggles = $$$1(Selector.DATA_TOGGLE);
 
         for (var i = 0; i < tabToggles.length; i++) {
@@ -1149,7 +1149,7 @@
         var activesData;
 
         if (this._parent) {
-          actives = $$$1.makeArray($$$1(this._parent).find(Selector.ACTIVES).filter("[data-parent=\"" + this._config.parent + "\"]"));
+          actives = $$$1.makeArray($$$1(this._parent).find(Selector.ACTIVES).filter("[data-parent=/"" + this._config.parent + "/"]"));
 
           if (actives.length === 0) {
             actives = null;
@@ -1296,7 +1296,7 @@
           parent = $$$1(this._config.parent)[0];
         }
 
-        var selector = "[data-toggle=\"collapse\"][data-parent=\"" + this._config.parent + "\"]";
+        var selector = "[data-toggle=/"collapse/"][data-parent=/"" + this._config.parent + "/"]";
         $$$1(parent).find(selector).each(function (i, element) {
           _this3._addAriaAndCollapsedClass(Collapse._getTargetFromElement(element), [element]);
         });
@@ -1337,7 +1337,7 @@
 
           if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
-              throw new TypeError("No method named \"" + config + "\"");
+              throw new TypeError("No method named /"" + config + "/"");
             }
 
             data[config]();
@@ -1704,7 +1704,7 @@
 
           if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
-              throw new TypeError("No method named \"" + config + "\"");
+              throw new TypeError("No method named /"" + config + "/"");
             }
 
             data[config]();
@@ -2380,7 +2380,7 @@
 
           if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
-              throw new TypeError("No method named \"" + config + "\"");
+              throw new TypeError("No method named /"" + config + "/"");
             }
 
             data[config](relatedTarget);
@@ -2478,7 +2478,7 @@
     var EVENT_KEY = "." + DATA_KEY;
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
     var CLASS_PREFIX = 'bs-tooltip';
-    var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", 'g');
+    var BSCLS_PREFIX_REGEX = new RegExp("(^|//s)" + CLASS_PREFIX + "//S+", 'g');
     var DefaultType = {
       animation: 'boolean',
       template: 'string',
@@ -3061,7 +3061,7 @@
 
           if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
-              throw new TypeError("No method named \"" + config + "\"");
+              throw new TypeError("No method named /"" + config + "/"");
             }
 
             data[config]();
@@ -3145,7 +3145,7 @@
     var EVENT_KEY = "." + DATA_KEY;
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
     var CLASS_PREFIX = 'bs-popover';
-    var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", 'g');
+    var BSCLS_PREFIX_REGEX = new RegExp("(^|//s)" + CLASS_PREFIX + "//S+", 'g');
 
     var Default = _objectSpread({}, Tooltip.Default, {
       placement: 'right',
@@ -3257,7 +3257,7 @@
 
           if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
-              throw new TypeError("No method named \"" + config + "\"");
+              throw new TypeError("No method named /"" + config + "/"");
             }
 
             data[config]();
@@ -3540,7 +3540,7 @@
 
 
         queries = queries.map(function (selector) {
-          return selector + "[data-target=\"" + target + "\"]," + (selector + "[href=\"" + target + "\"]");
+          return selector + "[data-target=/"" + target + "/"]," + (selector + "[href=/"" + target + "/"]");
         });
         var $link = $$$1(queries.join(','));
 
@@ -3580,7 +3580,7 @@
 
           if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
-              throw new TypeError("No method named \"" + config + "\"");
+              throw new TypeError("No method named /"" + config + "/"");
             }
 
             data[config]();
@@ -3837,7 +3837,7 @@
 
           if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
-              throw new TypeError("No method named \"" + config + "\"");
+              throw new TypeError("No method named /"" + config + "/"");
             }
 
             data[config]();
@@ -3892,7 +3892,7 @@
 
   (function ($$$1) {
     if (typeof $$$1 === 'undefined') {
-      throw new TypeError('Bootstrap\'s JavaScript requires jQuery. jQuery must be included before Bootstrap\'s JavaScript.');
+      throw new TypeError('Bootstrap/'s JavaScript requires jQuery. jQuery must be included before Bootstrap/'s JavaScript.');
     }
 
     var version = $$$1.fn.jquery.split(' ')[0].split('.');
@@ -3903,7 +3903,7 @@
     var maxMajor = 4;
 
     if (version[0] < ltMajor && version[1] < minMinor || version[0] === minMajor && version[1] === minMinor && version[2] < minPatch || version[0] >= maxMajor) {
-      throw new Error('Bootstrap\'s JavaScript requires at least jQuery v1.9.1 but less than v4.0.0');
+      throw new Error('Bootstrap/'s JavaScript requires at least jQuery v1.9.1 but less than v4.0.0');
     }
   })($);
 

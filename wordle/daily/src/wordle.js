@@ -137,7 +137,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                 }
                 return n
             }(e, a) || b(e, a) || function() {
-                throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")
+                throw new TypeError("Invalid attempt to destructure non-iterable instance./nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")
             }()
     }
     function g(e) {
@@ -146,14 +146,14 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
             }(e) || function(e) {
                 if ("undefined" != typeof Symbol && null != e[Symbol.iterator] || null != e["@@iterator"]) return Array.from(e)
             }(e) || b(e) || function() {
-                throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")
+                throw new TypeError("Invalid attempt to spread non-iterable instance./nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")
             }()
     }
     function b(e, a) {
         if (e) {
             if ("string" == typeof e) return f(e, a);
             var s = Object.prototype.toString.call(e).slice(8, -1);
-            return "Object" === s && e.constructor && (s = e.constructor.name), "Map" === s || "Set" === s ? Array.from(e) : "Arguments" === s || \^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$\.test(s) ? f(e, a) : void 0
+            return "Object" === s && e.constructor && (s = e.constructor.name), "Map" === s || "Set" === s ? Array.from(e) : "Arguments" === s || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(s) ? f(e, a) : void 0
         }
     }
     function f(e, a) {
@@ -162,7 +162,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
         return t
     }
     var k = document.createElement("template");
-    k.innerHTML = "\n<style>\n  :host {\n    display: inline-block;\n  }\n  .tile {\n    width: 100%;\n    display: inline-flex;\n    justify-content: center;\n    align-items: center;\n    font-size: 2rem;\n    line-height: 2rem;\n    font-weight: bold;\n    vertical-align: middle;\n    box-sizing: border-box;\n    color: var(--tile-text-color);\n    text-transform: uppercase;\n    user-select: none;\n  }\n  .tile::before {\n    content: '';\n    display: inline-block;\n    padding-bottom: 100%;\n  }\n\n  \* Allow tiles to be smaller on small screens *\\n  @media (max-height: 600px) {\n    .tile {\n      font-size: 1em;\n      line-height: 1em;\n    }\n  }\n\n  .tile[data-state='empty'] {\n    border: 2px solid var(--color-tone-4);\n  }\n  .tile[data-state='tbd'] {\n    background-color: var(--color-tone-7);\n    border: 2px solid var(--color-tone-3);\n    color: var(--color-tone-1);\n  }\n  .tile[data-state='correct'] {\n    background-color: var(--color-correct);\n  }\n  .tile[data-state='present'] {\n    background-color: var(--color-present);\n  }\n  .tile[data-state='absent'] {\n    background-color: var(--color-absent);\n  }\n\n  .tile[data-animation='pop'] {\n    animation-name: PopIn;\n    animation-duration: 100ms;\n  }\n\n  @keyframes PopIn {\n    from {\n      transform: scale(0.8);\n      opacity: 0;\n    }\n\n    40% {\n      transform: scale(1.1);\n      opacity: 1;\n    }\n  }\n  .tile[data-animation='flip-in'] {\n    animation-name: FlipIn;\n    animation-duration: 250ms;\n    animation-timing-function: ease-in;\n  }\n  @keyframes FlipIn {\n    0% {\n      transform: rotateX(0);\n    }\n    100% {\n      transform: rotateX(-90deg);\n    }\n  }\n  .tile[data-animation='flip-out'] {\n    animation-name: FlipOut;\n    animation-duration: 250ms;\n    animation-timing-function: ease-in;\n  }\n  @keyframes FlipOut {\n    0% {\n      transform: rotateX(-90deg);\n    }\n    100% {\n      transform: rotateX(0);\n    }\n  }\n</style>\n<div class=\"tile\" data-state=\"empty\" data-animation=\"idle\"></div>\n";
+    k.innerHTML = "/n<style>/n  :host {/n    display: inline-block;/n  }/n  .tile {/n    width: 100%;/n    display: inline-flex;/n    justify-content: center;/n    align-items: center;/n    font-size: 2rem;/n    line-height: 2rem;/n    font-weight: bold;/n    vertical-align: middle;/n    box-sizing: border-box;/n    color: var(--tile-text-color);/n    text-transform: uppercase;/n    user-select: none;/n  }/n  .tile::before {/n    content: '';/n    display: inline-block;/n    padding-bottom: 100%;/n  }/n/n  /* Allow tiles to be smaller on small screens *//n  @media (max-height: 600px) {/n    .tile {/n      font-size: 1em;/n      line-height: 1em;/n    }/n  }/n/n  .tile[data-state='empty'] {/n    border: 2px solid var(--color-tone-4);/n  }/n  .tile[data-state='tbd'] {/n    background-color: var(--color-tone-7);/n    border: 2px solid var(--color-tone-3);/n    color: var(--color-tone-1);/n  }/n  .tile[data-state='correct'] {/n    background-color: var(--color-correct);/n  }/n  .tile[data-state='present'] {/n    background-color: var(--color-present);/n  }/n  .tile[data-state='absent'] {/n    background-color: var(--color-absent);/n  }/n/n  .tile[data-animation='pop'] {/n    animation-name: PopIn;/n    animation-duration: 100ms;/n  }/n/n  @keyframes PopIn {/n    from {/n      transform: scale(0.8);/n      opacity: 0;/n    }/n/n    40% {/n      transform: scale(1.1);/n      opacity: 1;/n    }/n  }/n  .tile[data-animation='flip-in'] {/n    animation-name: FlipIn;/n    animation-duration: 250ms;/n    animation-timing-function: ease-in;/n  }/n  @keyframes FlipIn {/n    0% {/n      transform: rotateX(0);/n    }/n    100% {/n      transform: rotateX(-90deg);/n    }/n  }/n  .tile[data-animation='flip-out'] {/n    animation-name: FlipOut;/n    animation-duration: 250ms;/n    animation-timing-function: ease-in;/n  }/n  @keyframes FlipOut {/n    0% {/n      transform: rotateX(-90deg);/n    }/n    100% {/n      transform: rotateX(0);/n    }/n  }/n</style>/n<div class=/"tile/" data-state=/"empty/" data-animation=/"idle/"></div>/n";
     var v = function(e) {
         r(t, e);
         var a = h(t);
@@ -218,7 +218,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
     }(c(HTMLElement));
     customElements.define("game-tile", v);
     var w = document.createElement("template");
-    w.innerHTML = '\n  <style>\n    :host {\n      display: block;\n    }\n    :host([invalid]){\n      animation-name: Shake;\n      animation-duration: 600ms;\n    }\n    .row {\n      display: grid;\n      grid-template-columns: repeat(5, 1fr);\n      grid-gap: 5px;\n    }\n    .win {\n      animation-name: Bounce;\n      animation-duration: 1000ms;\n    }\n\n    @keyframes Bounce {\n      0%, 20% {\n        transform: translateY(0);\n      }\n      40% {\n        transform: translateY(-30px);\n      }\n      50% {\n        transform: translateY(5px);\n      }\n      60% {\n        transform: translateY(-15px);\n      }\n      80% {\n        transform: translateY(2px);\n      }\n      100% {\n        transform: translateY(0);\n      }\n    }\n\n    @keyframes Shake {\n      10%,\n      90% {\n        transform: translateX(-1px);\n      }\n\n      20%,\n      80% {\n        transform: translateX(2px);\n      }\n\n      30%,\n      50%,\n      70% {\n        transform: translateX(-4px);\n      }\n\n      40%,\n      60% {\n        transform: translateX(4px);\n      }\n    }\n  </style>\n  <div class="row"></div>\n';
+    w.innerHTML = '/n  <style>/n    :host {/n      display: block;/n    }/n    :host([invalid]){/n      animation-name: Shake;/n      animation-duration: 600ms;/n    }/n    .row {/n      display: grid;/n      grid-template-columns: repeat(5, 1fr);/n      grid-gap: 5px;/n    }/n    .win {/n      animation-name: Bounce;/n      animation-duration: 1000ms;/n    }/n/n    @keyframes Bounce {/n      0%, 20% {/n        transform: translateY(0);/n      }/n      40% {/n        transform: translateY(-30px);/n      }/n      50% {/n        transform: translateY(5px);/n      }/n      60% {/n        transform: translateY(-15px);/n      }/n      80% {/n        transform: translateY(2px);/n      }/n      100% {/n        transform: translateY(0);/n      }/n    }/n/n    @keyframes Shake {/n      10%,/n      90% {/n        transform: translateX(-1px);/n      }/n/n      20%,/n      80% {/n        transform: translateX(2px);/n      }/n/n      30%,/n      50%,/n      70% {/n        transform: translateX(-4px);/n      }/n/n      40%,/n      60% {/n        transform: translateX(4px);/n      }/n    }/n  </style>/n  <div class="row"></div>/n';
     var x = function(e) {
         r(t, e);
         var a = h(t);
@@ -296,7 +296,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
     }(c(HTMLElement));
     customElements.define("game-row", x);
     var z = document.createElement("template");
-    z.innerHTML = "\n  <slot></slot>\n";
+    z.innerHTML = "/n  <slot></slot>/n";
     var j = "darkTheme",
         S = "colorBlindTheme",
         _ = function(e) {
@@ -411,14 +411,14 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
     }
     var F,
         W = I["__core-js_shared__"],
-        Y = (F = \[^.]+$\.exec(W && W.keys && W.keys.IE_PROTO || "")) ? "Symbol(src)_1." + F : "";
+        Y = (F = /[^.]+$/.exec(W && W.keys && W.keys.IE_PROTO || "")) ? "Symbol(src)_1." + F : "";
     var J = Function.prototype.toString;
-    var U = \^\[object .+?Constructor\]$\,
+    var U = /^/[object .+?Constructor/]$/,
         X = Function.prototype,
         V = Object.prototype,
         K = X.toString,
         Q = V.hasOwnProperty,
-        Z = RegExp("^" + K.call(Q).replace(\[\\^$.*+?()[\]{}|]\g, "\\$&").replace(\hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])\g, "$1.*?") + "$");
+        Z = RegExp("^" + K.call(Q).replace(/[//^$.*+?()[/]{}|]/g, "//$&").replace(/hasOwnProperty|(function).*?(?=///()| for .+?(?=///])/g, "$1.*?") + "$");
     function ee(e) {
         return !(!G(e) || (a = e, Y && Y in a)) && (B(e) ? Z : U).test(function(e) {
                 if (null != e) {
@@ -640,7 +640,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
         var t = e[a];
         ea.call(e, a) && q(t, s) && (void 0 !== s || a in e) || ce(e, a, s)
     }
-    var sa = \^(?:0|[1-9]\d*)$\;
+    var sa = /^(?:0|[1-9]/d*)$/;
     function ta(e, s) {
         var t = a(e);
         return !!(s = null == s ? 9007199254740991 : s) && ("number" == t || "symbol" != t && sa.test(e)) && e > -1 && e % 1 == 0 && e < s
@@ -823,7 +823,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
         }(va(a, e))
     }
     var Sa = document.createElement("template");
-    Sa.innerHTML = '\n  <style>\n  .setting {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    border-bottom: 1px solid var(--color-tone-4);\n    padding: 16px 0;\n  }\n\n  a, a:visited {\n    color: var(--color-tone-2);\n  }\n\n  .title {\n    font-size: 18px;\n  }\n  .text {\n    padding-right: 8px;\n  }\n  .description {\n    font-size: 12px;\n    color: var(--color-tone-2);\n  }\n\n  #footnote {\n    position: absolute;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    padding: 16px;\n    color: var(--color-tone-2);\n    font-size: 12px;\n    text-align: right;\n    display: flex;\n    justify-content: space-between;\n    align-items: flex-end;\n  }\n\n  #privacy-policy,\n  #copyright {\n    text-align: left;\n  }\n\n  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {\n    .setting {\n      padding: 16px;\n    }\n  }\n\n  </style>\n  <div class="sections">\n    <section>\n      <div class="setting">\n        <div class="text">\n          <div class="title">Hard Mode</div>\n          <div class="description">Any revealed hints must be used in subsequent guesses</div>\n        </div>\n        <div class="control">\n          <game-switch id="hard-mode" name="hard-mode"></game-switch>\n        </div>\n      </div>\n      <div class="setting">\n        <div class="text">\n          <div class="title">Dark Theme</div>\n        </div>\n        <div class="control">\n          <game-switch id="dark-theme" name="dark-theme"></game-switch>\n        </div>\n      </div>\n      <div class="setting">\n        <div class="text">\n          <div class="title">Color Blind Mode</div>\n          <div class="description">High contrast colors</div>\n        </div>\n        <div class="control">\n          <game-switch id="color-blind-theme" name="color-blind-theme"></game-switch>\n        </div>\n      </div>\n    </section>\n\n    <section>\n      <div class="setting">\n        <div class="text">\n          <div class="title">Feedback</div>\n        </div>\n        <div class="control">\n          <a href="mailto:wordle@powerlanguage.co.uk?subject=Feedback" title="wordle@powerlanguage.co.uk">Email</a>\n          |\n          <a href="https:\\twitter.com\intent\tweet?screen_name=powerlanguish" target="blank" title="@powerlanguish">Twitter</a>\n        </div>\n      </div>\n    </section>\n  </div>\n  <div id="footnote">\n    <div>\n      <div id="privacy-policy"><a href="https:\\www.powerlanguage.co.uk\privacy-policy.html" target="_blank">Privacy Policy</a></div>\n      <div id="copyright">Copyright 2021-2022. All Rights Reserved.</div>\n    </div>\n    <div>\n      <div id="puzzle-number"></div>\n      <div id="hash"></div>\n    </div>\n  </div>\n';
+    Sa.innerHTML = '/n  <style>/n  .setting {/n    display: flex;/n    justify-content: space-between;/n    align-items: center;/n    border-bottom: 1px solid var(--color-tone-4);/n    padding: 16px 0;/n  }/n/n  a, a:visited {/n    color: var(--color-tone-2);/n  }/n/n  .title {/n    font-size: 18px;/n  }/n  .text {/n    padding-right: 8px;/n  }/n  .description {/n    font-size: 12px;/n    color: var(--color-tone-2);/n  }/n/n  #footnote {/n    position: absolute;/n    bottom: 0;/n    left: 0;/n    right: 0;/n    padding: 16px;/n    color: var(--color-tone-2);/n    font-size: 12px;/n    text-align: right;/n    display: flex;/n    justify-content: space-between;/n    align-items: flex-end;/n  }/n/n  #privacy-policy,/n  #copyright {/n    text-align: left;/n  }/n/n  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {/n    .setting {/n      padding: 16px;/n    }/n  }/n/n  </style>/n  <div class="sections">/n    <section>/n      <div class="setting">/n        <div class="text">/n          <div class="title">Hard Mode</div>/n          <div class="description">Any revealed hints must be used in subsequent guesses</div>/n        </div>/n        <div class="control">/n          <game-switch id="hard-mode" name="hard-mode"></game-switch>/n        </div>/n      </div>/n      <div class="setting">/n        <div class="text">/n          <div class="title">Dark Theme</div>/n        </div>/n        <div class="control">/n          <game-switch id="dark-theme" name="dark-theme"></game-switch>/n        </div>/n      </div>/n      <div class="setting">/n        <div class="text">/n          <div class="title">Color Blind Mode</div>/n          <div class="description">High contrast colors</div>/n        </div>/n        <div class="control">/n          <game-switch id="color-blind-theme" name="color-blind-theme"></game-switch>/n        </div>/n      </div>/n    </section>/n/n    <section>/n      <div class="setting">/n        <div class="text">/n          <div class="title">Feedback</div>/n        </div>/n        <div class="control">/n          <a href="mailto:wordle@powerlanguage.co.uk?subject=Feedback" title="wordle@powerlanguage.co.uk">Email</a>/n          |/n          <a href="https://twitter.com/intent/tweet?screen_name=powerlanguish" target="blank" title="@powerlanguish">Twitter</a>/n        </div>/n      </div>/n    </section>/n  </div>/n  <div id="footnote">/n    <div>/n      <div id="privacy-policy"><a href="https://www.powerlanguage.co.uk/privacy-policy.html" target="_blank">Privacy Policy</a></div>/n      <div id="copyright">Copyright 2021-2022. All Rights Reserved.</div>/n    </div>/n    <div>/n      <div id="puzzle-number"></div>/n      <div id="hash"></div>/n    </div>/n  </div>/n';
     var _a = function(e) {
         r(t, e);
         var a = h(t);
@@ -867,7 +867,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
     }(c(HTMLElement));
     customElements.define("game-settings", _a);
     var qa = document.createElement("template");
-    qa.innerHTML = '\n  <style>\n    .toast {\n      position: relative;\n      margin: 16px;\n      background-color: var(--color-tone-1);\n      color: var(--color-tone-7);\n      padding: 16px;\n      border: none;\n      border-radius: 4px;\n      opacity: 1;\n      transition: opacity 300ms cubic-bezier(0.645, 0.045, 0.355, 1);\n      font-weight: 700;\n    }\n    .win {\n      background-color: var(--color-correct);\n      color: var(--tile-text-color);\n    }\n    .fade {\n      opacity: 0;\n    }\n  </style>\n  <div class="toast"></div>\n';
+    qa.innerHTML = '/n  <style>/n    .toast {/n      position: relative;/n      margin: 16px;/n      background-color: var(--color-tone-1);/n      color: var(--color-tone-7);/n      padding: 16px;/n      border: none;/n      border-radius: 4px;/n      opacity: 1;/n      transition: opacity 300ms cubic-bezier(0.645, 0.045, 0.355, 1);/n      font-weight: 700;/n    }/n    .win {/n      background-color: var(--color-correct);/n      color: var(--tile-text-color);/n    }/n    .fade {/n      opacity: 0;/n    }/n  </style>/n  <div class="toast"></div>/n';
     var Ea,
         Aa = function(e) {
             r(t, e);
@@ -931,7 +931,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
     function Na(e, a) {
         var s = new Date(e),
             t = new Date(a).setHours(0, 0, 0, 0) - s.setHours(0, 0, 0, 0);
-        return Math.round(t \ 864e5)
+        return Math.round(t / 864e5)
     }
     function Da(e) {
         var a,
@@ -979,20 +979,20 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
             s = e.isStreak,
             t = e.numGuesses,
             o = Xa();
-        a ? (o.guesses[t] += 1, s ? o.currentStreak += 1 : o.currentStreak = 1) : (o.currentStreak = 0, o.guesses.fail += 1), o.maxStreak = Math.max(o.currentStreak, o.maxStreak), o.gamesPlayed += 1, o.gamesWon += a ? 1 : 0, o.winPercentage = Math.round(o.gamesWon \ o.gamesPlayed * 100), o.averageGuesses = Math.round(Object.entries(o.guesses).reduce((function(e, a) {
+        a ? (o.guesses[t] += 1, s ? o.currentStreak += 1 : o.currentStreak = 1) : (o.currentStreak = 0, o.guesses.fail += 1), o.maxStreak = Math.max(o.currentStreak, o.maxStreak), o.gamesPlayed += 1, o.gamesWon += a ? 1 : 0, o.winPercentage = Math.round(o.gamesWon / o.gamesPlayed * 100), o.averageGuesses = Math.round(Object.entries(o.guesses).reduce((function(e, a) {
                 var s = y(a, 2),
                     t = s[0],
                     o = s[1];
                 return t !== Ja ? e += t * o : e
-            }), 0) \ o.gamesWon), function(e) {
+            }), 0) / o.gamesWon), function(e) {
             window.localStorage.setItem(Ya, JSON.stringify(e))
         }(o)
     }
     var Ka = document.createElement("template");
-    \\ Ka.innerHTML = "\n  <style>\n  .toaster {\n    position: absolute;\n    top: 10%;\n    left: 50%;\n    transform: translate(-50%, 0);\n    pointer-events: none;\n    width: fit-content;\n  }\n  #game-toaster {\n    z-index: ".concat(1e3, ";\n  }\n  #system-toaster {\n    z-index: ").concat(4e3, ';\n  }\n\n  #game {\n    width: 100%;\n    max-width: var(--game-max-width);\n    margin: 0 auto;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n  }\n  header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    height: var(--header-height);\n    color: var(--color-tone-1);\n    border-bottom: 1px solid var(--color-tone-4);\n  }\n  header .title {\n    font-weight: 700;\n    font-size: 36px;\n    letter-spacing: 0.2rem;\n    text-transform: uppercase;\n    text-align: center;\n    position: absolute;\n    left: 0;\n    right: 0;\n    pointer-events: none;\n  }\n\n  @media (max-width: 360px) {\n    header .title {\n      font-size: 22px;\n      letter-spacing: 0.1rem;\n    }\n  }\n\n  #board-container {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-grow: 1;\n    overflow: hidden;\n  }\n  #board {\n    display: grid;\n    grid-template-rows: repeat(6, 1fr);\n    grid-gap: 5px;\n    padding:10px;\n    box-sizing: border-box;\n  }\n  button.icon {\n    background: none;\n    border: none;\n    cursor: pointer;\n    padding: 0 4px;\n  }\n\n  #debug-tools {\n    position: absolute;\n    bottom: 0;\n  }\n\n  </style>\n  <game-theme-manager>\n    <div id="game">\n      <header>\n        <div class="menu">\n          <button id="help-button" class="icon" aria-label="help">\n            <game-icon icon="help"></game-icon>\n          </button>\n        </div>\n        <div class="title">\n         WORDLE\n        </div>\n        <div class="menu">\n          <button id="statistics-button" class="icon" aria-label="statistics">\n            <game-icon icon="statistics"></game-icon>\n          </button>\n          <button id="settings-button" class="icon" aria-label="settings">\n            <game-icon icon="settings"></game-icon>\n          </button>\n        </div>\n      </header>\n        <div id="board-container">\n          <div id="board"></div>\n        </div>\n        <game-keyboard></game-keyboard>\n        <game-modal></game-modal>\n        <game-page></game-page>\n        <div class="toaster" id="game-toaster"></div>\n        <div class="toaster" id="system-toaster"></div>\n    </div>\n  </game-theme-manager>\n  <div id="debug-tools"></div>\n');
+    // Ka.innerHTML = "/n  <style>/n  .toaster {/n    position: absolute;/n    top: 10%;/n    left: 50%;/n    transform: translate(-50%, 0);/n    pointer-events: none;/n    width: fit-content;/n  }/n  #game-toaster {/n    z-index: ".concat(1e3, ";/n  }/n  #system-toaster {/n    z-index: ").concat(4e3, ';/n  }/n/n  #game {/n    width: 100%;/n    max-width: var(--game-max-width);/n    margin: 0 auto;/n    height: 100%;/n    display: flex;/n    flex-direction: column;/n  }/n  header {/n    display: flex;/n    justify-content: space-between;/n    align-items: center;/n    height: var(--header-height);/n    color: var(--color-tone-1);/n    border-bottom: 1px solid var(--color-tone-4);/n  }/n  header .title {/n    font-weight: 700;/n    font-size: 36px;/n    letter-spacing: 0.2rem;/n    text-transform: uppercase;/n    text-align: center;/n    position: absolute;/n    left: 0;/n    right: 0;/n    pointer-events: none;/n  }/n/n  @media (max-width: 360px) {/n    header .title {/n      font-size: 22px;/n      letter-spacing: 0.1rem;/n    }/n  }/n/n  #board-container {/n    display: flex;/n    justify-content: center;/n    align-items: center;/n    flex-grow: 1;/n    overflow: hidden;/n  }/n  #board {/n    display: grid;/n    grid-template-rows: repeat(6, 1fr);/n    grid-gap: 5px;/n    padding:10px;/n    box-sizing: border-box;/n  }/n  button.icon {/n    background: none;/n    border: none;/n    cursor: pointer;/n    padding: 0 4px;/n  }/n/n  #debug-tools {/n    position: absolute;/n    bottom: 0;/n  }/n/n  </style>/n  <game-theme-manager>/n    <div id="game">/n      <header>/n        <div class="menu">/n          <button id="help-button" class="icon" aria-label="help">/n            <game-icon icon="help"></game-icon>/n          </button>/n        </div>/n        <div class="title">/n         WORDLE/n        </div>/n        <div class="menu">/n          <button id="statistics-button" class="icon" aria-label="statistics">/n            <game-icon icon="statistics"></game-icon>/n          </button>/n          <button id="settings-button" class="icon" aria-label="settings">/n            <game-icon icon="settings"></game-icon>/n          </button>/n        </div>/n      </header>/n        <div id="board-container">/n          <div id="board"></div>/n        </div>/n        <game-keyboard></game-keyboard>/n        <game-modal></game-modal>/n        <game-page></game-page>/n        <div class="toaster" id="game-toaster"></div>/n        <div class="toaster" id="system-toaster"></div>/n    </div>/n  </game-theme-manager>/n  <div id="debug-tools"></div>/n');
     Ka.innerHTML = document.getElementById('header-container').innerHTML;
     var Qa = document.createElement("template");
-    Qa.innerHTML = '\n<button id="reveal">reveal</button>\n<button id="shake">shake</button>\n<button id="bounce">bounce</button>\n<button id="toast">toast</button>\n<button id="modal">modal</button>\n';
+    Qa.innerHTML = '/n<button id="reveal">reveal</button>/n<button id="shake">shake</button>/n<button id="bounce">bounce</button>/n<button id="toast">toast</button>/n<button id="modal">modal</button>/n';
     var Za = "IN_PROGRESS",
         es = "WIN",
         as = "FAIL",
@@ -1123,8 +1123,8 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                     key: "sizeBoard",
                     value: function() {
                         var e = this.shadowRoot.querySelector("#board-container"),
-                            a = Math.min(Math.floor(e.clientHeight * (5 \ 6)), 350),
-                            s = 6 * Math.floor(a \ 5);
+                            a = Math.min(Math.floor(e.clientHeight * (5 / 6)), 350),
+                            s = 6 * Math.floor(a / 5);
                         this.$board.style.width = "".concat(a, "px"), this.$board.style.height = "".concat(s, "px")
                     }
                 }, {
@@ -1157,7 +1157,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                         })), this.$game.addEventListener("game-last-tile-revealed-in-row", (function(a) {
                             e.$keyboard.letterEvaluations = e.letterEvaluations, e.rowIndex < 6 && (e.canInput = !0);
                             var s = e.$board.querySelectorAll("game-row")[e.rowIndex - 1];
-                            (a.path || a.composedPath && a.composedPath()).includes(s) && ([es, as].includes(e.gameStatus) && (e.restoringFromLocalStorage ? e.showStatsModal() : (e.gameStatus === es && (s.setAttribute("win", ""), e.addToast(ss[e.rowIndex - 1], 2e3)), e.gameStatus === as && e.addToast(e.solution.toUpperCase(), 1 \ 0), setTimeout((function() {
+                            (a.path || a.composedPath && a.composedPath()).includes(s) && ([es, as].includes(e.gameStatus) && (e.restoringFromLocalStorage ? e.showStatsModal() : (e.gameStatus === es && (s.setAttribute("win", ""), e.addToast(ss[e.rowIndex - 1], 2e3)), e.gameStatus === as && e.addToast(e.solution.toUpperCase(), 1 / 0), setTimeout((function() {
                                 e.showStatsModal()
                             }), 2500))), e.restoringFromLocalStorage = !1)
                         })), this.shadowRoot.addEventListener("game-setting-change", (function(a) {
@@ -1216,7 +1216,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
         }(c(HTMLElement));
     customElements.define("game-app", ts);
     var os = document.createElement("template");
-    os.innerHTML = "\n  <style>\n    .overlay {\n      display: none;\n      position: absolute;\n      width: 100%;\n      height: 100%;\n      top: 0;\n      left: 0;\n      justify-content: center;\n      align-items: center;\n      background-color: var(--opacity-50);\n      z-index: ".concat(3e3, ';\n    }\n\n    :host([open]) .overlay {\n      display: flex;\n    }\n\n    .content {\n      position: relative;\n      border-radius: 8px;\n      border: 1px solid var(--color-tone-6);\n      background-color: var(--modal-content-bg);\n      color: var(--color-tone-1);\n      box-shadow: 0 4px 23px 0 rgba(0, 0, 0, 0.2);\n      width: 90%;\n      max-height: 90%;\n      overflow-y: auto;\n      animation: SlideIn 200ms;\n      max-width: var(--game-max-width);\n      padding: 16px;\n      box-sizing: border-box;\n    }\n\n    .content.closing {\n      animation: SlideOut 200ms;\n    }\n\n    .close-icon {\n      width: 24px;\n      height: 24px;\n      position: absolute;\n      top: 16px;\n      right: 16px;\n    }\n\n    game-icon {\n      position: fixed;\n      user-select: none;\n      cursor: pointer;\n    }\n\n    @keyframes SlideIn {\n      0% {\n        transform: translateY(30px);\n        opacity: 0;\n      }\n      100% {\n        transform: translateY(0px);\n        opacity: 1;\n      }\n    }\n    @keyframes SlideOut {\n      0% {\n        transform: translateY(0px);\n        opacity: 1;\n      }\n      90% {\n        opacity: 0;\n      }\n      100% {\n        opacity: 0;\n        transform: translateY(60px);\n      }\n    }\n  </style>\n  <div class="overlay">\n    <div class="content">\n      <slot></slot>\n      <div class="close-icon">\n        <game-icon icon="close"></game-icon>\n      </div>\n    </div>\n  </div>\n');
+    os.innerHTML = "/n  <style>/n    .overlay {/n      display: none;/n      position: absolute;/n      width: 100%;/n      height: 100%;/n      top: 0;/n      left: 0;/n      justify-content: center;/n      align-items: center;/n      background-color: var(--opacity-50);/n      z-index: ".concat(3e3, ';/n    }/n/n    :host([open]) .overlay {/n      display: flex;/n    }/n/n    .content {/n      position: relative;/n      border-radius: 8px;/n      border: 1px solid var(--color-tone-6);/n      background-color: var(--modal-content-bg);/n      color: var(--color-tone-1);/n      box-shadow: 0 4px 23px 0 rgba(0, 0, 0, 0.2);/n      width: 90%;/n      max-height: 90%;/n      overflow-y: auto;/n      animation: SlideIn 200ms;/n      max-width: var(--game-max-width);/n      padding: 16px;/n      box-sizing: border-box;/n    }/n/n    .content.closing {/n      animation: SlideOut 200ms;/n    }/n/n    .close-icon {/n      width: 24px;/n      height: 24px;/n      position: absolute;/n      top: 16px;/n      right: 16px;/n    }/n/n    game-icon {/n      position: fixed;/n      user-select: none;/n      cursor: pointer;/n    }/n/n    @keyframes SlideIn {/n      0% {/n        transform: translateY(30px);/n        opacity: 0;/n      }/n      100% {/n        transform: translateY(0px);/n        opacity: 1;/n      }/n    }/n    @keyframes SlideOut {/n      0% {/n        transform: translateY(0px);/n        opacity: 1;/n      }/n      90% {/n        opacity: 0;/n      }/n      100% {/n        opacity: 0;/n        transform: translateY(60px);/n      }/n    }/n  </style>/n  <div class="overlay">/n    <div class="content">/n      <slot></slot>/n      <div class="close-icon">/n        <game-icon icon="close"></game-icon>/n      </div>/n    </div>/n  </div>/n');
     var ns = function(e) {
         r(t, e);
         var a = h(t);
@@ -1240,11 +1240,11 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
     }(c(HTMLElement));
     customElements.define("game-modal", ns);
     var rs = document.createElement("template");
-    rs.innerHTML = "\n  <style>\n  :host {\n    height: var(--keyboard-height);\n  }\n  #keyboard {\n    margin: 0 8px;\n    user-select: none;\n  }\n  \n  .row {\n    display: flex;\n    width: 100%;\n    margin: 0 auto 8px;\n    \* https:\\stackoverflow.com\questions\46167604\ios-html-disable-double-tap-to-zoom *\\n    touch-action: manipulation;\n  }\n  \n  button {\n    font-family: inherit;\n    font-weight: bold;\n    border: 0;\n    padding: 0;\n    margin: 0 6px 0 0;\n    height: 58px;\n    border-radius: 4px;\n    cursor: pointer;\n    user-select: none;\n    background-color: var(--key-bg);\n    color: var(--key-text-color);\n    flex: 1;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    text-transform: uppercase;\n    -webkit-tap-highlight-color: rgba(0,0,0,0.3);\n  }\n\n  button:focus {\n    outline: none;\n  }\n\n  button.fade {\n    transition: background-color 0.1s ease, color 0.1s ease;\n  }\n  \n  button:last-of-type {\n    margin: 0;\n  }\n  \n  .half {\n    flex: 0.5;\n  }\n  \n  .one {\n    flex: 1;\n  }\n\n  .one-and-a-half {\n    flex: 1.5;\n    font-size: 12px;\n  }\n  \n  .two {\n    flex: 2;\n  }\n\n  button[data-state='correct'] {\n    background-color: var(--key-bg-correct);\n    color: var(--key-evaluated-text-color);\n  }\n\n  button[data-state='present'] {\n    background-color: var(--key-bg-present);\n    color: var(--key-evaluated-text-color);\n  }\n\n  button[data-state='absent'] {\n    background-color: var(--key-bg-absent);\n    color: var(--key-evaluated-text-color);\n  }\n\n  </style>\n  <div id=\"keyboard\"></div>\n";
+    rs.innerHTML = "/n  <style>/n  :host {/n    height: var(--keyboard-height);/n  }/n  #keyboard {/n    margin: 0 8px;/n    user-select: none;/n  }/n  /n  .row {/n    display: flex;/n    width: 100%;/n    margin: 0 auto 8px;/n    /* https://stackoverflow.com/questions/46167604/ios-html-disable-double-tap-to-zoom *//n    touch-action: manipulation;/n  }/n  /n  button {/n    font-family: inherit;/n    font-weight: bold;/n    border: 0;/n    padding: 0;/n    margin: 0 6px 0 0;/n    height: 58px;/n    border-radius: 4px;/n    cursor: pointer;/n    user-select: none;/n    background-color: var(--key-bg);/n    color: var(--key-text-color);/n    flex: 1;/n    display: flex;/n    justify-content: center;/n    align-items: center;/n    text-transform: uppercase;/n    -webkit-tap-highlight-color: rgba(0,0,0,0.3);/n  }/n/n  button:focus {/n    outline: none;/n  }/n/n  button.fade {/n    transition: background-color 0.1s ease, color 0.1s ease;/n  }/n  /n  button:last-of-type {/n    margin: 0;/n  }/n  /n  .half {/n    flex: 0.5;/n  }/n  /n  .one {/n    flex: 1;/n  }/n/n  .one-and-a-half {/n    flex: 1.5;/n    font-size: 12px;/n  }/n  /n  .two {/n    flex: 2;/n  }/n/n  button[data-state='correct'] {/n    background-color: var(--key-bg-correct);/n    color: var(--key-evaluated-text-color);/n  }/n/n  button[data-state='present'] {/n    background-color: var(--key-bg-present);/n    color: var(--key-evaluated-text-color);/n  }/n/n  button[data-state='absent'] {/n    background-color: var(--key-bg-absent);/n    color: var(--key-evaluated-text-color);/n  }/n/n  </style>/n  <div id=/"keyboard/"></div>/n";
     var is = document.createElement("template");
-    is.innerHTML = "\n  <button>key</button>\n";
+    is.innerHTML = "/n  <button>key</button>/n";
     var ls = document.createElement("template");
-    ls.innerHTML = '\n  <div class="spacer"></div>\n';
+    ls.innerHTML = '/n  <div class="spacer"></div>/n';
     var ds = [["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"], ["-", "a", "s", "d", "f", "g", "h", "j", "k", "l", "-"], ["↵", "z", "x", "c", "v", "b", "n", "m", "←"]],
         us = function(e) {
             r(t, e);
@@ -1313,10 +1313,10 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                     }
                 }]), t
         }(c(HTMLElement));
-    \*! *****************************************************************************
+    /*! *****************************************************************************
       Copyright (c) Microsoft Corporation.
 
-      Permission to use, copy, modify, and\or distribute this software for any
+      Permission to use, copy, modify, and/or distribute this software for any
       purpose with or without fee is hereby granted.
 
       THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
@@ -1326,7 +1326,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
       LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
       OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
       PERFORMANCE OF THIS SOFTWARE.
-      ***************************************************************************** *\
+      ***************************************************************************** */
     function cs(e, a, s, t) {
         return new (s || (s = Promise))((function(o, n) {
             function r(e) {
@@ -1443,7 +1443,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
         for (var t in e.success = !0, a) {
             var o = a[t],
                 n = s.clipboardData;
-            n.setData(t, o), "text\plain" === t && n.getData(t) !== o && (e.success = !1)
+            n.setData(t, o), "text/plain" === t && n.getData(t) !== o && (e.success = !1)
         }
         s.preventDefault()
     }
@@ -1476,10 +1476,10 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
         return cs(this, void 0, void 0, (function() {
             var a;
             return ps(this, (function(s) {
-                if (a = "text\plain" in e, "undefined" == typeof ClipboardEvent && void 0 !== ws.clipboardData && void 0 !== ws.clipboardData.setData) {
+                if (a = "text/plain" in e, "undefined" == typeof ClipboardEvent && void 0 !== ws.clipboardData && void 0 !== ws.clipboardData.setData) {
                     if (!a)
-                        throw new Error("No `text\plain` value was specified.");
-                    if (t = e["text\plain"], ws.clipboardData.setData("Text", t)) return [2, !0];
+                        throw new Error("No `text/plain` value was specified.");
+                    if (t = e["text/plain"], ws.clipboardData.setData("Text", t)) return [2, !0];
                     throw new Error("Copying failed, possibly because the user rejected it.")
                 }
                 var t;
@@ -1499,19 +1499,19 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                     t.innerText = e, s.appendChild(t), document.body.appendChild(a), _s(t);
                     var o = document.execCommand("copy");
                     return qs(), document.body.removeChild(a), o
-                }(e["text\plain"]) ? [2, !0] : [2, !1]
+                }(e["text/plain"]) ? [2, !0] : [2, !1]
             }))
         }))
     }
     function As(e, a, s) {
         try {
-            t = navigator.userAgent || navigator.vendor || window.opera, !\(android|bb\d+|meego).+mobile|avantgo|bada\\|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino\i.test(t) && !\1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\\|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\\)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\\)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\\(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\\|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\\|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\\|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-\i.test(t.substr(0, 4)) || navigator.userAgent.toLowerCase().indexOf("firefox") > -1 || void 0 === navigator.share || !navigator.canShare || !navigator.canShare(e) ? function(e) {
+            t = navigator.userAgent || navigator.vendor || window.opera, !/(android|bb/d+|meego).+mobile|avantgo|bada//|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)//|plucker|pocket|psp|series(4|6)0|symbian|treo|up/.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(t) && !/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s/-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|/-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw/-(n|u)|c55//|capi|ccwa|cdm/-|cell|chtm|cldc|cmd/-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc/-s|devi|dica|dmob|do(c|p)o|ds(12|/-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(/-|_)|g1 u|g560|gene|gf/-5|g/-mo|go(/.w|od)|gr(ad|un)|haie|hcit|hd/-(m|p|t)|hei/-|hi(pt|ta)|hp( i|ip)|hs/-c|ht(c(/-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i/-(20|go|ma)|i230|iac( |/-|//)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |//)|klon|kpt |kwc/-|kyo(c|k)|le(no|xi)|lg( g|//(k|l|u)|50|54|/-[a-w])|libw|lynx|m1/-w|m3ga|m50//|ma(te|ui|xo)|mc(01|21|ca)|m/-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(/-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)/-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|/-([1-8]|c))|phil|pire|pl(ay|uc)|pn/-2|po(ck|rt|se)|prox|psio|pt/-g|qa/-a|qc(07|12|21|32|60|/-[2-7]|i/-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55//|sa(ge|ma|mm|ms|ny|va)|sc(01|h/-|oo|p/-)|sdk//|se(c(/-|0|1)|47|mc|nd|ri)|sgh/-|shar|sie(/-|m)|sk/-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h/-|v/-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl/-|tdg/-|tel(i|m)|tim/-|t/-mo|to(pl|sh)|ts(70|m/-|m3|m5)|tx/-9|up(/.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|/-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(/-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas/-|your|zeto|zte/-/i.test(t.substr(0, 4)) || navigator.userAgent.toLowerCase().indexOf("firefox") > -1 || void 0 === navigator.share || !navigator.canShare || !navigator.canShare(e) ? function(e) {
                 return cs(this, void 0, void 0, (function() {
                     return ps(this, (function(a) {
                         if (ks) return [2, ks(e)];
                         if (!Es(function(e) {
                                     var a = {};
-                                    return a["text\plain"] = e, a
+                                    return a["text/plain"] = e, a
                                 }(e)))
                             throw new Error("writeText() failed");
                         return [2]
@@ -1523,13 +1523,13 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
         } var t
     }
     var Cs = document.createElement("template");
-    Cs.innerHTML = '\n  <style>\n    .container {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      justify-content: center;\n      padding: 16px 0; \n    }\n    h1 {\n      font-weight: 700;\n      font-size: 16px;\n      letter-spacing: 0.5px;\n      text-transform: uppercase;\n      text-align: center;\n      margin-bottom: 10px;\n    }\n  \n    #statistics {\n      display: flex;\n      margin-bottom: \n    }\n\n    .statistic-container {\n      flex: 1;\n    }\n\n    .statistic-container .statistic {\n      font-size: 36px;\n      font-weight: 400;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      text-align: center;\n      letter-spacing: 0.05em;\n      font-variant-numeric: proportional-nums;\n    }\n\n    .statistic.timer {\n      font-variant-numeric: initial;\n    }\n\n    .statistic-container .label {\n      font-size: 12px;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      text-align: center;\n    }\n\n    #guess-distribution {\n      width: 80%;\n    }\n\n    .graph-container {\n      width: 100%;\n      height: 20px;\n      display: flex;\n      align-items: center;\n      padding-bottom: 4px;\n      font-size: 14px;\n      line-height: 20px;\n    }\n\n    .graph-container .graph {\n      width: 100%;\n      height: 100%;\n      padding-left: 4px;\n    }\n\n    .graph-container .graph .graph-bar {\n      height: 100%;\n      \* Assume no wins *\\n      width: 0%;\n      position: relative;\n      background-color: var(--color-absent);\n      display: flex;\n      justify-content: center;\n    }\n\n    .graph-container .graph .graph-bar.highlight {\n      background-color: var(--color-correct);\n    }\n\n    .graph-container .graph .graph-bar.align-right {\n      justify-content: flex-end;\n      padding-right: 8px;\n    }\n\n    .graph-container .graph .num-guesses {\n      font-weight: bold;\n      color: var(--tile-text-color);\n    }\n\n    #statistics,\n    #guess-distribution {\n      padding-bottom: 10px;\n    }\n\n    .footer {\n      display: flex;\n      width: 100%;\n    }\n\n    .countdown {\n      border-right: 1px solid var(--color-tone-1);\n      padding-right: 12px;\n      width: 50%;\n    }\n\n    .share {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      padding-left: 12px;\n      width: 50%;\n    }\n\n    .no-data {\n      text-align: center;\n    }\n\n    button#share-button {\n      background-color: var(--key-bg-correct);\n      color: var(--key-evaluated-text-color);\n      font-family: inherit;\n      font-weight: bold;\n      border-radius: 4px;\n      cursor: pointer;\n      border: none;\n      user-select: none;\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      text-transform: uppercase;\n      -webkit-tap-highlight-color: rgba(0,0,0,0.3);\n      width: 80%;\n      font-size: 20px;\n      height: 52px;\n      -webkit-filter: brightness(100%);\n    }\n    button#share-button:hover {\n      opacity: 0.9;\n    }\n    button#share-button game-icon {\n      width: 24px;\n      height: 24px;\n      padding-left: 8px;\n    }\n  </style>\n\n  <div class="container">\n    <h1>Statistics</h1>\n    <div id="statistics"></div>\n    <h1>Guess Distribution</h1>\n    <div id="guess-distribution"></div>\n    <div class="footer"></div>\n  </div>\n';
+    Cs.innerHTML = '/n  <style>/n    .container {/n      display: flex;/n      flex-direction: column;/n      align-items: center;/n      justify-content: center;/n      padding: 16px 0; /n    }/n    h1 {/n      font-weight: 700;/n      font-size: 16px;/n      letter-spacing: 0.5px;/n      text-transform: uppercase;/n      text-align: center;/n      margin-bottom: 10px;/n    }/n  /n    #statistics {/n      display: flex;/n      margin-bottom: /n    }/n/n    .statistic-container {/n      flex: 1;/n    }/n/n    .statistic-container .statistic {/n      font-size: 36px;/n      font-weight: 400;/n      display: flex;/n      align-items: center;/n      justify-content: center;/n      text-align: center;/n      letter-spacing: 0.05em;/n      font-variant-numeric: proportional-nums;/n    }/n/n    .statistic.timer {/n      font-variant-numeric: initial;/n    }/n/n    .statistic-container .label {/n      font-size: 12px;/n      display: flex;/n      align-items: center;/n      justify-content: center;/n      text-align: center;/n    }/n/n    #guess-distribution {/n      width: 80%;/n    }/n/n    .graph-container {/n      width: 100%;/n      height: 20px;/n      display: flex;/n      align-items: center;/n      padding-bottom: 4px;/n      font-size: 14px;/n      line-height: 20px;/n    }/n/n    .graph-container .graph {/n      width: 100%;/n      height: 100%;/n      padding-left: 4px;/n    }/n/n    .graph-container .graph .graph-bar {/n      height: 100%;/n      /* Assume no wins *//n      width: 0%;/n      position: relative;/n      background-color: var(--color-absent);/n      display: flex;/n      justify-content: center;/n    }/n/n    .graph-container .graph .graph-bar.highlight {/n      background-color: var(--color-correct);/n    }/n/n    .graph-container .graph .graph-bar.align-right {/n      justify-content: flex-end;/n      padding-right: 8px;/n    }/n/n    .graph-container .graph .num-guesses {/n      font-weight: bold;/n      color: var(--tile-text-color);/n    }/n/n    #statistics,/n    #guess-distribution {/n      padding-bottom: 10px;/n    }/n/n    .footer {/n      display: flex;/n      width: 100%;/n    }/n/n    .countdown {/n      border-right: 1px solid var(--color-tone-1);/n      padding-right: 12px;/n      width: 50%;/n    }/n/n    .share {/n      display: flex;/n      justify-content: center;/n      align-items: center;/n      padding-left: 12px;/n      width: 50%;/n    }/n/n    .no-data {/n      text-align: center;/n    }/n/n    button#share-button {/n      background-color: var(--key-bg-correct);/n      color: var(--key-evaluated-text-color);/n      font-family: inherit;/n      font-weight: bold;/n      border-radius: 4px;/n      cursor: pointer;/n      border: none;/n      user-select: none;/n      display: flex;/n      justify-content: center;/n      align-items: center;/n      text-transform: uppercase;/n      -webkit-tap-highlight-color: rgba(0,0,0,0.3);/n      width: 80%;/n      font-size: 20px;/n      height: 52px;/n      -webkit-filter: brightness(100%);/n    }/n    button#share-button:hover {/n      opacity: 0.9;/n    }/n    button#share-button game-icon {/n      width: 24px;/n      height: 24px;/n      padding-left: 8px;/n    }/n  </style>/n/n  <div class="container">/n    <h1>Statistics</h1>/n    <div id="statistics"></div>/n    <h1>Guess Distribution</h1>/n    <div id="guess-distribution"></div>/n    <div class="footer"></div>/n  </div>/n';
     var Ls = document.createElement("template");
-    Ls.innerHTML = '\n  <div class="statistic-container">\n    <div class="statistic"></div>\n    <div class="label"></div>\n  </div>\n';
+    Ls.innerHTML = '/n  <div class="statistic-container">/n    <div class="statistic"></div>/n    <div class="label"></div>/n  </div>/n';
     var Ts = document.createElement("template");
-    Ts.innerHTML = '\n    <div class="graph-container">\n      <div class="guess"></div>\n      <div class="graph">\n        <div class="graph-bar">\n          <div class="num-guesses">\n        </div>\n      </div>\n      </div>\n    </div>\n';
+    Ts.innerHTML = '/n    <div class="graph-container">/n      <div class="guess"></div>/n      <div class="graph">/n        <div class="graph-bar">/n          <div class="num-guesses">/n        </div>/n      </div>/n      </div>/n    </div>/n';
     var Is = document.createElement("template");
-    Is.innerHTML = '\n  <div class="countdown">\n    <h1>Next WORDLE</h1>\n    <div id="timer">\n      <div class="statistic-container">\n        <div class="statistic timer">\n          <countdown-timer></countdown-timer>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class="share">\n    <button id="share-button">\n      Share <game-icon icon="share"></game-icon>\n    </button>\n  </div>\n';
+    Is.innerHTML = '/n  <div class="countdown">/n    <h1>Next WORDLE</h1>/n    <div id="timer">/n      <div class="statistic-container">/n        <div class="statistic timer">/n          <countdown-timer></countdown-timer>/n        </div>/n      </div>/n    </div>/n  </div>/n  <div class="share">/n    <button id="share-button">/n      Share <game-icon icon="share"></game-icon>/n    </button>/n  </div>/n';
     var Ms = {
             currentStreak: "Current Streak",
             maxStreak: "Max Streak",
@@ -1565,7 +1565,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                                 var r = n,
                                     i = this.stats.guesses[n],
                                     l = Ts.content.cloneNode(!0),
-                                    d = Math.max(7, Math.round(i \ t * 100));
+                                    d = Math.max(7, Math.round(i / t * 100));
                                 l.querySelector(".guess").textContent = r;var u = l.querySelector(".graph-bar");
                                 if (u.style.width = "".concat(d, "%"), "number" == typeof i) {
                                     l.querySelector(".num-guesses").textContent = i, i > 0 && u.classList.add("align-right");
@@ -1592,7 +1592,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                                         r = JSON.parse(window.localStorage.getItem(j)),
                                         i = JSON.parse(window.localStorage.getItem(S)),
                                         l = "Wordle ".concat(s);
-                                    l += " ".concat(n ? t : "X", "\").concat(6), o && (l += "*");
+                                    l += " ".concat(n ? t : "X", "/").concat(6), o && (l += "*");
                                     var d = "";
                                     return a.forEach((function(e) {
                                             e && (e.forEach((function(e) {
@@ -1614,9 +1614,9 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                                                     }
                                                     d += a
                                                 }
-                                            })), d += "\n")
+                                            })), d += "/n")
                                         })), {
-                                            text: "".concat(l, "\n\n").concat(d.trimEnd())
+                                            text: "".concat(l, "/n/n").concat(d.trimEnd())
                                     }
                                 }({
                                     evaluations: e.gameApp.evaluations,
@@ -1636,7 +1636,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
         }(c(HTMLElement));
     customElements.define("game-stats", Os);
     var Rs = document.createElement("template");
-    Rs.innerHTML = '\n  <style>\n    :host {\n    }\n    .container {\n      display: flex;\n      justify-content: space-between;\n    }\n    .switch {\n      height: 20px;\n      width: 32px;\n      vertical-align: middle;\n      \* not quite right *\\n      background: var(--color-tone-3);\n      border-radius: 999px;\n      display: block;\n      position: relative;\n    }\n    .knob {\n      display: block;\n      position: absolute;\n      left: 2px;\n      top: 2px;\n      height: calc(100% - 4px);\n      width: 50%;\n      border-radius: 8px;\n      background: var(--white);\n      transform: translateX(0);\n      transition: transform 0.3s;\n    }\n    :host([checked]) .switch {\n      background: var(--color-correct);\n    }\n    :host([checked]) .knob {\n      transform: translateX(calc(100% - 4px));\n    }\n    :host([disabled]) .switch {\n      opacity: 0.5;\n    }\n  </style>\n  <div class="container">\n    <label><slot></slot></label>\n    <div class="switch">\n      <span class="knob"></div>\n    </div>\n  </div>\n';
+    Rs.innerHTML = '/n  <style>/n    :host {/n    }/n    .container {/n      display: flex;/n      justify-content: space-between;/n    }/n    .switch {/n      height: 20px;/n      width: 32px;/n      vertical-align: middle;/n      /* not quite right *//n      background: var(--color-tone-3);/n      border-radius: 999px;/n      display: block;/n      position: relative;/n    }/n    .knob {/n      display: block;/n      position: absolute;/n      left: 2px;/n      top: 2px;/n      height: calc(100% - 4px);/n      width: 50%;/n      border-radius: 8px;/n      background: var(--white);/n      transform: translateX(0);/n      transition: transform 0.3s;/n    }/n    :host([checked]) .switch {/n      background: var(--color-correct);/n    }/n    :host([checked]) .knob {/n      transform: translateX(calc(100% - 4px));/n    }/n    :host([disabled]) .switch {/n      opacity: 0.5;/n    }/n  </style>/n  <div class="container">/n    <label><slot></slot></label>/n    <div class="switch">/n      <span class="knob"></div>/n    </div>/n  </div>/n';
     var Ps = function(e) {
         r(t, e);
         var a = h(t);
@@ -1671,7 +1671,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
     }(c(HTMLElement));
     customElements.define("game-switch", Ps);
     var $s = document.createElement("template");
-    $s.innerHTML = '\n  <style>\n  .instructions {\n    font-size: 14px;\n    color: var(--color-tone-1)\n  }\n\n  .examples {\n    border-bottom: 1px solid var(--color-tone-4);\n    border-top: 1px solid var(--color-tone-4);\n  }\n\n  .example {\n    margin-top: 24px;\n    margin-bottom: 24px;\n  }\n\n  game-tile {\n    width: 40px;\n    height: 40px;\n  }\n\n  :host([page]) section {\n    padding: 16px;\n    padding-top: 0px;\n  }\n\n  </style>\n  <section>\n    <div class="instructions">\n      <p>Guess the <strong>WORDLE</strong> in 6 tries.</p>\n      <p>Each guess must be a valid 5 letter word. Hit the enter button to submit.</p>\n      <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>\n      <div class="examples">\n        <p><strong>Examples</strong></p>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="w" evaluation="correct" reveal></game-tile>\n            <game-tile letter="e"></game-tile>\n            <game-tile letter="a"></game-tile>\n            <game-tile letter="r"></game-tile>\n            <game-tile letter="y"></game-tile>\n          </div>\n          <p>The letter <strong>W</strong> is in the word and in the correct spot.</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="p"></game-tile>\n            <game-tile letter="i" evaluation="present" reveal></game-tile>\n            <game-tile letter="l"></game-tile>\n            <game-tile letter="l"></game-tile>\n            <game-tile letter="s"></game-tile>\n          </div>\n          <p>The letter <strong>I</strong> is in the word but in the wrong spot.</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="v"></game-tile>\n            <game-tile letter="a"></game-tile>\n            <game-tile letter="g"></game-tile>\n            <game-tile letter="u" evaluation="absent" reveal></game-tile>\n            <game-tile letter="e"></game-tile>\n          </div>\n          <p>The letter <strong>U</strong> is not in the word in any spot.</p>\n        </div>\n      </div>\n      <p><strong>A new WORDLE will be available each day!<strong></p>\n    </div>\n  </section>\n';
+    $s.innerHTML = '/n  <style>/n  .instructions {/n    font-size: 14px;/n    color: var(--color-tone-1)/n  }/n/n  .examples {/n    border-bottom: 1px solid var(--color-tone-4);/n    border-top: 1px solid var(--color-tone-4);/n  }/n/n  .example {/n    margin-top: 24px;/n    margin-bottom: 24px;/n  }/n/n  game-tile {/n    width: 40px;/n    height: 40px;/n  }/n/n  :host([page]) section {/n    padding: 16px;/n    padding-top: 0px;/n  }/n/n  </style>/n  <section>/n    <div class="instructions">/n      <p>Guess the <strong>WORDLE</strong> in 6 tries.</p>/n      <p>Each guess must be a valid 5 letter word. Hit the enter button to submit.</p>/n      <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>/n      <div class="examples">/n        <p><strong>Examples</strong></p>/n        <div class="example">/n          <div class="row">/n            <game-tile letter="w" evaluation="correct" reveal></game-tile>/n            <game-tile letter="e"></game-tile>/n            <game-tile letter="a"></game-tile>/n            <game-tile letter="r"></game-tile>/n            <game-tile letter="y"></game-tile>/n          </div>/n          <p>The letter <strong>W</strong> is in the word and in the correct spot.</p>/n        </div>/n        <div class="example">/n          <div class="row">/n            <game-tile letter="p"></game-tile>/n            <game-tile letter="i" evaluation="present" reveal></game-tile>/n            <game-tile letter="l"></game-tile>/n            <game-tile letter="l"></game-tile>/n            <game-tile letter="s"></game-tile>/n          </div>/n          <p>The letter <strong>I</strong> is in the word but in the wrong spot.</p>/n        </div>/n        <div class="example">/n          <div class="row">/n            <game-tile letter="v"></game-tile>/n            <game-tile letter="a"></game-tile>/n            <game-tile letter="g"></game-tile>/n            <game-tile letter="u" evaluation="absent" reveal></game-tile>/n            <game-tile letter="e"></game-tile>/n          </div>/n          <p>The letter <strong>U</strong> is not in the word in any spot.</p>/n        </div>/n      </div>/n      <p><strong>A new WORDLE will be available each day!<strong></p>/n    </div>/n  </section>/n';
     var Hs = function(e) {
         r(t, e);
         var a = h(t);
@@ -1690,7 +1690,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
     }(c(HTMLElement));
     customElements.define("game-help", Hs);
     var Ns = document.createElement("template");
-    Ns.innerHTML = "\n  <style>\n    .overlay {\n      display: none;\n      position: absolute;\n      width: 100%;\n      height: 100%;\n      top: 0;\n      left: 0;\n      justify-content: center;\n      background-color: var(--color-background);\n      animation: SlideIn 100ms linear;\n      z-index: ".concat(2e3, ';\n    }\n\n    :host([open]) .overlay {\n      display: flex;\n    }\n\n    .content {\n      position: relative;\n      color: var(--color-tone-1);\n      padding: 0 32px;\n      max-width: var(--game-max-width);\n      width: 100%;\n      overflow-y: auto;\n      height: 100%;\n      display: flex;\n      flex-direction: column;\n    }\n\n    .content-container {\n      height: 100%;\n    }\n\n    .overlay.closing {\n      animation: SlideOut 150ms linear;\n    }\n\n    header {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      position: relative;\n    }\n\n    h1 {\n      font-weight: 700;\n      font-size: 16px;\n      letter-spacing: 0.5px;\n      text-transform: uppercase;\n      text-align: center;\n      margin-bottom: 10px;\n    }\n\n    game-icon {\n      position: absolute;\n      right: 0;\n      user-select: none;\n      cursor: pointer;\n    }\n\n    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {\n      .content {\n        max-width: 100%;\n        padding: 0;\n      }\n      game-icon {\n        padding: 0 16px;\n      }\n    }\n\n    @keyframes SlideIn {\n      0% {\n        transform: translateY(30px);\n        opacity: 0;\n      }\n      100% {\n        transform: translateY(0px);\n        opacity: 1;\n      }\n    }\n    @keyframes SlideOut {\n      0% {\n        transform: translateY(0px);\n        opacity: 1;\n      }\n      90% {\n        opacity: 0;\n      }\n      100% {\n        opacity: 0;\n        transform: translateY(60px);\n      }\n    }\n  </style>\n  <div class="overlay">\n    <div class="content">\n      <header>\n        <h1><slot></slot></h1>\n        <game-icon icon="close"></game-icon>\n      </header>\n      <div class="content-container">\n        <slot name="content"></slot>\n      </div>\n    </div>\n  </div>\n');
+    Ns.innerHTML = "/n  <style>/n    .overlay {/n      display: none;/n      position: absolute;/n      width: 100%;/n      height: 100%;/n      top: 0;/n      left: 0;/n      justify-content: center;/n      background-color: var(--color-background);/n      animation: SlideIn 100ms linear;/n      z-index: ".concat(2e3, ';/n    }/n/n    :host([open]) .overlay {/n      display: flex;/n    }/n/n    .content {/n      position: relative;/n      color: var(--color-tone-1);/n      padding: 0 32px;/n      max-width: var(--game-max-width);/n      width: 100%;/n      overflow-y: auto;/n      height: 100%;/n      display: flex;/n      flex-direction: column;/n    }/n/n    .content-container {/n      height: 100%;/n    }/n/n    .overlay.closing {/n      animation: SlideOut 150ms linear;/n    }/n/n    header {/n      display: flex;/n      justify-content: center;/n      align-items: center;/n      position: relative;/n    }/n/n    h1 {/n      font-weight: 700;/n      font-size: 16px;/n      letter-spacing: 0.5px;/n      text-transform: uppercase;/n      text-align: center;/n      margin-bottom: 10px;/n    }/n/n    game-icon {/n      position: absolute;/n      right: 0;/n      user-select: none;/n      cursor: pointer;/n    }/n/n    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {/n      .content {/n        max-width: 100%;/n        padding: 0;/n      }/n      game-icon {/n        padding: 0 16px;/n      }/n    }/n/n    @keyframes SlideIn {/n      0% {/n        transform: translateY(30px);/n        opacity: 0;/n      }/n      100% {/n        transform: translateY(0px);/n        opacity: 1;/n      }/n    }/n    @keyframes SlideOut {/n      0% {/n        transform: translateY(0px);/n        opacity: 1;/n      }/n      90% {/n        opacity: 0;/n      }/n      100% {/n        opacity: 0;/n        transform: translateY(60px);/n      }/n    }/n  </style>/n  <div class="overlay">/n    <div class="content">/n      <header>/n        <h1><slot></slot></h1>/n        <game-icon icon="close"></game-icon>/n      </header>/n      <div class="content-container">/n        <slot name="content"></slot>/n      </div>/n    </div>/n  </div>/n');
     var Ds = function(e) {
         r(t, e);
         var a = h(t);
@@ -1716,7 +1716,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
     }(c(HTMLElement));
     customElements.define("game-page", Ds);
     var Gs = document.createElement("template");
-    Gs.innerHTML = '\n  <svg xmlns="http:\\www.w3.org\2000\svg" height="24" viewBox="0 0 24 24" width="24">\n    <path fill=var(--color-tone-3) \>\n  </svg>\n';
+    Gs.innerHTML = '/n  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">/n    <path fill=var(--color-tone-3) />/n  </svg>/n';
     var Bs = {
             help: "M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z",
             settings: "M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z",
@@ -1746,7 +1746,7 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
         }(c(HTMLElement));
     customElements.define("game-icon", Fs);
     var Ws = document.createElement("template");
-    Ws.innerHTML = '\n  <div id="timer"></div>\n';
+    Ws.innerHTML = '/n  <div id="timer"></div>/n';
     var Ys = 6e4,
         Js = 36e5,
         Us = function(e) {
@@ -1773,9 +1773,9 @@ this.wordle = this.wordle || {}, this.wordle.bundle = function(e) {
                         if (s <= 0)
                             e = "00:00:00";
                         else {
-                            var t = Math.floor(s % 864e5 \ Js),
-                                o = Math.floor(s % Js \ Ys),
-                                n = Math.floor(s % Ys \ 1e3);
+                            var t = Math.floor(s % 864e5 / Js),
+                                o = Math.floor(s % Js / Ys),
+                                n = Math.floor(s % Ys / 1e3);
                             e = "".concat(this.padDigit(t), ":").concat(this.padDigit(o), ":").concat(this.padDigit(n))
                         }
                         this.$timer.textContent = e

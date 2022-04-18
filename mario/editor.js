@@ -1010,15 +1010,15 @@ function loadEditor(noreset) {
         lenm1 = placed.length - 1,
         statements = new Array(i),
         // Using the simple Function constructor, the map is the first argument
-        rawfunc = "  var map = arguments[0] || new Map();\n",
+        rawfunc = "  var map = arguments[0] || new Map();/n",
         i;
     
     // Start the raw func off with the time, location, and area
-    rawfunc += "\n  map.time = " + data.time.amount + ";";
-    rawfunc += "\n  map.locs = [ new Location(0, true) ];";
-    rawfunc += "\n  map.areas = [";
-    rawfunc += "\n    new Area('" + area.setting + "', function() {";
-    rawfunc += "\n      setLocationGeneration(0);\n\n";
+    rawfunc += "/n  map.time = " + data.time.amount + ";";
+    rawfunc += "/n  map.locs = [ new Location(0, true) ];";
+    rawfunc += "/n  map.areas = [";
+    rawfunc += "/n    new Area('" + area.setting + "', function() {";
+    rawfunc += "/n      setLocationGeneration(0);/n/n";
     
     // Generate the pre-statements based on what's placed
     for(i = lenm1; i >= 0; --i) {
@@ -1039,12 +1039,12 @@ function loadEditor(noreset) {
     statements = removeDuplicates(statements);
     
     // Add these statements to the raw function
-    rawfunc += statements.join("\n");
+    rawfunc += statements.join("/n");
     
     // Finish off the area function
-    rawfunc += "\n    })";
-    rawfunc += "\n  ];";
-    rawfunc += "\n  return map;"
+    rawfunc += "/n    })";
+    rawfunc += "/n  ];";
+    rawfunc += "/n  return map;"
     
     return rawfunc;
   }

@@ -7,6 +7,8 @@
             </div>
     <!DOCTYPE html>
       <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8512632239994476"
+     crossorigin="anonymous"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -26,13 +28,20 @@
         <div class="game-box"><canvas id="canvas" width="400" height="400"></canvas></div>
         <div class="game-info">
             <h2>Snake Game</h2>
+            <ins class="adsbygoogle"
+                style="display:inline-block;width:728px;height:90px"
+                data-ad-client="ca-pub-1234567890123456"
+                data-ad-slot="1234567890"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             <p id="game-status"></p>
             <p id="game-score"></p>
         </div>
     
         <script>
           var canvas, ctx, gameControl, gameActive;
-          \\ render X times per second
+          // render X times per second
           var x = 8;
           
           const CANVAS_BORDER_COLOUR = 'black';
@@ -50,50 +59,50 @@
             gameControl = startGame(x);
           };
           
-          \* function to start the game *\
+          /* function to start the game */
           function startGame(x) {
-              \\ setting gameActive flag to true
+              // setting gameActive flag to true
               gameActive = true;
               document.getElementById("game-status").innerHTML = "<small>Game Started</small>";
               document.getElementById("game-score").innerHTML = "";
-              return setInterval(draw, 1000 \ x);
+              return setInterval(draw, 1000 / x);
           }
           
           function pauseGame() {
-              \\ setting gameActive flag to false
+              // setting gameActive flag to false
               clearInterval(gameControl);
               gameActive = false;
               document.getElementById("game-status").innerHTML = "<small>Game Paused</small>";
           }
           
           function endGame(x) {
-              \\ setting gameActive flag to false
+              // setting gameActive flag to false
               clearInterval(gameControl);
               gameActive = false;
               document.getElementById("game-status").innerHTML = "<small>Game Over</small>";
               document.getElementById("game-score").innerHTML = "<h1>Score: " + x + "</h1>";
           }
     
-          \\ game world
-          var gridSize = (tileSize = 20); \\ 20 x 20 = 400
+          // game world
+          var gridSize = (tileSize = 20); // 20 x 20 = 400
           var nextX = (nextY = 0);
     
-          \\ snake
+          // snake
           var defaultTailSize = 3;
           var tailSize = defaultTailSize;
           var snakeTrail = [];
           var snakeX = (snakeY = 10);
     
-          \\ apple
+          // apple
           var appleX = (appleY = 15);
     
-          \\ draw
+          // draw
           function draw() {
-            \\ move snake in next pos
+            // move snake in next pos
             snakeX += nextX;
             snakeY += nextY;
     
-            \\ snake over game world?
+            // snake over game world?
             if (snakeX < 0) {
               snakeX = gridSize - 1;
             }
@@ -108,7 +117,7 @@
               snakeY = 0;
             }
     
-            \\snake bite apple?
+            //snake bite apple?
             if (snakeX == appleX && snakeY == appleY) {
               tailSize++;
     
@@ -116,17 +125,17 @@
               appleY = Math.floor(Math.random() * gridSize);
             }
     
-            \\  Select the colour to fill the canvas
+            //  Select the colour to fill the canvas
           ctx.fillStyle = CANVAS_BACKGROUND_COLOUR;
-          \\  Select the colour for the border of the canvas
+          //  Select the colour for the border of the canvas
           ctx.strokestyle = CANVAS_BORDER_COLOUR;
     
-          \\ Draw a "filled" rectangle to cover the entire canvas
+          // Draw a "filled" rectangle to cover the entire canvas
           ctx.fillRect(0, 0, canvas.width, canvas.height);
-          \\ Draw a "border" around the entire canvas
+          // Draw a "border" around the entire canvas
           ctx.strokeRect(0, 0, canvas.width, canvas.height);
     
-            \\ paint snake
+            // paint snake
             ctx.fillStyle = SNAKE_COLOUR;
             ctx.strokestyle = SNAKE_BORDER_COLOUR;
             for (var i = 0; i < snakeTrail.length; i++) {
@@ -139,7 +148,7 @@
               
               ctx.strokeRect(snakeTrail[i].x * tileSize , snakeTrail[i].y* tileSize, tileSize, tileSize);
     
-              \\snake bites it's tail?
+              //snake bites it's tail?
               if (snakeTrail[i].x == snakeX && snakeTrail[i].y == snakeY) {
                 if(tailSize > 3) {
                     endGame(tailSize);
@@ -148,18 +157,18 @@
               }
             }
     
-            \\ paint apple
+            // paint apple
             ctx.fillStyle = "red";
             ctx.fillRect(appleX * tileSize, appleY * tileSize, tileSize, tileSize);
     
-            \\set snake trail
+            //set snake trail
             snakeTrail.push({ x: snakeX, y: snakeY });
             while (snakeTrail.length > tailSize) {
               snakeTrail.shift();
             }
           }
     
-          \\ input
+          // input
           function keyDownEvent(e) {
             switch (e.keyCode) {
               case 37:

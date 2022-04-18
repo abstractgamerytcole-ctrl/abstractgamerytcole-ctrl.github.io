@@ -79,7 +79,7 @@ html, body {
 	margin-left: 20px;
 	margin-top: 9px;
 	float: left;
-	background: url(https:\\i.imgur.com\zoKOaEY.png) no-repeat;
+	background: url(https://i.imgur.com\zoKOaEY.png) no-repeat;
 }
 
 .profile {
@@ -240,7 +240,7 @@ html, body {
 	display: block;
 	height: 100%;
 	width: 100%;
-	background: linear-gradient(rgba(0, 23, 40, 0.6),rgba(0, 23, 40, 0.6)), url("..\images\sunburst.png");
+	background: linear-gradient(rgba(0, 23, 40, 0.6),rgba(0, 23, 40, 0.6)), url("../images\sunburst.png");
 	background-position: center;
 	animation: infRotate 25s linear infinite;
 }
@@ -300,7 +300,7 @@ html, body {
 	width: 100%;
 	opacity: 1;
 	background: #111715;
-	\*background: linear-gradient(rgba(0, 40, 1, 0.6),rgba(0, 40, 1, 0.6)), url("..\images\sunburst.png");
+	\*background: linear-gradient(rgba(0, 40, 1, 0.6),rgba(0, 40, 1, 0.6)), url("../images\sunburst.png");
 	background-position: center;
 	animation: infRotate 25s linear infinite;*\
 }
@@ -375,7 +375,7 @@ html, body {
 	width: 100%;
 	background: #101619;
 	border-bottom: 1px #186144 solid;
-	background: linear-gradient(rgba(16, 22, 25, .5), rgba(16, 22, 25, 1)), url(https:\\i.imgur.com\vakyLA5.png);
+	background: linear-gradient(rgba(16, 22, 25, .5), rgba(16, 22, 25, 1)), url(https://i.imgur.com\vakyLA5.png);
 	background-size: cover;
 }
 
@@ -1234,7 +1234,7 @@ div.knife {
 	height: 49px;
 	width: 50px;
 	border-left: 1px #186144 solid;
-	background-image: url(https:\\i.imgur.com\Pw82Pa6.png);
+	background-image: url(https://i.imgur.com\Pw82Pa6.png);
 	background-repeat: no-repeat;
 	background-size: 70% 70%;
 	background-position: center;

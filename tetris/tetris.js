@@ -4,23 +4,23 @@
 
 
 
-var TETRIS = new function () { \\ namespacing
+var TETRIS = new function () { // namespacing
 	
     function random_det(seed) {
       return function() {
-        \\ Robert Jenkins' 32 bit integer hash function.
+        // Robert Jenkins' 32 bit integer hash function.
         seed = ((seed + 0x7ed55d16) + (seed << 12))  & 0xffffffff;
         seed = ((seed ^ 0xc761c23c) ^ (seed >>> 19)) & 0xffffffff;
         seed = ((seed + 0x165667b1) + (seed << 5))   & 0xffffffff;
         seed = ((seed + 0xd3a2646c) ^ (seed << 9))   & 0xffffffff;
         seed = ((seed + 0xfd7046c5) + (seed << 3))   & 0xffffffff;
         seed = ((seed ^ 0xb55a4f09) ^ (seed >>> 16)) & 0xffffffff;
-        \\return (seed >>> 0) \ 0xffffffff;
+        //return (seed >>> 0) / 0xffffffff;
         return (seed >>> 0); 
       };
     }
     
-    \\ generator to mod PRNG by 7
+    // generator to mod PRNG by 7
     function random_det_7(seed) {
       var gen = random_det(seed);
       return function () { 
@@ -28,8 +28,8 @@ var TETRIS = new function () { \\ namespacing
       };
     }
     
-    \\ generator to produce a permutation of 0..7 -- returns array
-    \\ this is a fisher yates shuffle
+    // generator to produce a permutation of 0..7 -- returns array
+    // this is a fisher yates shuffle
     function random_perm_7(seed) {
       var gen = random_det(seed);
       var arr = [0,1,2,3,4,5,6];
@@ -40,7 +40,7 @@ var TETRIS = new function () { \\ namespacing
           var tmp = arr[j];
           arr[j] = arr[i];
           arr[i] = tmp;
-          \\ todo: change to xor swap
+          // todo: change to xor swap
         }
         return arr;
       };
@@ -48,7 +48,7 @@ var TETRIS = new function () { \\ namespacing
     
     function random_perm_single(seed) {
       var gen = random_perm_7(seed);
-      var curPerm = gen(); \\ i dont like this unnecessary duplicating of state
+      var curPerm = gen(); // i dont like this unnecessary duplicating of state
       var which = -1;
       return function () {    
         which += 1;
@@ -68,14 +68,14 @@ var TETRIS = new function () { \\ namespacing
     var ysize = 15;
     var gapsize = 2;
     var bordersize = 2;
-    \\ white, red, green, blue, purple, yellow, orange, cyan
-    \\ None,  Z,   S,     J,    T,      O,      L,      I
+    // white, red, green, blue, purple, yellow, orange, cyan
+    // None,  Z,   S,     J,    T,      O,      L,      I
     var colors = ["#999","#F00","#0F0",
                   "#22F","#F0F", "#FF0",
                   "#F70","#0EE"];
     function drawBox(position, value, context) {
       var i = position % 10;
-      var j = (position-i) \ 10;
+      var j = (position-i) / 10;
       drawBox2(i,j,value,context);
     }
     function drawBox2(posX,posY,value,context) {
@@ -99,29 +99,29 @@ var TETRIS = new function () { \\ namespacing
     }
     var positionFromLeft = 0;
     function updateSizing() {
-      xsize = ysize = Math.floor((window.innerHeight - 25 - yoff*2 - 24*gapsize) \ 24.0);
-      \\gapsize = Math.floor((window.innerHeight - 150) \ 300);
+      xsize = ysize = Math.floor((window.innerHeight - 25 - yoff*2 - 24*gapsize) / 24.0);
+      //gapsize = Math.floor((window.innerHeight - 150) / 300);
       var bc = document.getElementById('board_canvas');
       var ac = document.getElementById('animated_canvas');
       var sc = document.getElementById('shadow_canvas');
-      \\var ph = document.getElementById('placeholder');
+      //var ph = document.getElementById('placeholder');
       var score_el = document.getElementById('score').parentNode;
       bc.width = ac.width = sc.width = (xoff*2 + xsize*10 + gapsize*9);
       bc.height = ac.height = sc.height = (yoff*2 + ysize*24 + gapsize*23);
-      \\ph.style.height = (yoff*2+ysize*24+gapsize*23)+"px";
-      \\ph.style.width = ((xoff*2 + xsize*10 + gapsize*9)+180)+"px";
+      //ph.style.height = (yoff*2+ysize*24+gapsize*23)+"px";
+      //ph.style.width = ((xoff*2 + xsize*10 + gapsize*9)+180)+"px";
       
       
         document.getElementById('instructions').style.marginLeft = (bc.width)+"px";
-        document.getElementById('instr').ontouchmove = function (e) { \\ prevent touchmove default scroll behavior on all but the instr text section
+        document.getElementById('instr').ontouchmove = function (e) { // prevent touchmove default scroll behavior on all but the instr text section
             e.stopPropagation(); 
         }
         
       
       
-      \\ this is to set the absolute positioning in the center of the window.
-      \\ note -- window.innerWidth\Height not supported by IE
-      positionFromLeft = 10;\\Math.floor((window.innerWidth - (xoff*2 + xsize*10 + gapsize*9) - 20)\2.0);
+      // this is to set the absolute positioning in the center of the window.
+      // note -- window.innerWidth/Height not supported by IE
+      positionFromLeft = 10;//Math.floor((window.innerWidth - (xoff*2 + xsize*10 + gapsize*9) - 20)/2.0);
       bc.style.left = ac.style.left = sc.style.left = positionFromLeft + "px"; 
       
       score_el.style.left = positionFromLeft+bc.width+10+"px";
@@ -152,7 +152,7 @@ var TETRIS = new function () { \\ namespacing
       else if (numRowsCleared == 3) {applyScore(400);}
       else if (numRowsCleared == 4) {applyScore(1000);}
     }
-    \\ row is full
+    // row is full
     function shiftDown(row) {
       var i;
       for(i=row*10-1;i>=0;i--) {
@@ -171,28 +171,28 @@ var TETRIS = new function () { \\ namespacing
       updatePiece();
     } 
     function animationUpdateIntervalFunc() {
-        \\ move animPositions closer to their targets (piece positions)
+        // move animPositions closer to their targets (piece positions)
         animPositionX += (pieceX - animPositionX)*.3;
         animPositionY += (pieceY - animPositionY)*.3;
-        \\ move animRotation closer to zero
+        // move animRotation closer to zero
         animRotation -= animRotation * 0.3;
         updatePiece();
     }
     function mouseControlFunc() {}
     var isMouseControl = false;
-    var mouseControlX = 0; \\ use this to draw helper arrow
+    var mouseControlX = 0; // use this to draw helper arrow
     function toggleMouseControl () {
       if (isMouseControl) { mouseControlFunc = function () {}; document.oncontextmenu = null; } 
       else {mouseControlFunc = function () {
-        \\var posIn = posx-positionFromLeft; 
-        \\if (posIn > xoff && posIn < (xoff + xsize*10 + gapsize*9))
-        \\{
-          mouseControlX = (posx \ window.innerWidth)*11.5-2.5;
-          \\document.title = off;
+        //var posIn = posx-positionFromLeft; 
+        //if (posIn > xoff && posIn < (xoff + xsize*10 + gapsize*9))
+        //{
+          mouseControlX = (posx / window.innerWidth)*11.5-2.5;
+          //document.title = off;
           if (pieceX > mouseControlX+.5) moves[0](); 
           if (pieceX < mouseControlX-.5) moves[2]();
           
-        \\} else {  }
+        //} else {  }
       };
       document.oncontextmenu = function () { return false; };  
       }
@@ -216,7 +216,7 @@ var TETRIS = new function () { \\ namespacing
       ctx.strokeText("PAUSED",offset,yoffset,size,100);
     }
     var setPause = function(isendgame) {
-      \\console.log("setPause invoked", paused);
+      //console.log("setPause invoked", paused);
       if (paused) return;
       clearInterval(autoMoveDownInterval); 
       autoMoveDownInterval = "";
@@ -224,11 +224,11 @@ var TETRIS = new function () { \\ namespacing
       animationUpdateInterval = "";
       clearInterval(mouseControlInterval);
       mouseControlInterval = "";
-      \\document.title = "Tetris! GAME OVER";
+      //document.title = "Tetris! GAME OVER";
       if (!isendgame) { drawPaused(); document.title="Tetris! PAUSED";
       }
       paused = true;
-      pausedBecauseLostFocus = false; \\ default this to false
+      pausedBecauseLostFocus = false; // default this to false
        
     }
     
@@ -242,13 +242,13 @@ var TETRIS = new function () { \\ namespacing
           animationUpdateInterval = setInterval(animationUpdateIntervalFunc,16);
       }
       if (mouseControlInterval == "") {
-        mouseControlInterval = setInterval(mouseControlFunc,100); \\function indirection
+        mouseControlInterval = setInterval(mouseControlFunc,100); //function indirection
       }
       paused = false;
-      pausedBecauseLostFocus = false; \\ default this to false
+      pausedBecauseLostFocus = false; // default this to false
       document.title = "Tetris!"; 
-      \\ chrome doesn't seem to update titlebar correctly sometimes. similar thing in safari.
-      \\ Can't figure out a way to force it. Works great in FF.
+      // chrome doesn't seem to update titlebar correctly sometimes. similar thing in safari.
+      // Can't figure out a way to force it. Works great in FF.
     }
     
     var control_accum = [-1,-1];
@@ -256,13 +256,13 @@ var TETRIS = new function () { \\ namespacing
     var xMoveThreshold = 30;
     var yMoveThreshold = 30;
     
-    var hardDropYDistanceThreshold = 35; \\ 150 px seems reasonable
+    var hardDropYDistanceThreshold = 35; // 150 px seems reasonable
     var hardDropGestureTime = 300; 
-    var hardDropYAccAtPreviousTimes = []; \\ stores path
+    var hardDropYAccAtPreviousTimes = []; // stores path
     
     function hardDropTest(x,y) {
-        \\ only when user lifts control finger and the parameter thresholds are met
-        \\ will the hard drop command be sent. 
+        // only when user lifts control finger and the parameter thresholds are met
+        // will the hard drop command be sent. 
         if (hardDropYAccAtPreviousTimes.length > 2) {
             var now = new Date().getTime();
             if (now - lastFixTime > hardDropGestureTime) {
@@ -271,17 +271,17 @@ var TETRIS = new function () { \\ namespacing
                         if ((y - hardDropYAccAtPreviousTimes[i][0]) > hardDropYDistanceThreshold) {
                             moves[6]();
                             return;
-                        } \\else { console.log("not enough dist "+(y - hardDropYAccAtPreviousTimes[i][0])); }
-                    } \\else { console.log("too much time "+(now - hardDropYAccAtPreviousTimes[i][1])); }
+                        } //else { console.log("not enough dist "+(y - hardDropYAccAtPreviousTimes[i][0])); }
+                    } //else { console.log("too much time "+(now - hardDropYAccAtPreviousTimes[i][1])); }
                 }
-                \\console.log("Not quite enough for hard drop: "+ flatten(hardDropYAccAtPreviousTimes)+" timediff = "+ (now-hardDropYAccAtPreviousTimes[0][1]) +" y = "+y);
+                //console.log("Not quite enough for hard drop: "+ flatten(hardDropYAccAtPreviousTimes)+" timediff = "+ (now-hardDropYAccAtPreviousTimes[0][1]) +" y = "+y);
             }
         }
         hardDropYAccAtPreviousTimes = [];
     }
     
-    \\ all of the control finger data has been handled for us in touchevent callbacks
-    \\ and this function is called only when necessary (control finger moved)
+    // all of the control finger data has been handled for us in touchevent callbacks
+    // and this function is called only when necessary (control finger moved)
     function Control(newpos) {
     
         if (paused) return;
@@ -290,11 +290,11 @@ var TETRIS = new function () { \\ namespacing
         var delta = [newpos[0]-cl[0],newpos[1]-cl[1]];
         control_accum = [control_accum[0]+delta[0],control_accum[1]+delta[1]];
     
-        var thresh_sq = 50; \\ square of pixels travel which is to cancel tap. 
+        var thresh_sq = 50; // square of pixels travel which is to cancel tap. 
         if (touchlist.length == 1 && control_accum[0]*control_accum[0]+control_accum[1]*control_accum[1] > thresh_sq) {
-            lastTouchStartTime = 0; \\ cancel the tap "gesture"
+            lastTouchStartTime = 0; // cancel the tap "gesture"
         }
-        \\ game control logic 
+        // game control logic 
         while (control_accum[0] > xMoveThreshold) { control_accum[0] -= xMoveThreshold; moves[2](); hardDropYAccAtPreviousTimes = []; }
         while (control_accum[0] <-xMoveThreshold) { control_accum[0] += xMoveThreshold; moves[0](); hardDropYAccAtPreviousTimes = []; }
     
@@ -309,38 +309,38 @@ var TETRIS = new function () { \\ namespacing
     var actually_draw_touches = false;
     
     
-    function drawTouches() { \\ Not really drawing so much as managing and moving a list of DOM elems so they match touchlist -- it *functions* like drawing
-        \\ This function serves to transparently create and manage the
-        \\ touch visualization elements requiring only trivial processing
-        \\ of events in a separate part of code
+    function drawTouches() { // Not really drawing so much as managing and moving a list of DOM elems so they match touchlist -- it *functions* like drawing
+        // This function serves to transparently create and manage the
+        // touch visualization elements requiring only trivial processing
+        // of events in a separate part of code
     
         if (!actually_draw_touches) return;
     
         var indicator_container = document.getElementById('indicatorcontainer');
     
-            \\ removes any DOM indicator which is not (no longer) in touchlist
+            // removes any DOM indicator which is not (no longer) in touchlist
         for (var i = 0; i < indicator_container.childNodes.length; i++) {
             var found = false;
             for (var j=0;j<touchlist.length;++j) {
-                if (touchlist[j].identifier == indicator_container.childNodes[i].innerHTML.replace(\^(.*)@.*$\,'$1')) {
+                if (touchlist[j].identifier == indicator_container.childNodes[i].innerHTML.replace(/^(.*)@.*$/,'$1')) {
                     found = true;
                 }
             }
             if (!found) {
                 indicator_container.removeChild(indicator_container.childNodes[i]); i--;
-                \\console.log("removed finger child #"+(i+1));
+                //console.log("removed finger child #"+(i+1));
             }
         }
     
-        \\ updates the remaining DOM indicators with updated positioning
+        // updates the remaining DOM indicators with updated positioning
         for (var i=0; i < touchlist.length; ++i) { 
-            \\ the touchlist caches the quickly updated data 
-            \\ TODO: store efficient touchlist
+            // the touchlist caches the quickly updated data 
+            // TODO: store efficient touchlist
             var found = false;
             for (var j=0;j<indicator_container.childNodes.length;j++) {
                 var thisf = indicator_container.childNodes[j];
-                \\console.log(thisf.innerHTML.replace(\(.*)@.*\,'$1'))
-                if (thisf.innerHTML.replace(\^(.*)@.*$\,'$1') == touchlist[i].identifier) {
+                //console.log(thisf.innerHTML.replace(/(.*)@.*/,'$1'))
+                if (thisf.innerHTML.replace(/^(.*)@.*$/,'$1') == touchlist[i].identifier) {
                     thisf.style.webkitTransform = 'translate('+touchlist[i].clientX+'px, '+touchlist[i].clientY+'px)';
                     thisf.innerHTML = touchlist[i].identifier + "@ " + touchlist[i].clientX +", "+ touchlist[i].clientY;
                     found = true;
@@ -350,7 +350,7 @@ var TETRIS = new function () { \\ namespacing
                 }
                 
             }
-            \\ creates new DOM indicators if there are new fingers
+            // creates new DOM indicators if there are new fingers
             if (!found) {
                 var new_indicator = document.createElement('span'); 
                 new_indicator.innerHTML = touchlist[i].identifier + "@ " + touchlist[i].clientX +", "+ touchlist[i].clientY;
@@ -360,7 +360,7 @@ var TETRIS = new function () { \\ namespacing
                     new_indicator.setAttribute('class', 'finger-indicator control');
                 }
                 indicator_container.appendChild(new_indicator);
-                \\console.log("adding finger child #"+(indicator_container.childNodes.length-1));
+                //console.log("adding finger child #"+(indicator_container.childNodes.length-1));
             }
         }
         
@@ -369,7 +369,7 @@ var TETRIS = new function () { \\ namespacing
     
     function win_onload() {
       next();
-      applyScore(0); \\ to init
+      applyScore(0); // to init
       setPause(false);
       unPause();
       
@@ -378,23 +378,23 @@ var TETRIS = new function () { \\ namespacing
       if (check_textRenderContext(animCtx)) {
         
       } else {
-        \\alert("No text available"); 
+        //alert("No text available"); 
       }
         
-      \\ required to make the range actually settable 
+      // required to make the range actually settable 
       document.getElementById('sens_range').ontouchmove = function (e) { e.stopPropagation(); }
       updateSizing();  
     }
     
-    \\ coordinate systems follow convention starting at top-left. 
-    \\ order is that of clockwise rotation.
-    \\ row-major layout.
-    \\ currently using SRS rotation; I am not satisfied with 
-    \\ the S, Z, I having 4 states when they only need two, 
-    \\ but I would need to have them rotate on an axis that changes
-    \\ location depending on orientation and cw vs ccw rotation. 
-    \\ todo: Implement this :) --- hopefully without enumerating
-    \\ all possible cases
+    // coordinate systems follow convention starting at top-left. 
+    // order is that of clockwise rotation.
+    // row-major layout.
+    // currently using SRS rotation; I am not satisfied with 
+    // the S, Z, I having 4 states when they only need two, 
+    // but I would need to have them rotate on an axis that changes
+    // location depending on orientation and cw vs ccw rotation. 
+    // todo: Implement this :) --- hopefully without enumerating
+    // all possible cases
     var tetromino_Z = [[[1,1],[0,1,1]],[[0,0,1],[0,1,1],[0,1]],[[],[1,1],[0,1,1]],[[0,1],[1,1],[1]]];
     var tetromino_S = [[[0,2,2],[2,2]],[[0,2],[0,2,2],[0,0,2]],[[],[0,2,2],[2,2]],[[2],[2,2],[0,2]]];
     var tetromino_J = [[[3],[3,3,3]],[[0,3,3],[0,3],[0,3]],[[],[3,3,3],[0,0,3]],[[0,3],[0,3],[3,3]]];
@@ -402,15 +402,15 @@ var TETRIS = new function () { \\ namespacing
     var tetromino_O = [[[5,5],[5,5]]];
     var tetromino_L = [[[0,0,6],[6,6,6]],[[0,6],[0,6],[0,6,6]],[[],[6,6,6],[6]],[[6,6],[0,6],[0,6]]];
     var tetromino_I = [[[],[7,7,7,7]],[[0,0,7],[0,0,7],[0,0,7],[0,0,7]],[[],[],[7,7,7,7]],[[0,7],[0,7],[0,7],[0,7]]];
-    \\ tetromino geometry data
+    // tetromino geometry data
     var tetrominos = [tetromino_Z,tetromino_S,tetromino_J,tetromino_T,tetromino_O,tetromino_L,tetromino_I];
-    \\ this is for the rotation animation -- must know where in local
-    \\ grid did the piece rotate around
-    \\ each coordinate is a triple, the first two are x,y, and 
-    \\ the last is to indicate whether the point is in the center
-    \\ of the block or in the corner to the bottom right between 
-    \\ blocks. These are the points which may be rotated around
-    \\ to retain block alignment, if that makes any sense. 
+    // this is for the rotation animation -- must know where in local
+    // grid did the piece rotate around
+    // each coordinate is a triple, the first two are x,y, and 
+    // the last is to indicate whether the point is in the center
+    // of the block or in the corner to the bottom right between 
+    // blocks. These are the points which may be rotated around
+    // to retain block alignment, if that makes any sense. 
     var tet_center_rot = [[1,1,true],[1,1,true],[1,1,true],[1,1,true],[0,0,false],[1,1,true],[1,1,false]];
     
     var pieceX=3;
@@ -431,14 +431,14 @@ var TETRIS = new function () { \\ namespacing
     }
     
     function clearContext(ctx, width, height) {
-        \\ Store the current transformation matrix
+        // Store the current transformation matrix
         ctx.save();
     
-        \\ Use the identity matrix while clearing the canvas
+        // Use the identity matrix while clearing the canvas
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, width, height);
     
-        \\ Restore the transform
+        // Restore the transform
         ctx.restore(); 
     }
     
@@ -453,13 +453,13 @@ var TETRIS = new function () { \\ namespacing
     function gameOver() {
       drawMessage("Game Over", 1.45);
       setPause(true);
-      \\Cleanup
+      //Cleanup
     
     }
     
     var objPos = {x:0, y:0};
     var lockTimer = "";
-    var generator = random_perm_single(Math.floor((new Date()).getTime() \ 1000));
+    var generator = random_perm_single(Math.floor((new Date()).getTime() / 1000));
     function next() {
       pieceX = 3;
       pieceY = 0;
@@ -493,7 +493,7 @@ var TETRIS = new function () { \\ namespacing
         }
       }
       drawBoard(board,document.getElementById('board_canvas').getContext('2d'));
-      \\ will hardcode this behavior for now
+      // will hardcode this behavior for now
       clearRowCheck(pieceY,tetrominos[curPiece][curRotation].length);
       next();
     }
@@ -508,7 +508,7 @@ var TETRIS = new function () { \\ namespacing
           var pxi = pieceX+i;
           var pyj = pieceY+j;
           if (tetkji && (pxi < 0 || pyj < 0 || pxi > 9 || pyj > 23)) {
-            \\document.getElementById('msg').innerHTML += "<br>pxi,pyj="+pxi+","+pyj+"i,j="+i+","+j+"tetkji="+tetkji;
+            //document.getElementById('msg').innerHTML += "<br>pxi,pyj="+pxi+","+pyj+"i,j="+i+","+j+"tetkji="+tetkji;
             return 1;
           }
           if (tetkji && board[pyj*10+pxi]) {
@@ -519,13 +519,13 @@ var TETRIS = new function () { \\ namespacing
       return 0;
     }
     moves = [
-      \\ left
+      // left
       function () {if (freezeInteraction) return; pieceX -= 1; if (isPieceInside()) pieceX += 1; shiftright = 0; updateShadow(); clearLockTimer();},
-      \\ up direction movement is a cheat in standard tetris
+      // up direction movement is a cheat in standard tetris
       function () {if (freezeInteraction) return; pieceY -= 1; if (isPieceInside()) pieceY += 1; clearLockTimer();},
-      \\ right
+      // right
       function () {if (freezeInteraction) return; pieceX += 1; if (isPieceInside()) pieceX -= 1; shiftright = 1; updateShadow(); clearLockTimer();},
-      \\ down key calls this -- moves stuff down, if at bottom, locks it
+      // down key calls this -- moves stuff down, if at bottom, locks it
       function () {
         if (freezeInteraction) return;
         pieceY += 1; if (isPieceInside()) { 
@@ -534,28 +534,28 @@ var TETRIS = new function () { \\ namespacing
         }
         clearLockTimer();
       },
-      \\ rotate clockwise
+      // rotate clockwise
       function () {
         if (freezeInteraction) return;
         var oldrot = curRotation; 
         curRotation = (curRotation+1)%(tetrominos[curPiece].length);
         if (kick()) curRotation = oldrot; 
-        else animRotation = -Math.PI\2.0;
+        else animRotation = -Math.PI/2.0;
         updateShadow();
         clearLockTimer();
       },
-      \\ rotate ccw
+      // rotate ccw
       function () {
         if (freezeInteraction) return;
         var oldrot = curRotation;
         var len = tetrominos[curPiece].length;
         curRotation = (curRotation-1+len)%len;
         if (kick()) curRotation = oldrot;
-        else animRotation = Math.PI\2.0;
+        else animRotation = Math.PI/2.0;
         updateShadow();
         clearLockTimer();
       },
-      \\ hard drop
+      // hard drop
       function () {
         if (freezeInteraction) return;
         var curY;
@@ -570,7 +570,7 @@ var TETRIS = new function () { \\ namespacing
         applyScore(traversed);
         clearLockTimer();
       }, 
-      \\ timer based down
+      // timer based down
       function () {
         if (freezeInteraction) return;
         pieceY += 1; 
@@ -581,9 +581,9 @@ var TETRIS = new function () { \\ namespacing
           }
         }
       },
-      \\ hold feature
+      // hold feature
       function () {
-        \\alert("hold unimplemented.");
+        //alert("hold unimplemented.");
       }, 
       function () {
         toggleMouseControl();
@@ -601,46 +601,46 @@ var TETRIS = new function () { \\ namespacing
     
     var freezeInteraction = false;
     var hardDropTimeout = "";
-    \\ sets up hard drop animation
+    // sets up hard drop animation
     function dropPiece () {
       if (hardDropTimeout != "") return; 
       freezeInteraction = true;
       hardDropTimeout = setTimeout(function () {freezeInteraction = false; fixPiece(); clearLockTimer(); hardDropTimeout = "";},100);
     }
     
-    \\ left, right
+    // left, right
     var shiftorders = [
-        [0,0], \\ initial
-        [-1,0],[-1,1],[-1,-1],[0,-1], \\ col 1 block left; directly above
-        [-1,2],[-1,-2], \\ col 1 block left, two away vertically
-        [-2,0],[-2,1],[-2,-1],[-2,2],[-2,-2], \\ col 2 blocks left
-        [0,-2], \\ directly above, two spaces
+        [0,0], // initial
+        [-1,0],[-1,1],[-1,-1],[0,-1], // col 1 block left; directly above
+        [-1,2],[-1,-2], // col 1 block left, two away vertically
+        [-2,0],[-2,1],[-2,-1],[-2,2],[-2,-2], // col 2 blocks left
+        [0,-2], // directly above, two spaces
         
-    \\	[0,2], \\ directly below, two spaces (can cause tunnelling perhaps? one space below certainly is not needed)
-    \\	[-3,0],[-3,1],[-3,-1],[-3,2],[-3,-2], \\ col 3 blocks left -- this may be getting cheap
-        [1,0],[1,1],[1,-1],[2,0],[2,1],[2,-1],[1,2],[1,-2] \\ move left for wall kicking
+    //	[0,2], // directly below, two spaces (can cause tunnelling perhaps? one space below certainly is not needed)
+    //	[-3,0],[-3,1],[-3,-1],[-3,2],[-3,-2], // col 3 blocks left -- this may be getting cheap
+        [1,0],[1,1],[1,-1],[2,0],[2,1],[2,-1],[1,2],[1,-2] // move left for wall kicking
     ];
-    var shiftright = 0; \\ 0 = left, 1 = right
+    var shiftright = 0; // 0 = left, 1 = right
         
     
-    \\ rotation nudge. Attempts to shift piece into a space that fits nearby, if necessary.
-    \\ if such a position is found, it will be moved there. 
+    // rotation nudge. Attempts to shift piece into a space that fits nearby, if necessary.
+    // if such a position is found, it will be moved there. 
     function kick() {
       var i;
-      \\ modify this array to change the order in which shifts are tested. To favor burying pieces into gaps below,
-      \\ place negative y offset entries closer to the front. 
+      // modify this array to change the order in which shifts are tested. To favor burying pieces into gaps below,
+      // place negative y offset entries closer to the front. 
      
-      var oldpos = [pieceX,pieceY]; \\ for simplicity I reuse methods that actually modify piece position.
+      var oldpos = [pieceX,pieceY]; // for simplicity I reuse methods that actually modify piece position.
       for (i=0;i<shiftorders.length;i++) {
-        pieceX = oldpos[0]; pieceY = oldpos[1]; \\ restore position
+        pieceX = oldpos[0]; pieceY = oldpos[1]; // restore position
         if (shiftright) pieceX -= shiftorders[i][0];
         else pieceX += shiftorders[i][0];
         pieceY += shiftorders[i][1];
         if (!isPieceInside())
           return 0;
       }
-      pieceX = oldpos[0]; pieceY = oldpos[1]; \\ restore position
-      return 1; \\ return failure
+      pieceX = oldpos[0]; pieceY = oldpos[1]; // restore position
+      return 1; // return failure
     }
     
     function updatePiece() {
@@ -648,8 +648,8 @@ var TETRIS = new function () { \\ namespacing
       drawPiece(ctx);
     }
     
-    \\ Does not need to be called every frame like updatePiece is.
-    \\ will be called from left and right moves, also 
+    // Does not need to be called every frame like updatePiece is.
+    // will be called from left and right moves, also 
     function updateShadow() {
       var ctx = document.getElementById('shadow_canvas').getContext('2d');
       drawShadow(ctx);
@@ -683,12 +683,12 @@ var TETRIS = new function () { \\ namespacing
     var buttonList = [[37,74],[],[39,76],[40,75],[38,73,88,82],[90,84],[68,32],[],[67],[77],[78]];
     var buttonStates = new Array(buttonList.length); for (i=0;i<buttonList.length;++i) buttonStates[i] = 0;
     
-    \\var directionalButtonStates = [0,0,0,0]; \\ left up right down
-    \\var rotationButtonStates = [0,0] \\ cw, ccw
-    \\var dropButtonState = 0;
-    \\var holdButtonState = 0; 
-    \\ these variables keep track of button state in order to customize
-    \\ key repeat rates
+    //var directionalButtonStates = [0,0,0,0]; // left up right down
+    //var rotationButtonStates = [0,0] // cw, ccw
+    //var dropButtonState = 0;
+    //var holdButtonState = 0; 
+    // these variables keep track of button state in order to customize
+    // key repeat rates
     
     function keydownfunc(e) {   
       var keynum;
@@ -696,7 +696,7 @@ var TETRIS = new function () { \\ namespacing
       else if (e.which) keynum = e.which;
       else return;
       var keychar = String.fromCharCode(keynum);
-      \\document.title = keynum;
+      //document.title = keynum;
       
       if (keychar == 'P') { 
         if (paused) unPause();
@@ -710,14 +710,14 @@ var TETRIS = new function () { \\ namespacing
         for (j=0;j<buttonList[i].length;j++) {
           if (keynum == buttonList[i][j] && !buttonStates[i]){
             moves[i]();
-            stopRepeat(i); \\ this is insurance
+            stopRepeat(i); // this is insurance
             setupRepeat(i);
             buttonStates[i] = 1;
           }
         }
       }
     
-      \\document.getElementById('msg').innerHTML = "last key pressed: "+ keynum + "inside:"+isPieceInside();
+      //document.getElementById('msg').innerHTML = "last key pressed: "+ keynum + "inside:"+isPieceInside();
       updatePiece();
     }
     
@@ -746,7 +746,7 @@ var TETRIS = new function () { \\ namespacing
     var animPositionY=0;
     var animRotation=0;
     
-    \*
+    /*
     function drawPieceOld(context) {
       var i,j;
       var tetk = tetrominos[curPiece][curRotation];
@@ -756,40 +756,40 @@ var TETRIS = new function () { \\ namespacing
           var tetkji = tetkj[i];
           if (tetkji) {
             context.save();
-            context.rotate(10.0*3.1415926\180.0);
+            context.rotate(10.0*3.1415926/180.0);
             drawBox2(animPositionX+i,animPositionY+j,tetkji,context);
             context.restore();
           }
         }
       }
     }
-    *\
+    */
     var drawIndicators = false;
     function drawPiece(context) {
       var i,j;
-      \\ drawing using geometry of current rotation 
+      // drawing using geometry of current rotation 
       var tetk = tetrominos[curPiece][curRotation];
-      \\ translating (canvas origin) to the center, 
-      \\ rotating there, then drawing the boxes
+      // translating (canvas origin) to the center, 
+      // rotating there, then drawing the boxes
       context.clearRect(0,0,xoff*2 + xsize*10 + gapsize*9,yoff*2+ysize*24+gapsize*23);  
       if (isMouseControl && drawIndicators) {
         context.save();
         context.translate(xoff + (xsize+gapsize) * (mouseControlX+1.5),yoff);
         
         context.fillStyle = "rgba(0,0,255,"+(Math.abs((mouseControlX) - Math.floor(mouseControlX+0.5)) * 0.2 + 0.2)+")";
-        context.fillRect(-xsize\4,0,xsize\2,ysize*24 + gapsize*23);
+        context.fillRect(-xsize/4,0,xsize/2,ysize*24 + gapsize*23);
         context.restore();
       }
       context.save();
       context.fillStyle = colors[curPiece+1];
-      var centerX = tet_center_rot[curPiece][0]*(xsize+gapsize)+xsize\2+(!tet_center_rot[curPiece][2])*(xsize\2+gapsize);
-      var centerY = tet_center_rot[curPiece][1]*(ysize+gapsize)+ysize\2+(!tet_center_rot[curPiece][2])*(ysize\2+gapsize);
+      var centerX = tet_center_rot[curPiece][0]*(xsize+gapsize)+xsize/2+(!tet_center_rot[curPiece][2])*(xsize/2+gapsize);
+      var centerY = tet_center_rot[curPiece][1]*(ysize+gapsize)+ysize/2+(!tet_center_rot[curPiece][2])*(ysize/2+gapsize);
       
       context.translate(xoff + animPositionX*(xsize+gapsize) + centerX,yoff + animPositionY*(ysize+gapsize) + centerY);
       context.rotate(animRotation);
       context.translate(-centerX,-centerY); 
       
-      \\ now in rotated coordinates, zeroed at piece origin
+      // now in rotated coordinates, zeroed at piece origin
       for (j=0;j<tetk.length;j++) {
         var tetkj = tetk[j];
         for (i=0;i<tetkj.length;i++) {
@@ -804,7 +804,7 @@ var TETRIS = new function () { \\ namespacing
           context.save();
           context.translate(xoff+(animPositionX+1.5)*(xsize+gapsize),yoff);
           context.fillStyle = "rgba(255,0,0,0.3)";
-          context.fillRect(-xsize\4,0,xsize\2,ysize*24+gapsize*23);
+          context.fillRect(-xsize/4,0,xsize/2,ysize*24+gapsize*23);
           context.restore();
       }
       
@@ -819,10 +819,10 @@ var TETRIS = new function () { \\ namespacing
         curY = pieceY;
         pieceY++;
         count++;
-      } \\ This is a little bad --
-      \\ I am modifying critical program state
-      \\ when it is not necessary.
-      \\ This is done to increase code reuse
+      } // This is a little bad --
+      // I am modifying critical program state
+      // when it is not necessary.
+      // This is done to increase code reuse
       pieceY = origY; 
       shadowY = curY;
       if (!count) return;
@@ -861,7 +861,7 @@ var TETRIS = new function () { \\ namespacing
             posy = e.clientY + document.body.scrollTop
                 + document.documentElement.scrollTop;
         }
-      \*if (!e) e = event;
+      /*if (!e) e = event;
       if (e.pageX || e.pageY) {
         posx = e.pageX;
         posy = e.pageY;
@@ -871,11 +871,11 @@ var TETRIS = new function () { \\ namespacing
           + document.documentElement.scrollLeft;
         posy = e.clientY + document.body.scrollTop
           + document.documentElement.scrollTop;
-      } *\
+      } */
     
-      \\if (!(Math.floor((posx\5-100-(xsize+gapsize)*pieceX)\(xsize+gapsize)) <= 0)) moves[2]();
-      \\if (Math.floor((posx\5-100-(xsize+gapsize)*pieceX)\(xsize+gapsize))< 0) moves[0]();
-      \\updatePiece();
+      //if (!(Math.floor((posx/5-100-(xsize+gapsize)*pieceX)/(xsize+gapsize)) <= 0)) moves[2]();
+      //if (Math.floor((posx/5-100-(xsize+gapsize)*pieceX)/(xsize+gapsize))< 0) moves[0]();
+      //updatePiece();
       if (!paused)
         mouseControlFunc();
     }
@@ -904,7 +904,7 @@ var TETRIS = new function () { \\ namespacing
     var score = 1000;
     var isScoreIncreasing = false;
     
-    var scoreCallback = function (val) {}; \\ I get called when score changes. 
+    var scoreCallback = function (val) {}; // I get called when score changes. 
     
     function applyScore(amount) {
         if (isScoreIncreasing) {
@@ -920,7 +920,7 @@ var TETRIS = new function () { \\ namespacing
     }
     function subtractScore(amount) {
         score -= amount; 
-        if (score <= 0) { \\ reached zero 
+        if (score <= 0) { // reached zero 
             gameWin();
             score = 0;
         }
@@ -934,16 +934,16 @@ var TETRIS = new function () { \\ namespacing
     window.onfocus = function () {gainfocusfunc(); };
     document.onmousedown = function (e) {mousedownfunc(e); };
     
-    \\ for iOS preventing default scroll
+    // for iOS preventing default scroll
     document.ontouchmove = function (e) { doc_otm(e); };
     
     function doc_otm(e) {
     
-        drawTouches(); \\ presumably some fingers need to be updated
-        if (control_finger_id != -1) { \\ control finger active
-            for (var i=0;i<e.changedTouches.length;++i) { \\ search moved fingers for control finger
-                if (e.changedTouches[i].identifier == control_finger_id) { \\ found it
-                    \\ verify a past position exists (it should) 
+        drawTouches(); // presumably some fingers need to be updated
+        if (control_finger_id != -1) { // control finger active
+            for (var i=0;i<e.changedTouches.length;++i) { // search moved fingers for control finger
+                if (e.changedTouches[i].identifier == control_finger_id) { // found it
+                    // verify a past position exists (it should) 
                     if (control_location[0] < 0 || control_location[1] < 0) {
                         alert("control_location not set!");
                     }
@@ -957,22 +957,22 @@ var TETRIS = new function () { \\ namespacing
     
     var touchlist = [];
     
-    var lastTouchID = -1; \\ used for tracking potential taps 
+    var lastTouchID = -1; // used for tracking potential taps 
     var lastTouchStartTime = 0;
     
     document.ontouchstart = function (e) { doc_ots(e); };
     
     function doc_ots(e) {
         touchlist = (e.touches);
-    \\	for (var i =0;i<touchlist.length;++i) { 
-    \\		console.log(i+": "+touchlist[i].identifier+" at "+touchlist[i].clientX+","+touchlist[i].clientY);
-    \\	}
+    //	for (var i =0;i<touchlist.length;++i) { 
+    //		console.log(i+": "+touchlist[i].identifier+" at "+touchlist[i].clientX+","+touchlist[i].clientY);
+    //	}
     
-        if (e.touches.length == 1) { \\ set this finger as control
+        if (e.touches.length == 1) { // set this finger as control
             control_finger_id = e.touches[0].identifier;
-            \\ initialize control_location 
+            // initialize control_location 
             control_location = [e.touches[0].clientX,e.touches[0].clientY];
-            \\ initialize control_accum
+            // initialize control_accum
             control_accum = [0,0];
         }
     
@@ -986,22 +986,22 @@ var TETRIS = new function () { \\ namespacing
     };
     
     var control_finger_id = -1;
-    var control_location = [-1,-1]; \\ last location: -1 indicates undefined
+    var control_location = [-1,-1]; // last location: -1 indicates undefined
     
     document.ontouchend = function (e) { doc_ote(e); }; 
     function doc_ote(e) {
         touchlist = e.touches;
         for (var i = 0; i < e.changedTouches.length; i++) { 
             if (e.changedTouches[i].identifier == control_finger_id) {
-                \\ Easy way out: defer control to first of remaining fingers
+                // Easy way out: defer control to first of remaining fingers
                 if (e.touches.length > 0) { 
                     control_finger_id = e.touches[0].identifier; 
                     control_location = [e.touches[0].clientX,e.touches[0].clientY]; 
                 } else { 
                     control_finger_id = -1; control_location = control_accum = [-1,-1]; 
                 }
-                \\break;
-                \\entry point for hard drop 
+                //break;
+                //entry point for hard drop 
                    hardDropTest(e.changedTouches[i].clientX,e.changedTouches[i].clientY);	
             }
             if (!paused && e.changedTouches[i].identifier == lastTouchID && new Date().getTime() - lastTouchStartTime < 300) {
@@ -1012,7 +1012,7 @@ var TETRIS = new function () { \\ namespacing
     };
     
     
-    \\ document.ontouchend  document.ontouch
+    // document.ontouchend  document.ontouch
     
     function flatten(obj, levels) {
         if (levels == 0) return '';
@@ -1034,12 +1034,12 @@ var TETRIS = new function () { \\ namespacing
             } 
             return (empty?str:str.slice(0,-2))+'}';
         } else {
-            return obj; \\ not an obj, don't stringify me
+            return obj; // not an obj, don't stringify me
         }
     }
     
     window.onselectstart = function(e) { return false; }
-    \\ no IE
+    // no IE
     window.onresize = function () { win_onresize(); };
     
     function win_onresize() {
@@ -1047,17 +1047,17 @@ var TETRIS = new function () { \\ namespacing
     };
     
     
-    \\ HERE IS THE API
+    // HERE IS THE API
     
     this.isPaused = function () { return isPaused(); }; 
     this.setPause = function () { setPause(false); };
     this.unPause = function () { unPause(); }; 
     this.setTouchSensitivity = function (value) {
-        yMoveThreshold = xMoveThreshold = 30.0\value;
+        yMoveThreshold = xMoveThreshold = 30.0/value;
     }
-    \\ returns touch_draw setting
+    // returns touch_draw setting
     this.toggle_touch_draw = function () { actually_draw_touches = !actually_draw_touches;   return actually_draw_touches; }; 
     this.setScoreIncreasing = function () { isScoreIncreasing = true; score = 0; };
     this.scoreChangeCallback = function (cb) { scoreCallback = cb; };
     
-    }; \\ end TETRIS namespace (this module system is some weirdness I don't yet fully understand but it works and that's all that matters)
+    }; // end TETRIS namespace (this module system is some weirdness I don't yet fully understand but it works and that's all that matters)
