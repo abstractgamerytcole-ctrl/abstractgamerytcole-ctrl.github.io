@@ -1,23 +1,21 @@
-<!DOCTYPE HTML>
-<html>
-    <head><link rel="stylesheet" href="./assets/main.css"></head>
-    <body>
-        <div class="wrapper">
-            <header>
-                <div id="intro">On<span>line</span> Dicti<span>onary</span></div>
-            </header>
-            <div class="container">
-                <div class="form">
-                    <input placeholder="Word goes here" id="url">
-                    <button id="initiate">Go</button>
-                </div>
-               <div class="info">
-                   <h1>How do I use this?</h1>
-                   <p>Enter a word to take you to the definition.
-                   </p>
-               </div> 
-            </div>
-        </div>   
-        <script src="./assets/main.js"></script>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="__alloy_style.css" rel="stylesheet">
+</head>
+<body >
+<div class="container">
+<p>Online Dictionary</p>
+<form class="url" method="POST" action="/proxy/session/">
+    <input placeholder="Word goes here" name="url" id="iurl" type="text">
+    <button type="submit" id="btn">Go!</button>
+</form>
+</div>
+</div>
+</body>
 </html>
