@@ -11,6 +11,6 @@ input.addEventListener('keyup', (key) => {
 document.querySelector("#initiate").addEventListener('click', () => {
 
     if (!input.value.trim().length) return;
-    window.location.assign(`/prox/?url=${btoa(input.value)}`);
+    window.location.assign(`?url=${btoa(input.value)}`);
 
 });
