@@ -1,16 +1,39 @@
 {
-  "name": "proxy-test-1",
-  "version": "1.0.0",
-  "description": "proxy-test-v1",
-  "main": "index.js",
+  "name": "alloy",
+  "version": "2.5.0",
+  "description": "A web proxy.",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "ws": "^7.4.3"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node server.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titaniumnetwork-dev/alloy.git"
+  },
+  "keywords": [
+    "proxy",
+    "titanium network",
+    "alloy",
+    "alloyproxy",
+    "web unblocker",
+    "unblock",
+    "web proxy",
+    "school",
+    "workplace",
+    "web filter"
+  ],
+  "author": "Titanium Network",
   "license": "ISC",
-  "dependencies": {
-    "corrosion": "^1.0.0",
-    "express": "^4.17.2"
-  }
+  "bugs": {
+    "url": "https://github.com/titaniumnetwork-dev/alloy/issues"
+  },
+  "homepage": "https://github.com/titaniumnetwork-dev/alloy#readme"
 }
