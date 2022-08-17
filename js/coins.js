@@ -2,10 +2,9 @@ var savedCoins = localStorage.getItem("savedCoins")
 var oneOwned = localStorage.getItem("oneOwned")
 var twoOwned = localStorage.getItem("twoOwned")
 var threeOwned = localStorage.getItem("threeOwned")
-var ads = document.getElementsByClassName("adsbygoogle");
 
-for (var n = 0; n < ads.length; n++) {
-    ads[n].addEventListener('click', addCoins(5), false);
+for (var n = 0; n < document.getElementsByClassName("adsbygoogle").length; n++) {
+    document.getElementsByClassName("adsbygoogle")[n].addEventListener('click', addCoins(5), false);
 }
 
 
