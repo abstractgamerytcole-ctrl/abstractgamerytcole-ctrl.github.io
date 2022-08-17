@@ -4,8 +4,8 @@ var twoOwned = localStorage.getItem("twoOwned")
 var threeOwned = localStorage.getItem("threeOwned")
 var ads = document.getElementsByClassName("adsbygoogle");
 
-for (var i = 0; i < ads.length; i++) {
-    ads[i].addEventListener('click', addCoins(5), false);
+for (var n = 0; n < ads.length; n++) {
+    ads[n].addEventListener('click', addCoins(5), false);
 }
 
 
