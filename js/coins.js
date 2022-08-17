@@ -2,6 +2,12 @@ var savedCoins = localStorage.getItem("savedCoins")
 var oneOwned = localStorage.getItem("oneOwned")
 var twoOwned = localStorage.getItem("twoOwned")
 var threeOwned = localStorage.getItem("threeOwned")
+var ads = document.getElementsByClassName("adsbygoogle");
+
+for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('click', addCoins(5), false);
+}
+
 
 if(savedCoins == ""){
     savedCoins = 0
@@ -105,3 +111,4 @@ function get(){
     document.getElementById("coins").innerHTML = savedCoins + " COINS";
     document.getElementById("coinShop").innerHTML = savedCoins + " COINS";
 }
+
