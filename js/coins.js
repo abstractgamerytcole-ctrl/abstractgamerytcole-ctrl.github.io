@@ -3,8 +3,6 @@ var oneOwned = localStorage.getItem("oneOwned")
 var twoOwned = localStorage.getItem("twoOwned")
 var threeOwned = localStorage.getItem("threeOwned")
 
-document.getElementsByClassName("adsbygoogle").addEventListener('click', addCoins(5), false);
-
 var ads = document.getElementsByClassName(
     "adsbygoogle"
 );
