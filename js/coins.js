@@ -7,7 +7,7 @@ var ads = document.getElementsByClassName(
     "adsbygoogle"
 );
 
-ads[x].addEventListener("click", addCoins(5))
+ads[0].addEventListener("click", addCoins(5))
 
 if(savedCoins == ""){
     savedCoins = 0
