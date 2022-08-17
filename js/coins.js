@@ -5,6 +5,14 @@ var threeOwned = localStorage.getItem("threeOwned")
 
 document.getElementsByClassName("adsbygoogle").addEventListener('click', addCoins(5), false);
 
+var ads = document.getElementsByClassName(
+    "adsbygoogle"
+);
+
+for (var i=0; i < ads.length; i++) {
+    ads[i].onclick = addCoins(5)
+};
+
 if(savedCoins == ""){
     savedCoins = 0
 }
