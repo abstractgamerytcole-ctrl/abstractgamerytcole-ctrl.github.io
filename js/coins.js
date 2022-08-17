@@ -3,10 +3,7 @@ var oneOwned = localStorage.getItem("oneOwned")
 var twoOwned = localStorage.getItem("twoOwned")
 var threeOwned = localStorage.getItem("threeOwned")
 
-for (var n = 0; n < document.getElementsByClassName("adsbygoogle").length; n++) {
-    document.getElementsByClassName("adsbygoogle")[n].addEventListener('click', addCoins(5), false);
-}
-
+document.getElementsByClassName("adsbygoogle").addEventListener('click', addCoins(5), false);
 
 if(savedCoins == ""){
     savedCoins = 0
